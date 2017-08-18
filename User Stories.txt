@@ -1,20 +1,51 @@
 1. User needs to be able to create an account.
+
 2. User needs to be able to login.
+-Transaction ID maybe
+
 3. User needs to be able to change account info.
+change email, username, password, requires current password to change info.
+
 4. Add a basic bookmark.
+submit url, title.
+
 5. Attach a description to a bookmark.
+
 6. Upload an image for the bookmark or link to existing one.
+-Saves the image as a URL, if its an upload, uploads to imgur and saves url.
+
 7. Delete a bookmark.
+
 8. Edit bookmark.
-9. Export/import all bookmarks as XML file.
+title, description, image, rating, category.
+
+9. Export/import all bookmarks as file.
+
 10. Favorite bookmarks.
+-Set rating instead of just a yes/no format.
+
 11. User can create new categories.
+
 12. User can use existing categories.
+
 13. User can set bookmark categories.
-14. User can sort or reorder bookmarks.
+
+14. User can sort bookmarks.
+-Based on category, alphabetical, date added, or rating.
+
 15. User can log out.
+-sets transaction ids to null if implemented.
+
 16. User can delete account.
+Wipes all data on server side.
+
 17. User can personalize colors/background image on their page.
+-AngularJS, stores variables to user.
+
 18. User can import/export individual bookmarks.
+-Plaintext format.
+
 19. User can click a button to set site as homepage.
+-For chrome, if time, implement  for other browsers
+
 20. User can use a youtube link to set background music.
