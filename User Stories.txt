@@ -48,4 +48,4 @@ Wipes all data on server side.
 19. User can click a button to set site as homepage.
 -For chrome, if time, implement  for other browsers
 
-20. User can use a youtube link to set background music.
+20. User can use a youtube link to set background music
