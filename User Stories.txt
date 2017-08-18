@@ -1,0 +1,20 @@
+1. User needs to be able to create an account.
+2. User needs to be able to login.
+3. User needs to be able to change account info.
+4. Add a basic bookmark.
+5. Attach a description to a bookmark.
+6. Upload an image for the bookmark or link to existing one.
+7. Delete a bookmark.
+8. Edit bookmark.
+9. Export/import all bookmarks as XML file.
+10. Favorite bookmarks.
+11. User can create new categories.
+12. User can use existing categories.
+13. User can set bookmark categories.
+14. User can sort or reorder bookmarks.
+15. User can log out.
+16. User can delete account.
+17. User can personalize colors/background image on their page.
+18. User can import/export individual bookmarks.
+19. User can click a button to set site as homepage.
+20. User can use a youtube link to set background music.
