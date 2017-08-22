@@ -10,7 +10,7 @@ public class Bookmarks {
 	private String description;
 	private int uid;
 	private int rating;
-	private  int cid;
+	private  int cid; //category Id
 	private Blob image;
 	public int getBmid() {
 		return bmid;
