@@ -1,4 +1,4 @@
-package com.revature.beans;
+package com.olympians.beans;
 
 import java.sql.Blob;
 
