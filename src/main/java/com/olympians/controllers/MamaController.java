@@ -29,7 +29,7 @@ public class MamaController {
 	public String register(HttpServletRequest req) {
 		return null;
 	}
-	
+
 	@RequestMapping(value="/updateuser", method=RequestMethod.POST)
 	public String updateuser(HttpServletRequest req) {
 		return "/pages/homepage.html";
