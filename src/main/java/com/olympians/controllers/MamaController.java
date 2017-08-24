@@ -30,8 +30,14 @@ public class MamaController {
 		return "/pages/index.html";
 	}
 	
-	@RequestMapping(value="/allBookmarks", method=RequestMethod.GET)
+	@RequestMapping(value="/bookmarks", method=RequestMethod.GET)
 	public ResponseEntity<Object> allBookmarks(HttpServletRequest req) {
+		List<Object> result = new ArrayList<>();
+		return ResponseEntity.ok(result);
+	}
+	
+	@RequestMapping(value="/bookmarks", method=RequestMethod.POST)
+	public ResponseEntity<Object> editBookmarks(HttpServletRequest req){
 		List<Object> result = new ArrayList<>();
 		return ResponseEntity.ok(result);
 	}
@@ -41,4 +47,11 @@ public class MamaController {
 		List<Object> userFields = new ArrayList<>();
 		return ResponseEntity.ok(userFields);
 	}
+	
+	@RequestMapping(value="/settings", method=RequestMethod.POST)
+	public ResponseEntity<Object> editUserFields(HttpServletRequest req){
+		List<Object> userFields = new ArrayList<>();
+		return ResponseEntity.ok(userFields);
+	}
+	
 }
