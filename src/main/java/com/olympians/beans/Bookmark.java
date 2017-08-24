@@ -19,7 +19,7 @@ import org.springframework.stereotype.Repository;
 public class Bookmark {
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int bmid;
 	@Column
 	private String name;
@@ -28,17 +28,26 @@ public class Bookmark {
 	@Column
 	private String description;
 	@ManyToOne
-	@JoinColumn(name="pid")
+	@JoinColumn(name = "pid")
 	private Person person;
 	@Column
 	private int rating;
 	@OneToOne
-	@JoinColumn(name="cid")
+	@JoinColumn(name = "cid")
 	private Category category;
 	@Column
 	private String image;
-	
-	
+	@Column
+	private String imageDeleteHash; // needed for imgur delete
+
+	public String getImageDeleteHash() {
+		return imageDeleteHash;
+	}
+
+	public void setImageDeleteHash(String imageDeleteHash) {
+		this.imageDeleteHash = imageDeleteHash;
+	}
+
 	public int getBmid() {
 		return bmid;
 	}
@@ -102,15 +111,15 @@ public class Bookmark {
 	public void setImage(String image) {
 		this.image = image;
 	}
-	
+
 	@Override
 	public String toString() {
 		return "Bookmark [bmid=" + bmid + ", name=" + name + ", address=" + address + ", description=" + description
 				+ ", person=" + person + ", rating=" + rating + ", category=" + category + ", image=" + image + "]";
 	}
 
-	public Bookmark(String name, String address, String description, Person person, int rating,
-			Category category, String image) {
+	public Bookmark(String name, String address, String description, Person person, int rating, Category category,
+			String image) {
 		super();
 		this.name = name;
 		this.address = address;
