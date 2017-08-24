@@ -18,8 +18,8 @@ public interface DaoInterface {
 	
 	public void UploadImageByFile(Person person, Bookmark bookmark, String filePath) throws Exception; //might be done
 	
-	public void EditAccount(Person person, String fname, String lname, String username, String password, String email);
+	public void EditAccount(Person person, String fname, String lname, String username, String password, String email); //done
 	
-	public void EditBookmark(Bookmark bookmark, int rating, Category category, String name, String address, String description);
+	public void EditBookmark(Bookmark bookmark, int rating, Category category, String name, String address, String description); //done
 
 }
