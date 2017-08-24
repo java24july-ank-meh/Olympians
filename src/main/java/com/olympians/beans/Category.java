@@ -44,6 +44,11 @@ public class Category {
 	public String toString() {
 		return "Categories [cid=" + cid + ", cname=" + cname + "]";
 	}
+	public Category(int cid, String cname) {
+		super();
+		this.cid = cid;
+		this.cname = cname;
+	}
 	
 	
 }
