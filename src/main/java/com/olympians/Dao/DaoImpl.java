@@ -6,6 +6,9 @@ import org.hibernate.Transaction;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
+
 import javax.persistence.criteria.CriteriaQuery;
 
 import com.olympians.Imgur.ImgurContent;
@@ -106,6 +109,85 @@ public class DaoImpl implements DaoInterface {
 		session.saveOrUpdate(bookmark);
 		session.flush();
 		tx.commit();
+	}
+
+	@Override
+	public boolean Login(String username, String password) throws Exception {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public void CreateBookmark(String name, String address, String description, int pid, int rating, String category,
+			String image) throws Exception {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void DeleteBookmark(int pid, int bmid) throws Exception {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void ExportAllBookmarks() throws Exception {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void ImportAllBookmarks() throws Exception {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void AddCategory(String name) throws Exception {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public List<Bookmark> SortByCategory(int pid) throws Exception {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<Bookmark> SortbyName(int pid) throws Exception {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<Bookmark> SortByDate(int pid) throws Exception {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<Bookmark> SortByRating(int pid) throws Exception {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void DeletePerson(String username, String password) throws Exception {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void ExportSingleBookmark() throws Exception {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void ImportSingleBookmark() throws Exception {
+		// TODO Auto-generated method stub
+		
 	}
 
 }
