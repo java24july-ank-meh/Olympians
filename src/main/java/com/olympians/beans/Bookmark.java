@@ -109,10 +109,9 @@ public class Bookmark {
 				+ ", person=" + person + ", rating=" + rating + ", category=" + category + ", image=" + image + "]";
 	}
 
-	public Bookmark(int bmid, String name, String address, String description, Person person, int rating,
+	public Bookmark(String name, String address, String description, Person person, int rating,
 			Category category, String image) {
 		super();
-		this.bmid = bmid;
 		this.name = name;
 		this.address = address;
 		this.description = description;

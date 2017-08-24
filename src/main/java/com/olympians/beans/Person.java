@@ -106,16 +106,13 @@ public class Person {
 	}
 
 
-	public Person(int pid, String fname, String lname, String username, String password, String email,
-			List<Bookmark> blist) {
+	public Person(String fname, String lname, String username, String password, String email) {
 		super();
-		this.pid = pid;
 		this.fname = fname;
 		this.lname = lname;
 		this.username = username;
 		this.password = password;
 		this.email = email;
-		this.blist = blist;
 	}
 
 	@Override
