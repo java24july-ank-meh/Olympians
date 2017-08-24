@@ -1,4 +1,4 @@
-package com.olympians;
+package com.olympians.Imgur;
 
 import java.awt.image.BufferedImage;
 import java.io.BufferedReader;

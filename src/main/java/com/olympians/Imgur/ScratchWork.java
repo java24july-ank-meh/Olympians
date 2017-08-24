@@ -1,5 +1,6 @@
+package com.olympians.Imgur;
 
-package com.olympians;
+
 import java.io.IOException;
 import java.security.NoSuchAlgorithmException;
 import java.security.spec.InvalidKeySpecException;
@@ -12,7 +13,7 @@ import javax.crypto.spec.PBEKeySpec;
 
 
 
-public class Main {
+public class ScratchWork {
 
       public static void main(String[] args) throws IOException, NoSuchAlgorithmException, InvalidKeySpecException
   {
