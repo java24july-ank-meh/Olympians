@@ -8,6 +8,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 import javax.persistence.criteria.CriteriaQuery;
 
+import com.olympians.Imgur.ImgurContent;
 import com.olympians.beans.Bookmark;
 import com.olympians.beans.Person;
 
@@ -43,7 +44,15 @@ public class DaoImpl implements DaoInterface {
 	public void UploadImageByLink(Person person, Bookmark bookmark, String url) throws Exception {
 		Session session = sf.getCurrentSession();
 		Transaction tx = session.beginTransaction();
-		//Do Stuff
+		
+		/*String[] imgurData = ImgurContent.uploadByLink(url);
+		String hql = "UPDATE BOOKMARK set salary = :salary "  + 
+	             "WHERE id = :employee_id";
+		Query query = session.createQuery(hql);
+		query.setParameter("salary", 1000);
+		query.setParameter("employee_id", 10);
+		int result = query.executeUpdate();*/
+		
 		tx.commit();
 	}
 
