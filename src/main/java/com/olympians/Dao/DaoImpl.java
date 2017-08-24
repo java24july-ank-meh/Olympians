@@ -10,6 +10,7 @@ import javax.persistence.criteria.CriteriaQuery;
 
 import com.olympians.Imgur.ImgurContent;
 import com.olympians.beans.Bookmark;
+import com.olympians.beans.Category;
 import com.olympians.beans.Person;
 
 @Component("bmrk")
@@ -87,6 +88,24 @@ public class DaoImpl implements DaoInterface {
 		session.flush();
 		tx.commit();
 		
+	}
+
+	@Override
+	public void EditBookmark(Bookmark bookmark, int rating, Category category, String name, String address, String description) {
+		Session session = sf.getCurrentSession();
+		Transaction tx = session.beginTransaction();
+		
+		session.persist(bookmark);
+		
+		if(rating != -1) {bookmark.setRating(rating);}  // -1 because int can't be null
+		if(category != null) {bookmark.setCategory(category);}
+		if(name != null) {bookmark.setName(name);}
+		if(address != null) {bookmark.setAddress(address);}
+		if(description != null) {bookmark.setDescription(description);}
+
+		session.saveOrUpdate(bookmark);
+		session.flush();
+		tx.commit();
 	}
 
 }
