@@ -1,6 +1,8 @@
 package com.olympians.beans;
 
 import java.sql.Blob;
+import java.sql.Timestamp;
+import java.util.Date;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -11,7 +13,10 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
+import org.hibernate.annotations.CreationTimestamp;
 import org.springframework.stereotype.Repository;
 
 @Repository
@@ -21,6 +26,14 @@ public class Bookmark {
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private int bmid;
+	public Date getDateAdded() {
+		return dateAdded;
+	}
+
+	public void setDateAdded(Timestamp dateAdded) {
+		this.dateAdded = dateAdded;
+	}
+
 	@Column
 	private String name;
 	@Column
@@ -37,7 +50,10 @@ public class Bookmark {
 	private Category category;
 	@Column
 	private String image;
-	
+	@CreationTimestamp
+	@Temporal(TemporalType.TIMESTAMP)
+	@Column
+	private Date dateAdded;  
 	
 	public int getBmid() {
 		return bmid;
