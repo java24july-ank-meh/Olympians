@@ -45,21 +45,29 @@ public class DaoImpl implements DaoInterface {
 		Session session = sf.getCurrentSession();
 		Transaction tx = session.beginTransaction();
 		
-		/*String[] imgurData = ImgurContent.uploadByLink(url);
-		String hql = "UPDATE BOOKMARK set salary = :salary "  + 
-	             "WHERE id = :employee_id";
-		Query query = session.createQuery(hql);
-		query.setParameter("salary", 1000);
-		query.setParameter("employee_id", 10);
-		int result = query.executeUpdate();*/
-		
+		String[] imgurData = ImgurContent.uploadByLink(url);
+		session.persist(bookmark);
+		bookmark.setImage(imgurData[0]);
+		bookmark.setImageDeleteHash(imgurData[1]);
+
+		session.saveOrUpdate(bookmark);
+		session.flush();
 		tx.commit();
 	}
 
 	@Override
 	public void UploadImageByFile(Person person, Bookmark bookmark, String filePath) throws Exception {
-		// TODO Auto-generated method stub
+		Session session = sf.getCurrentSession();
+		Transaction tx = session.beginTransaction();
+		
+		String[] imgurData = ImgurContent.uploadByFile(filePath);
+		session.persist(bookmark);
+		bookmark.setImage(imgurData[0]);
+		bookmark.setImageDeleteHash(imgurData[1]);
 
+		session.saveOrUpdate(bookmark);
+		session.flush();
+		tx.commit();
 	}
 
 }
