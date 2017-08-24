@@ -1,0 +1,53 @@
+Login Page variable names/IDs: 
+Login: 
+user
+pass
+
+
+Register:
+user1
+email
+pass1
+pass2 <-Ignore this one, used for pass confirmation.
+
+Modify User Info: * marks those that can be changed.
+user	*
+email	*
+id	
+passOld
+passn1	*
+passn2	<-ignore this one, used for confirmation.
+
+Front end:
+sessionStorage.user : username
+sessionStorage.pass : password
+sessionStorage.id   : primary key in DB
+sessionStorage.email: email address
+
+
+
+Bookmark Card: 
+
+  <table class="table" id="bookmarkcard">
+    <br/>
+  <thead>
+    <tr>
+      <th>TITLE_GOES_HERE*</th> <td></td><td></td>
+      <td><button class="btn btn-info btn-sm" onclick="editfunction(title*, score*, category*, url*)">Edit</button></td>
+    </tr>
+  </thead>
+  <tbody id="toReplace">
+    <tr>
+      <th scope="row">Title</th>
+      <td>DUMMYNAME*</td>
+      <th>Score</th>
+      <td>4*</td>
+    </tr>
+    <tr>
+      <th> Category:</th>
+      <td> Gaming*</td>
+      <th scope="row">Hotlink:</th>
+      <td id="Hotlink"><a target="_blank" href="http://www.google.com*" class="btn btn-info btn-sm">Click Here</a></td>
+    </tr>
+  </tbody>
+</table>
