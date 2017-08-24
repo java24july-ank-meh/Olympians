@@ -51,7 +51,11 @@ public class MamaController {
 	@RequestMapping(value="/settings", method=RequestMethod.POST)
 	public ResponseEntity<Object> editUserFields(HttpServletRequest req){
 		List<Object> userFields = new ArrayList<>();
+		System.out.println("Done");
 		return ResponseEntity.ok(userFields);
+	
 	}
+
+	
 	
 }
