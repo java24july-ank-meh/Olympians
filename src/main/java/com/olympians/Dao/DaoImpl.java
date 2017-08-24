@@ -70,4 +70,23 @@ public class DaoImpl implements DaoInterface {
 		tx.commit();
 	}
 
+	@Override
+	public void EditAccount(Person person, String fname, String lname, String username, String password, String email) {
+		Session session = sf.getCurrentSession();
+		Transaction tx = session.beginTransaction();
+		
+		session.persist(person);
+		
+		if(fname != null) {person.setFname(fname);}
+		if(lname != null) {person.setLname(lname);}
+		if(username != null) {person.setUsername(username);}
+		if(password != null) {person.setPassword(password);}
+		if(email != null) {person.setEmail(email);}
+
+		session.saveOrUpdate(person);
+		session.flush();
+		tx.commit();
+		
+	}
+
 }
