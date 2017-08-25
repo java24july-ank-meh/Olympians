@@ -28,7 +28,7 @@
 				org.hibernate.dialect.Oracle10gDialect
 			</prop>
 			<prop key="current_session_context_class">thread</prop >
-			<prop key="hibernate.hbm2ddl.auto">create</prop>
+			<prop key="hibernate.hbm2ddl.auto">update</prop>
 		</props>
 	</property>
 	<property name="dataSource" ref="datasource"></property>

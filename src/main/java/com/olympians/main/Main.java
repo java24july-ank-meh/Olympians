@@ -18,14 +18,20 @@ public class Main {
 		Person person = new Person("Eleazar", "Rosales", "erosales",
 				 "pass", "e@mail.com");
 		
-		bmk.InsertPerson(person);
+		//bmk.InsertPerson(person);
 		System.out.println(person);
 		System.out.println("finished");
 		
-		bmk.AddCategory("News");
+		//bmk.AddCategory("News");
 		System.out.println("check the category table");
 		
-		bmk.CreateUser("Diplo", "Diplo", "dip", "pwd", "dip@mail.com");
+		//bmk.CreateUser("Diplo", "Diplo", "dip", "pwd", "dip@mail.com");
+		
+		boolean result;
+		result = bmk.Login("erosales", "pass");
+		System.out.println(result);
+		
+		
 		
 
 	}

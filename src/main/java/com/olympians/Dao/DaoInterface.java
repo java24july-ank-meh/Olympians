@@ -24,7 +24,8 @@ public interface DaoInterface {
 	
 	public void EditBookmark(Bookmark bookmark, int rating, Category category, String name, String address, String description); //done
 	
-	public boolean Login(String username, String password) throws Exception;// not done
+	// working 
+	public boolean Login(String username, String pword) throws Exception;//done
 	
 	public void CreateBookmark(String name, String address, String description,
 			Person person, int rating, String category, String image) throws Exception; // done?? no idea if this works

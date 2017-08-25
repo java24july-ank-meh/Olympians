@@ -116,10 +116,24 @@ public class DaoImpl implements DaoInterface {
 		tx.commit();
 	}
 
+	// working
 	@Transactional
-	public boolean Login(String username, String password) throws Exception {
-		// TODO Auto-generated method stub
-		return false;
+	public boolean Login(String username, String pword) throws Exception {
+		Session session = sf.getCurrentSession();
+		Person person;
+		String hql = "FROM Person P WHERE P.username = '"+username+"'"+
+		" AND P.pword = '"+pword+"'";
+		Query query = session.createQuery(hql);
+		List<Person> results = query.list();
+		
+		if(results.isEmpty() == false) {
+			System.out.println("Login was successful");
+			return true;
+		}
+		else {
+			System.out.println("Either Username or Password doesn't match");
+			return false;
+		}
 	}
 
 	@Transactional
