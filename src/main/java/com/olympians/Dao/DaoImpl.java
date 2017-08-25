@@ -190,7 +190,7 @@ public class DaoImpl implements DaoInterface {
 		Transaction tx = session.beginTransaction();
 		Bookmark bookmark;
 		 
-		String hql = "SELECT Category FROM Category"; //SELECT * in hql
+		String hql = "SELECT Category c FROM Category WHERE c.pid = " + pid; //does this work
 		Query query = session.createQuery(hql);
 		bookmarks = query.list();
 		
@@ -208,7 +208,7 @@ public class DaoImpl implements DaoInterface {
 		Transaction tx = session.beginTransaction();
 		Bookmark bookmark;
 		 
-		String hql = "SELECT Category FROM Category"; //SELECT * in hql
+		String hql = "SELECT Category c FROM Category WHERE c.pid = " + pid; //does this work
 		Query query = session.createQuery(hql);
 		bookmarks = query.list();
 		
@@ -226,7 +226,7 @@ public class DaoImpl implements DaoInterface {
 		Transaction tx = session.beginTransaction();
 		Bookmark bookmark;
 		 
-		String hql = "SELECT Category FROM Category"; //SELECT * in hql
+		String hql = "SELECT Category c FROM Category WHERE c.pid = " + pid; //does this work
 		Query query = session.createQuery(hql);
 		bookmarks = query.list();
 		
@@ -244,7 +244,7 @@ public class DaoImpl implements DaoInterface {
 		Transaction tx = session.beginTransaction();
 		Bookmark bookmark;
 		 
-		String hql = "SELECT Category FROM Category"; //SELECT * in hql
+		String hql = "SELECT Category c FROM Category WHERE c.pid = " + pid; //does this work
 		Query query = session.createQuery(hql);
 		bookmarks = query.list();
 		

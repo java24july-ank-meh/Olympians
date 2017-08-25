@@ -183,7 +183,7 @@ public class Bookmark {
 	public static class SortByRating implements Comparator<Bookmark> {
 		@Override
 		public int compare(Bookmark b1, Bookmark b2) {
-			return Integer.compare(b1.getRating()(), b2.getRating()());
+			return Integer.compare(b1.getRating(), b2.getRating());
 		}
 	}
 

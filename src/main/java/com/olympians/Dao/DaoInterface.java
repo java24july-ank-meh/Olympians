@@ -28,7 +28,7 @@ public interface DaoInterface {
 	public boolean Login(String username, String password) throws Exception;// not done
 	
 	public void CreateBookmark(String name, String address, String description,
-			int pid, int rating, String category, String image) throws Exception; // done?? no idea if this works
+			Person person, int rating, String category, String image) throws Exception; // done?? no idea if this works
 	
 	public void DeleteBookmark(int pid, int bmid) throws Exception; // done
 	
