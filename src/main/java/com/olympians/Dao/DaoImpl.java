@@ -80,22 +80,20 @@ public class DaoImpl implements DaoInterface {
 	}
 
 	@Transactional
-	public void EditAccount(Person person, String fname, String lname, String username, String password, String email) {
+	public void EditAccount(Person old, String fname, String lname, String username, String password, String email) {
 		Session session = sf.getCurrentSession();
-		Transaction tx = session.beginTransaction();
-		
-		session.persist(person);
-		
-		if(fname != null) {person.setFname(fname);}
-		if(lname != null) {person.setLname(lname);}
-		if(username != null) {person.setUsername(username);}
-		if(password != null) {person.setPassword(password);}
-		if(email != null) {person.setEmail(email);}
 
-		session.saveOrUpdate(person);
+		Person person = new Person(old);
+
+		if (fname != null) {person.setFname(fname);}
+		if (lname != null) {person.setLname(lname);}
+		if (username != null) {person.setUsername(username);}
+		if (password != null) {person.setPassword(password);}
+		if (email != null) {person.setEmail(email);}
+
+		session.update(person);
 		session.flush();
-		tx.commit();
-		
+
 	}
 
 	@Transactional
