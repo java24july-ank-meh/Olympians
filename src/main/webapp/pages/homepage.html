@@ -1,25 +1,30 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-  
-  <title>Home</title>
-  <!-- if IE, use latest rendering -->
-  <meta http-equiv ="X-UA-Compatible" content="IE=edge">
-    <style>
-  .modal {
-    display: none; /* Hidden by default */
-    position: fixed; /* Stay in place */
-    z-index: 1; /* Sit on top */
-    left: 0;
-    top: 0;
-    width: 100%; /* Full width */
-    height: 100%; /* Full height */
-    overflow: auto; /* Enable scroll if needed */
-    background-color: rgb(0,0,0); /* Fallback color */
-    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width">
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<title>Home</title>
+<!-- if IE, use latest rendering -->
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+<style>
+.modal {
+	display: none; /* Hidden by default */
+	position: fixed; /* Stay in place */
+	z-index: 1; /* Sit on top */
+	left: 0;
+	top: 0;
+	width: 100%; /* Full width */
+	height: 100%; /* Full height */
+	overflow: auto; /* Enable scroll if needed */
+	background-color: rgb(0, 0, 0); /* Fallback color */
+	background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
 }
 /* Modal Content/Box */
 .modal-content {
@@ -44,6 +49,7 @@
     text-decoration: none;
     cursor: pointer;
 }
+<<<<<<< HEAD
   </style>
 </head>
 <body onload="onLoad()">
@@ -148,17 +154,271 @@ btn.onclick = function() {
 	document.getElementById("fname").value = sessionStorage.fname;
 	document.getElementById("lname").value = sessionStorage.lname;
 }
+=======
+
+.edit-modal-content {
+	background-color: #fefefe;
+	margin: 15% auto; /* 15% from the top and centered */
+	padding: 20px;
+	border: 1px solid #888;
+	width: 80%; /* Could be more or less, depending on screen size */
+}
+/*sytles for edit-modal*/
+</style>
+
+</head>
+<body onload="onLoad()">
+	<div class="container">
+		<!-- Add space around text and underline-->
+		<div class="page-header">
+			<h1>Home</h1>
+			Hello, <a id="usernamedisplay">Dummy</a> <br /> <a href="#"
+				class="btn btn-link btn-sm"> CHANGE USER INFO</a>
+		</div>
+		<!-- The Modal -->
+		<button class="btn btn-primary" id="myBtn">Add New Bookmark</button>
+		<div id="myModal" class="modal">
+
+			<!-- Modal content, Add Bookmark-->
+			<div class="modal-content">
+				<span class="close">&times;</span>
+				<form action="/addbookmarks" method="post">
+					<div class="form-group">
+						<label for="textinput" class="col-form-label">Title*</label>
+						<div class="col-10">
+							<input class="form-control" type="text" id="title" name="title"
+								placeholder="Title" required>
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="textinput" class="col-form-label">URL*</label>
+						<div class="col-10">
+							<input class="form-control" type="text" id="url" name="url"
+								placeholder="URL" required>
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="textinput" class="col-form-label">Category</label>
+						<div class="col-10">
+							<input class="form-control" type="text" id="category"
+								name="category" placeholder="Category">
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="exampleTextarea">Description</label>
+						<textarea class="form-control" id="desc" name="desc" rows="3"
+							placeholder="Enter Description"></textarea>
+					</div>
+
+					<div class="form-group">
+						<label for="InputManager">Rating:</label> <select id="scoreSelect"
+							name="scoreSelect">
+							<option value="1">1</option>
+							<option value="2">2</option>
+							<option value="3">3</option>
+							<option value="4">4</option>
+							<option value="5">5</option>
+						</select></br>
+					</div>
+					<div class="form-group">
+						<label for="exampleInputFile">Upload Image OR Link Image
+							Url</label> <input class="form-control" type="text" id="iurl" name="iurl"
+							placeholder="URL" required> <input type="file"
+							class="form-control-file" id="fileIn" name="fileIn"
+							aria-describedby="file" accept=".jpg,.png,.gif,.bmp,.jpeg">
+						<small id="fileHelp" class="form-text text-muted">Upload
+							file here.</small>
+					</div>
+					<input type="submit" value="Save" class="btn btn-primary" /><br>
+
+				</form>
+			</div>
+
+		</div>
+		<div name="replacebody" id="replacebody">
+			<table class="table">
+				<br /> THIS IS A DUMMY BOOKMARK BELOW, WHEN CREATING "CARDS" REMOVE
+				THIS LINE AND CREATE A NEW TABLE PER BOOKMARK.
+				<thead>
+					<tr>
+						<th>TITLE GOES HERE</th>
+						<td></td>
+						<td></td>
+
+
+						<td><button id="editBtn" class="btn btn-info btn-sm"
+								onclick="editfunction('title', 4, 'category', 'url', 'description', 192, 'imgurl')">Edit</button></td>
+
+					</tr>
+				</thead>
+				<tbody id="toReplace">
+					<tr>
+						<th scope="row">Title</th>
+						<td>DUMMYNAME</td>
+						<th>Score</th>
+						<td>4</td>
+					</tr>
+					<tr>
+						<th>Category:</th>
+						<td>Gaming</td>
+						<th scope="row">Hotlink:</th>
+						<td id="Hotlink"><a target="_blank"
+							href="http://www.google.com" class="btn btn-info btn-sm">Click
+								Here</a></td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+
+		<!-- eidt modal content -->
+		<div id="editModal" class="modal">
+			<div class="modal-content">
+				<span class="close">&times;</span>
+				<form action="/bookmarks" method="post">
+					<div class="form-group">
+						<label for="textinput" class="col-form-label">Title*</label>
+						<div class="col-10">
+							<input class="form-control" type="text" id="etitle" name="title"
+								placeholder="Title" required>
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="textinput" class="col-form-label">URL*</label>
+						<div class="col-10">
+							<input class="form-control" type="text" id="eurl" name="url"
+								placeholder="URL" required>
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="textinput" class="col-form-label">Category</label>
+						<div class="col-10">
+							<input class="form-control" type="text" id="ecategory"
+								name="category" placeholder="Category">
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="exampleTextarea">Description</label>
+						<textarea class="form-control" id="edesc" name="edesc" rows="3"
+							placeholder="Enter Description"></textarea>
+					</div>
+					<div class="form-group">
+						<label for="InputManager">Rating</label> <select id="escoreSelect"
+							name="escoreSelect">
+							<option value="1">1</option>
+							<option value="2">2</option>
+							<option value="3">3</option>
+							<option value="4">4</option>
+							<option value="5">5</option>
+						</select></br>
+					</div>
+					<div class="form-group">
+						<label for="exampleInputFile">Upload Image OR Link Image
+							Url</label> <input class="form-control" type="text" id="eiurl"
+							name="eiurl" placeholder="URL" required> <input
+							type="file" class="form-control-file" id="efileIn" name="efileIn"
+							aria-describedby="file" accept=".jpg,.png,.gif,.bmp,.jpeg">
+						<small id="fileHelp" class="form-text text-muted">Upload
+							file here.</small>
+					</div>
+					<input type="submit" value="Save" class="btn btn-primary" />
+					<input type="number" name="ePID" id="ePID" style="display: none;" />
+				</form>
+			</div>
+		</div>
+</body>
+<script>
+	function onLoad() {
+		checksession();
+		populatebookmarks();
+	}
+
+	function checksession() {
+
+		let xhttp = new XMLHttpRequest();
+		xhttp.onreadystatechange = function() {
+			console.log(this.readyState);
+			if (this.readyState === 4 && this.status === 200) {
+				document.getElementById("usernamedisplay").innerHTML = xhttp.responseText;
+			}
+		};
+		xhttp.open("GET", "/checkuser", true);
+		xhttp.send();
+	}
+
+	function populatebookmarks() {
+		let xhttp = new XMLHttpRequest();
+		xhttp.onreadystatechange = function() {
+			console.log(this.readyState);
+			if (this.readyState === 4 && this.status === 200) {
+				document.getElementById("replacebody").innerHTML = xhttp.responseText;
+			}
+		};
+		xhttp.open("GET", "/bookmarks", true);
+		xhttp.send();
+
+	}
+
+	function editfunction(title, score, category, url, description, pid, imgurl) {
+
+		sessionStorage.title = title;
+		sessionStorage.score = score;
+		sessionStorage.category = category;
+		sessionStorage.url = url;
+		sessionStorage.description = description;
+		sessionStorage.pid = pid;
+		sessionStorage.imgurl = imgurl;
+		editModal.style.display = "block";
+		document.getElementById("etitle").value = sessionStorage.title;
+		document.getElementById("eurl").value = sessionStorage.url;
+		document.getElementById("ecategory").value = sessionStorage.category;
+		document.getElementById("edesc").value = sessionStorage.description;
+		document.getElementById("escoreSelect").value = sessionStorage.score;
+		document.getElementById("ePID").value = sessionStorage.pid;
+		document.getElementById("eiurl").value = sessionStorage.imgurl;
+	}
+
+	// Get the modal
+	var modal = document.getElementById('myModal');
+	// Get the button that opens the modal
+	var btn = document.getElementById("myBtn");
+	// Get the <span> element that closes the modal
+	var span = document.getElementsByClassName("close")[0];
+
+	// When the user clicks on the button, open the modal
+	btn.onclick = function() {
+		modal.style.display = "block";
+	}
+>>>>>>> FrontEnd-Brook-Kevin
 
 // When the user clicks on <span> (x), close the modal
 span.onclick = function() {
     modal.style.display = "none";
 }
 
+<<<<<<< HEAD
 // When the user clicks anywhere outside of the modal, close it
 window.onclick = function(event) {
     if (event.target == modal) {
         modal.style.display = "none";
     }
 }
+=======
+	// When the user clicks anywhere outside of the modal, close it
+	window.onclick = function(event) {
+		if (event.target == modal || event.target == editModal) {
+			modal.style.display = "none";
+			editModal.style.display = "none";
+		}
+	}
+
+	//get the editModal
+	var editModal = document.getElementById("editModal");
+	var editBtn = document.getElementById("editBtn");
+	var editSpan = document.getElementsByClassName("close")[1];
+
+	editSpan.onclick = function() {
+		editModal.style.display = "none";
+	}
+>>>>>>> FrontEnd-Brook-Kevin
 </script>
 </html>
