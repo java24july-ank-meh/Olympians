@@ -115,6 +115,17 @@ public class Person {
 		this.pword = pword;
 		this.email = email;
 	}
+	
+	//copy constructor
+	public Person(Person p) {
+		this.pid = p.getPid();
+		this.lname = p.getLname();
+		this.username = p.getUsername();
+		this.pword = p.getPassword();
+		this.email = p.getEmail();
+		this.blist = p.getBlist();
+		this.fname = p.getFname();
+	}
 
 	@Override
 	public String toString() {

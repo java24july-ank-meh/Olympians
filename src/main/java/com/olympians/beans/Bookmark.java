@@ -153,7 +153,21 @@ public class Bookmark {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	//cat name date rating
+	
+	
+	//copy constructor
+	public Bookmark(Bookmark b) {
+		this.bmid = b.getBmid();
+		this.name = b.getName();
+		this.address = b.getAddress();
+		this.description = b.getDescription();
+		this.person = b.getPerson();
+		this.rating = b.getRating();
+		this.category = b.getCategory();
+		this.image = b.getImage();
+		this.dateAdded = b.getDateAdded();  
+		this.imageDeleteHash = b.getImageDeleteHash();
+	}
 	// comparator to order by category
 	public static class SortByCategory implements Comparator<Bookmark> {
 		@Override
