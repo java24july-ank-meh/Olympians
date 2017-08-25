@@ -1,16 +1,16 @@
 Login Page variable names/IDs: 
-Login: 
+Login: (Post, returns to login on fail, forwards to register on success) 
 user
 pass
 
 
-Register:
+Register: (Post, returns to login page)
 user1
 email
 pass1
 pass2 <-Ignore this one, used for pass confirmation.
 
-Modify User Info: * marks those that can be changed.
+Modify User Info: (Post, returns to homepage after) * marks those that can be changed.
 user	*
 email	*
 id	
@@ -18,36 +18,33 @@ passOld
 passn1	*
 passn2	<-ignore this one, used for confirmation.
 
-Front end:
-sessionStorage.user : username
-sessionStorage.pass : password
-sessionStorage.id   : primary key in DB
-sessionStorage.email: email address
+Homepage:
+(Get, /checkuser, returns to login on fail, else do nothing.)
+Empty request.
 
+(Get, /bookmarks, returns tables as a single string)
+Empty request
+
+(Post, /bookmarks, edits current bookmarks)
+etitle 	: title of bookmark
+eurl 	: url of bookmark
+ecategory:category of bookmark
+edesc	: description of bookmark
+escoreSelect: rating of bookmark
+eiurl	: url for image of bookmark
+efileIn : uploaded file for bookmark
+ePID 	: Primary Key of bookmark
+
+(Post, /addbookmarks, adds new bookmark)
+title
+url
+category
+desc
+scoreSelect
+iurl
+fileIn
 
 
 Bookmark Card: 
+in BookmarkTable return format.txt
 
-  <table class="table" id="bookmarkcard">
-    <br/>
-  <thead>
-    <tr>
-      <th>TITLE_GOES_HERE*</th> <td></td><td></td>
-      <td><button class="btn btn-info btn-sm" onclick="editfunction(title*, score*, category*, url*)">Edit</button></td>
-    </tr>
-  </thead>
-  <tbody id="toReplace">
-    <tr>
-      <th scope="row">Title</th>
-      <td>DUMMYNAME*</td>
-      <th>Score</th>
-      <td>4*</td>
-    </tr>
-    <tr>
-      <th> Category:</th>
-      <td> Gaming*</td>
-      <th scope="row">Hotlink:</th>
-      <td id="Hotlink"><a target="_blank" href="http://www.google.com*" class="btn btn-info btn-sm">Click Here</a></td>
-    </tr>
-  </tbody>
-</table>
