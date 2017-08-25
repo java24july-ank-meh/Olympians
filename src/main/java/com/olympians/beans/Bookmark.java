@@ -26,14 +26,6 @@ public class Bookmark {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int bmid;
-	public Date getDateAdded() {
-		return dateAdded;
-	}
-
-	public void setDateAdded(Timestamp dateAdded) {
-		this.dateAdded = dateAdded;
-	}
-
 	@Column
 	private String name;
 	@Column
@@ -128,6 +120,15 @@ public class Bookmark {
 	public void setImage(String image) {
 		this.image = image;
 	}
+	
+	public Date getDateAdded() {
+		return dateAdded;
+	}
+
+	public void setDateAdded(Timestamp dateAdded) {
+		this.dateAdded = dateAdded;
+	}
+
 
 	@Override
 	public String toString() {

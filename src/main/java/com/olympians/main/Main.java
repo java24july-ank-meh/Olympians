@@ -3,24 +3,27 @@ package com.olympians.main;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
+import com.olympians.Dao.DaoInterface;
 import com.olympians.beans.Person;
-//import com.olympians.Dao.DaoInterface;
 
 public class Main {
 
 	public static void main(String[] args) throws Exception {
 		ApplicationContext ctx = 
 				new ClassPathXmlApplicationContext("beans.xml");
-		//DaoInterface bmk =
-		//		(DaoInterface)ctx.getBean("bmrk");
+		DaoInterface bmk =
+				(DaoInterface)ctx.getBean("bmrk");
 		
 		
-		Person person = new Person("Dillon", "Francis", "dfran",
-				 "pwd", "dfran@mail.com");
+		Person person = new Person("Eleazar", "Rosales", "erosales",
+				 "pass", "e@mail.com");
 		
-		//bmk.InsertPerson(person);
+		bmk.InsertPerson(person);
 		System.out.println(person);
 		System.out.println("finished");
+		
+		bmk.AddCategory("News");
+		System.out.println("check the category table");
 		
 
 	}

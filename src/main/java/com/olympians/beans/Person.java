@@ -24,7 +24,7 @@ public class Person {
 	private String fname;
 	@Column
 	private String lname;
-	@Column
+	@Column(unique=true)
 	private String username;
 	@Column
 	private String pword;
@@ -106,7 +106,7 @@ public class Person {
 	}
 
 
-	public Person(String fname, String lname, String username, String password, String email) {
+	public Person(String fname, String lname, String username, String pword, String email) {
 		super();
 		this.fname = fname;
 		this.lname = lname;

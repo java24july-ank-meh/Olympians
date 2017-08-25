@@ -36,15 +36,15 @@ public class DaoImpl implements DaoInterface {
 	@Transactional
 	public void InsertPerson(Person person) throws Exception {
 		Session session = sf.getCurrentSession();
-		Transaction tx = session.beginTransaction();
+		//Transaction tx = session.beginTransaction();
 
 		session.save(person);
-
-		tx.commit();
+		session.flush();
+		//tx.commit();
 
 	}
 
-	@Override
+	@Transactional
 	public void UploadImageByLink(Person person, Bookmark bookmark, String url) throws Exception {
 		Session session = sf.getCurrentSession();
 		Transaction tx = session.beginTransaction();
@@ -59,7 +59,7 @@ public class DaoImpl implements DaoInterface {
 		tx.commit();
 	}
 
-	@Override
+	@Transactional
 	public void UploadImageByFile(Person person, Bookmark bookmark, String filePath) throws Exception {
 		Session session = sf.getCurrentSession();
 		Transaction tx = session.beginTransaction();
@@ -74,7 +74,7 @@ public class DaoImpl implements DaoInterface {
 		tx.commit();
 	}
 
-	@Override
+	@Transactional
 	public void EditAccount(Person person, String fname, String lname, String username, String password, String email) {
 		Session session = sf.getCurrentSession();
 		Transaction tx = session.beginTransaction();
@@ -93,7 +93,7 @@ public class DaoImpl implements DaoInterface {
 		
 	}
 
-	@Override
+	@Transactional
 	public void EditBookmark(Bookmark bookmark, int rating, Category category, String name, String address, String description) {
 		Session session = sf.getCurrentSession();
 		Transaction tx = session.beginTransaction();
@@ -111,80 +111,84 @@ public class DaoImpl implements DaoInterface {
 		tx.commit();
 	}
 
-	@Override
+	@Transactional
 	public boolean Login(String username, String password) throws Exception {
 		// TODO Auto-generated method stub
 		return false;
 	}
 
-	@Override
+	@Transactional
 	public void CreateBookmark(String name, String address, String description, int pid, int rating, String category,
 			String image) throws Exception {
 		// TODO Auto-generated method stub
 		
 	}
 
-	@Override
+	@Transactional
 	public void DeleteBookmark(int pid, int bmid) throws Exception {
 		// TODO Auto-generated method stub
 		
 	}
 
-	@Override
+	@Transactional
 	public void ExportAllBookmarks() throws Exception {
 		// TODO Auto-generated method stub
 		
 	}
 
-	@Override
+	@Transactional
 	public void ImportAllBookmarks() throws Exception {
 		// TODO Auto-generated method stub
 		
 	}
 
-	@Override
+	@Transactional
 	public void AddCategory(String name) throws Exception {
-		// TODO Auto-generated method stub
+		Category category = new Category();
+		category.setCname(name);
+		Session session = sf.getCurrentSession();
+		session.save(category);
+		session.flush();
 		
 	}
 
-	@Override
+	@Transactional
 	public List<Bookmark> SortByCategory(int pid) throws Exception {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
-	@Override
+	@Transactional
 	public List<Bookmark> SortbyName(int pid) throws Exception {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
-	@Override
+	@Transactional
 	public List<Bookmark> SortByDate(int pid) throws Exception {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
-	@Override
+	@Transactional
 	public List<Bookmark> SortByRating(int pid) throws Exception {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
-	@Override
+	@Transactional
 	public void DeletePerson(String username, String password) throws Exception {
 		// TODO Auto-generated method stub
 		
 	}
 
-	@Override
+	@Transactional
 	public void ExportSingleBookmark() throws Exception {
 		// TODO Auto-generated method stub
 		
 	}
 
-	@Override
+	@Transactional
 	public void ImportSingleBookmark() throws Exception {
 		// TODO Auto-generated method stub
 		
