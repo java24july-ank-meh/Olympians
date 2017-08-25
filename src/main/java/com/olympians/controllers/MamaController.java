@@ -6,23 +6,39 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.olympians.beans.Person;
+
 @Controller
 public class MamaController {
+	
+	@Autowired
+	Person loggedIn;
 
-	@RequestMapping(value="/home", method=RequestMethod.GET)
+	@RequestMapping(value="/", method=RequestMethod.GET)
+	public String goToLogin() {
+		return "/pages/index.html";
+	}
+	
+	@RequestMapping(value="/homepage", method = RequestMethod.GET)
 	public String goHome() {
+		System.out.println("In goHome(): " + loggedIn.getUsername());
 		return "/pages/homepage.html";
 	}
 	
 	@RequestMapping(value="/login", method=RequestMethod.POST)
-	public String login(HttpServletRequest req, String username, String password) {
+	public String login(String user, String pass, HttpServletRequest req) {
 		
-		return null;
+		loggedIn.setUsername(user);
+		loggedIn.setPassword(pass);
+		
+		System.out.println(loggedIn);
+		return "redirect:homepage";
 	}
 	
 	@RequestMapping(value="/register", method=RequestMethod.POST)
@@ -37,6 +53,8 @@ public class MamaController {
 	
 	@RequestMapping(value="/logout", method=RequestMethod.GET)
 	public String logout(HttpServletRequest req) {
+		HttpSession session = req.getSession();
+		session.invalidate();
 		return "/pages/index.html";
 	}
 	

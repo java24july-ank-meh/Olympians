@@ -11,8 +11,13 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 
+import org.springframework.context.annotation.Scope;
+import org.springframework.context.annotation.ScopedProxyMode;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
 
+@Component
+@Scope(proxyMode=ScopedProxyMode.TARGET_CLASS, value="session")
 @Repository
 @Entity
 public class Person {
@@ -34,7 +39,76 @@ public class Person {
 	@JoinColumn(name="pid")
 	private List<Bookmark> blist;
 	
-	
+
+	public int getPid() {
+		return pid;
+	}
+
+
+	public void setPid(int pid) {
+		this.pid = pid;
+	}
+
+
+	public String getFname() {
+		return fname;
+	}
+
+
+	public void setFname(String fname) {
+		this.fname = fname;
+	}
+
+
+	public String getLname() {
+		return lname;
+	}
+
+
+	public void setLname(String lname) {
+		this.lname = lname;
+	}
+
+
+	public String getUsername() {
+		return username;
+	}
+
+
+	public void setUsername(String username) {
+		this.username = username;
+	}
+
+
+	public String getPassword() {
+		return password;
+	}
+
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
+
+	public String getEmail() {
+		return email;
+	}
+
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+
+	public List<Bookmark> getBlist() {
+		return blist;
+	}
+
+
+	public void setBlist(List<Bookmark> blist) {
+		this.blist = blist;
+	}
+
 
 	public Person(String fname, String lname, String username, String password, String email) {
 		super();
@@ -50,6 +124,13 @@ public class Person {
 		super();
 		// TODO Auto-generated constructor stub
 	}
+
+
+	@Override
+	public String toString() {
+		return "Person [pid=" + pid + ", fname=" + fname + ", lname=" + lname + ", username=" + username + "]";
+	}
+	
 	
 	
 	
