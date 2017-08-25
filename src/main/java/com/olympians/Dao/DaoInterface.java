@@ -36,7 +36,7 @@ public interface DaoInterface {
 	
 	public void ImportAllBookmarks() throws Exception; // not done
 	
-	public void AddCategory(String name) throws Exception; // done
+	public void AddCategory(String name) throws Exception; //done
 	
 	public List<Bookmark> SortByCategory(int pid) throws Exception; // not done
 	

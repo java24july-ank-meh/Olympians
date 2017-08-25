@@ -120,7 +120,7 @@ public class DaoImpl implements DaoInterface {
 	@Transactional
 	public void CreateBookmark(String name, String address, String description, int pid, int rating, String category,
 			String image) throws Exception {
-		// TODO Auto-generated method stub
+		Bookmark bookmark = new Bookmark();
 		
 	}
 
