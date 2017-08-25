@@ -2,6 +2,7 @@ package com.olympians.beans;
 
 import java.sql.Blob;
 import java.sql.Timestamp;
+import java.util.Comparator;
 import java.util.Date;
 
 import javax.persistence.CascadeType;
@@ -152,4 +153,39 @@ public class Bookmark {
 		super();
 		// TODO Auto-generated constructor stub
 	}
+	//cat name date rating
+	// comparator to order by category
+	public static class SortByCategory implements Comparator<Bookmark> {
+		@Override
+		public int compare(Bookmark b1, Bookmark b2) {
+			return b1.getCategory().getCname().compareTo(b2.getCategory().getCname());
+		}
+	}
+
+	// comparator to order by name
+	public static class SortByName implements Comparator<Bookmark> {
+		@Override
+		public int compare(Bookmark b1, Bookmark b2) {
+			return b1.getName().compareTo(b2.getName());
+		}
+	}
+	
+	// comparator to order by date
+	public static class SortByDate implements Comparator<Bookmark> {
+		@Override
+		public int compare(Bookmark b1, Bookmark b2) {
+			return b1.getDateAdded().compareTo(b2.getDateAdded());
+		}
+	}
+	
+	
+	// comparator to order by rating
+	public static class SortByRating implements Comparator<Bookmark> {
+		@Override
+		public int compare(Bookmark b1, Bookmark b2) {
+			return Integer.compare(b1.getRating()(), b2.getRating()());
+		}
+	}
+
+	
 }

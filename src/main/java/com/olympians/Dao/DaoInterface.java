@@ -38,15 +38,15 @@ public interface DaoInterface {
 	
 	public void AddCategory(String name) throws Exception; // done
 	
-	public List<Bookmark> SortByCategory(int pid) throws Exception; // not done
+	public List<Bookmark> SortByCategory(int pid) throws Exception; // done?
 	
-	public List<Bookmark> SortbyName(int pid) throws Exception; // not done
+	public List<Bookmark> SortbyName(int pid) throws Exception; // done?
 	
-	public List<Bookmark> SortByDate(int pid) throws Exception; // not done
+	public List<Bookmark> SortByDate(int pid) throws Exception; // done?
 	
-	public List<Bookmark> SortByRating(int pid) throws Exception; // not done
+	public List<Bookmark> SortByRating(int pid) throws Exception; // done?
 	
-	public boolean DeletePerson(String username, String password, int pid) throws Exception; // not done
+	public boolean DeletePerson(String username, String password, int pid) throws Exception; //  done
 	
 	public void ExportSingleBookmark() throws Exception; // not done
 	

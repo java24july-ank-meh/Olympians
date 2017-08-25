@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Collections;
 import java.util.List;
 
 import javax.persistence.criteria.CriteriaQuery;
@@ -184,26 +185,74 @@ public class DaoImpl implements DaoInterface {
 
 	@Transactional
 	public List<Bookmark> SortByCategory(int pid) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+		List<Bookmark> bookmarks;
+		Session session = sf.getCurrentSession();
+		Transaction tx = session.beginTransaction();
+		Bookmark bookmark;
+		 
+		String hql = "SELECT Category FROM Category"; //SELECT * in hql
+		Query query = session.createQuery(hql);
+		bookmarks = query.list();
+		
+		Collections.sort(bookmarks, new Bookmark.SortByCategory());
+		
+		session.flush();
+		tx.commit();
+		return bookmarks;
 	}
 
 	@Transactional
 	public List<Bookmark> SortbyName(int pid) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+		List<Bookmark> bookmarks;
+		Session session = sf.getCurrentSession();
+		Transaction tx = session.beginTransaction();
+		Bookmark bookmark;
+		 
+		String hql = "SELECT Category FROM Category"; //SELECT * in hql
+		Query query = session.createQuery(hql);
+		bookmarks = query.list();
+		
+		Collections.sort(bookmarks, new Bookmark.SortByName());
+		
+		session.flush();
+		tx.commit();
+		return bookmarks;
 	}
 
 	@Transactional
 	public List<Bookmark> SortByDate(int pid) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+		List<Bookmark> bookmarks;
+		Session session = sf.getCurrentSession();
+		Transaction tx = session.beginTransaction();
+		Bookmark bookmark;
+		 
+		String hql = "SELECT Category FROM Category"; //SELECT * in hql
+		Query query = session.createQuery(hql);
+		bookmarks = query.list();
+		
+		Collections.sort(bookmarks, new Bookmark.SortByDate());
+		
+		session.flush();
+		tx.commit();
+		return bookmarks;
 	}
 
 	@Transactional
 	public List<Bookmark> SortByRating(int pid) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+		List<Bookmark> bookmarks;
+		Session session = sf.getCurrentSession();
+		Transaction tx = session.beginTransaction();
+		Bookmark bookmark;
+		 
+		String hql = "SELECT Category FROM Category"; //SELECT * in hql
+		Query query = session.createQuery(hql);
+		bookmarks = query.list();
+		
+		Collections.sort(bookmarks, new Bookmark.SortByRating());
+		
+		session.flush();
+		tx.commit();
+		return bookmarks;
 	}
 
 	@Transactional
