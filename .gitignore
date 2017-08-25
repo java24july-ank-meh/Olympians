@@ -9,3 +9,9 @@ target/m2e-wtp/web-resources/META-INF/maven/com.olympians/Olympians/pom.properti
 .project
 .settings/org.eclipse.wst.common.project.facet.core.xml
 target/m2e-wtp/web-resources/META-INF/maven/com.olympians/Olympians/pom.properties
+*.prefs
+.settings/org.eclipse.m2e.core.prefs
+.settings/org.eclipse.wst.validation.prefs
+.classpath
+.settings/org.eclipse.jdt.core.prefs
+.settings/org.eclipse.wst.common.project.facet.core.xml

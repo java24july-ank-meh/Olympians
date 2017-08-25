@@ -16,13 +16,23 @@ public class MamaController {
 
 	@RequestMapping(value="/home", method=RequestMethod.GET)
 	public String goHome() {
-		return "/pages/index.html";
+		return "/pages/homepage.html";
 	}
 	
 	@RequestMapping(value="/login", method=RequestMethod.POST)
 	public String login(HttpServletRequest req, String username, String password) {
 		
 		return null;
+	}
+	
+	@RequestMapping(value="/register", method=RequestMethod.POST)
+	public String register(HttpServletRequest req) {
+		return null;
+	}
+
+	@RequestMapping(value="/updateuser", method=RequestMethod.POST)
+	public String updateuser(HttpServletRequest req) {
+		return "/pages/homepage.html";
 	}
 	
 	@RequestMapping(value="/logout", method=RequestMethod.GET)
