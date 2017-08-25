@@ -45,7 +45,11 @@ public class MamaController {
 		List<Object> result = new ArrayList<>();
 		return ResponseEntity.ok(result);
 	}
-	
+	@RequestMapping(value="/addbookmarks", method=RequestMethod.POST)
+	public ResponseEntity<Object> addBookmarks(HttpServletRequest req){
+		List<Object> result = new ArrayList<>();
+		return ResponseEntity.ok(result);
+	}
 	@RequestMapping(value="/bookmarks", method=RequestMethod.POST)
 	public ResponseEntity<Object> editBookmarks(HttpServletRequest req){
 		List<Object> result = new ArrayList<>();
