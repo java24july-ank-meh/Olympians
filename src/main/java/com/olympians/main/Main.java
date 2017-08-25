@@ -15,24 +15,20 @@ public class Main {
 				(DaoInterface)ctx.getBean("bmrk");
 		
 		
-		Person person = new Person("Eleazar", "Rosales", "erosales",
-				 "pass", "e@mail.com");
+		//Person person = new Person("E", "Ro", "ero",
+		//		 "pass", "e@mail.com");
 		
 		//bmk.InsertPerson(person);
-		System.out.println(person);
+		//System.out.println(person);
 		System.out.println("finished");
 		
-		//bmk.AddCategory("Tech");
+		//bmk.AddCategory("Funny");
 		System.out.println("check the category table");
 		
-		//bmk.CreateUser("Diplo", "Diplo", "dip", "pwd", "dip@mail.com");
 		
-		boolean result;
-		result = bmk.Login("erosales", "pass");
-		System.out.println(result);
-		
-		bmk.CreateBookmark("google", "url", "for searching", person, 5, 2, "this is an image");
-		
+		Person person2 = new Person();
+		person2.setPid(3);
+		bmk.CreateBookmark("Apple", "apple.com", "This is apple's main page", person2, 3, 2, "image");
 		
 
 	}

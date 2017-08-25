@@ -144,23 +144,6 @@ public class DaoImpl implements DaoInterface {
 		Category temp = new Category();
 		temp.setCid(category);
 		Bookmark bookmark = new Bookmark( name, address, description, person, rating, temp, image);
-		 
-		//get category if exists otherwise create
-		/*String hql = "FROM Category C WHERE C.cname = " + category;
-		Query query = session.createQuery(hql);
-		List<Category> results = query.list();
-		
-		if(results.isEmpty() == false) {
-			
-			bookmark = new Bookmark( name, address, description, person, rating, (Category)results.get(0), image);
-		}
-		else {
-			Category c = new Category();
-			c.setCname(name);
-			sf.getCurrentSession();
-			session.save(category);
-			bookmark = new Bookmark( name, address, description, person, rating, c, image);
-		}*/
 		
 		session.save(bookmark);
 		session.flush();
@@ -317,10 +300,24 @@ public class DaoImpl implements DaoInterface {
 
 	}
 
-	@Override
+	@Transactional
 	public Person getPersonInfo(String username, String pword) {
-		// TODO Auto-generated method stub
-		return null;
+		Session session = sf.getCurrentSession();
+		Person person = new Person();
+		String hql = "FROM Person P WHERE P.username = '"+username+"'"+
+		" AND P.pword = '"+pword+"'";
+		Query query = session.createQuery(hql);
+		List<Person> results = query.list();
+		
+		if(results.isEmpty() == false) {
+			person = results.get(0);
+			return person;
+		}
+		else {
+			return null;
+		}
+		
+		
 	}
 
 	@Override

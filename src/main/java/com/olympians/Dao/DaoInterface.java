@@ -58,6 +58,7 @@ public interface DaoInterface {
 	
 	public Category getCategoryInfo(String cname);
 	
+	
 	// testing function not really necessary
 	public void InsertPerson(Person person) throws Exception; // done
 }
