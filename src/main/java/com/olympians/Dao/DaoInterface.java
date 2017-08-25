@@ -27,10 +27,12 @@ public interface DaoInterface {
 	// working 
 	public boolean Login(String username, String pword) throws Exception;//done
 	
+	// working
 	public void CreateBookmark(String name, String address, String description,
-			Person person, int rating, int category, String image) throws Exception; // done?? no idea if this works
+			Person person, int rating, int category, String image) throws Exception; //done
 	
-	public void DeleteBookmark(int pid, int bmid) throws Exception; // done
+	//working
+	public void DeleteBookmark(int pid, int bmid) throws Exception; //done
 	
 	public void ExportAllBookmarks() throws Exception; // not done
 	
