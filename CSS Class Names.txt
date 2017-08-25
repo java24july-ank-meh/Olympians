@@ -1,0 +1,17 @@
+class names:
+headerbar 
+- font style
+- background color
+- text highlight (Optional)
+- Font Size
+- Font color.
+
+tablecolored 
+- color themes for tables
+- Font styles
+
+
+
+backgroundedit 
+- background color or image
+- Font colors to maintain readability
