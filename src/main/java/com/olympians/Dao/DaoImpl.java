@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -279,10 +280,16 @@ public class DaoImpl implements DaoInterface {
 		
 	}
 	
-	@Override
+	@Transactional
 	public List<Category> AllCategories() throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+		List<Category> clist;
+		Session session = sf.getCurrentSession();
+		String hql = "FROM Category";
+		Query query = session.createQuery(hql);
+		clist = query.list();
+		System.out.println(clist);
+		session.flush();
+		return clist;
 	}
 	
 	
@@ -322,7 +329,6 @@ public class DaoImpl implements DaoInterface {
 
 	@Override
 	public Category getCategoryInfo(String cname) {
-		// TODO Auto-generated method stub
 		return null;
 	}
 	

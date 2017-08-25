@@ -1,9 +1,12 @@
 package com.olympians.main;
 
+import java.util.List;
+
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import com.olympians.Dao.DaoInterface;
+import com.olympians.beans.Category;
 import com.olympians.beans.Person;
 
 public class Main {
@@ -28,6 +31,9 @@ public class Main {
 		
 		Person person2 = new Person();
 		person2.setPid(3);
+		
+		List<Category> clist = bmk.AllCategories();
+		System.out.println(clist);
 	}
 
 }

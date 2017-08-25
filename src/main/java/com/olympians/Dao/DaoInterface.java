@@ -54,11 +54,12 @@ public interface DaoInterface {
 	
 	public void ImportSingleBookmark() throws Exception; // not done
 	
-	public List<Category> AllCategories() throws Exception;
+	// working 
+	public List<Category> AllCategories() throws Exception; //done
 	
-	public Person getPersonInfo(String username, String pword);
+	public Person getPersonInfo(String username, String pword); // not done
 	
-	public Category getCategoryInfo(String cname);
+	public Category getCategoryInfo(String cname); // not done
 	
 	
 	// testing function not really necessary
