@@ -137,15 +137,16 @@ public class DaoImpl implements DaoInterface {
 	}
 
 	@Transactional
-	public void CreateBookmark(String name, String address, String description, Person person, int rating, String category,
+	public void CreateBookmark(String name, String address, String description, Person person, int rating, int category,
 			String image) throws Exception {
 		
 		Session session = sf.getCurrentSession();
-		Transaction tx = session.beginTransaction();
-		Bookmark bookmark;
+		Category temp = new Category();
+		temp.setCid(category);
+		Bookmark bookmark = new Bookmark( name, address, description, person, rating, temp, image);
 		 
 		//get category if exists otherwise create
-		String hql = "FROM Category C WHERE C.cname = " + category;
+		/*String hql = "FROM Category C WHERE C.cname = " + category;
 		Query query = session.createQuery(hql);
 		List<Category> results = query.list();
 		
@@ -159,11 +160,10 @@ public class DaoImpl implements DaoInterface {
 			sf.getCurrentSession();
 			session.save(category);
 			bookmark = new Bookmark( name, address, description, person, rating, c, image);
-		}
+		}*/
 		
 		session.save(bookmark);
 		session.flush();
-		tx.commit();
 	}
 
 	@Transactional
@@ -296,6 +296,12 @@ public class DaoImpl implements DaoInterface {
 		
 	}
 	
+	@Override
+	public List<Category> AllCategories() throws Exception {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	
 	
 	
 	
@@ -309,6 +315,18 @@ public class DaoImpl implements DaoInterface {
 		session.flush();
 		//tx.commit();
 
+	}
+
+	@Override
+	public Person getPersonInfo(String username, String pword) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Category getCategoryInfo(String cname) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 	
 

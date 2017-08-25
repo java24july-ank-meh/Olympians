@@ -28,7 +28,7 @@ public interface DaoInterface {
 	public boolean Login(String username, String pword) throws Exception;//done
 	
 	public void CreateBookmark(String name, String address, String description,
-			Person person, int rating, String category, String image) throws Exception; // done?? no idea if this works
+			Person person, int rating, int category, String image) throws Exception; // done?? no idea if this works
 	
 	public void DeleteBookmark(int pid, int bmid) throws Exception; // done
 	
@@ -52,6 +52,11 @@ public interface DaoInterface {
 	
 	public void ImportSingleBookmark() throws Exception; // not done
 	
+	public List<Category> AllCategories() throws Exception;
+	
+	public Person getPersonInfo(String username, String pword);
+	
+	public Category getCategoryInfo(String cname);
 	
 	// testing function not really necessary
 	public void InsertPerson(Person person) throws Exception; // done

@@ -22,7 +22,7 @@ public class Main {
 		System.out.println(person);
 		System.out.println("finished");
 		
-		//bmk.AddCategory("News");
+		//bmk.AddCategory("Tech");
 		System.out.println("check the category table");
 		
 		//bmk.CreateUser("Diplo", "Diplo", "dip", "pwd", "dip@mail.com");
@@ -31,6 +31,7 @@ public class Main {
 		result = bmk.Login("erosales", "pass");
 		System.out.println(result);
 		
+		bmk.CreateBookmark("google", "url", "for searching", person, 5, 2, "this is an image");
 		
 		
 
