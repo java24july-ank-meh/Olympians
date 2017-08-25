@@ -9,6 +9,7 @@ import com.olympians.beans.Person;
 public class Main {
 
 	public static void main(String[] args) throws Exception {
+		/*
 		ApplicationContext ctx = 
 				new ClassPathXmlApplicationContext("beans.xml");
 		DaoInterface bmk =
@@ -30,6 +31,6 @@ public class Main {
 		person2.setPid(3);
 		bmk.CreateBookmark("Apple", "apple.com", "This is apple's main page", person2, 3, 2, "image");
 		
-
+		*/
 	}
 }
