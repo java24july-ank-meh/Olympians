@@ -28,23 +28,26 @@ public class DaoImpl implements DaoInterface {
 		this.sf = sf;
 	}
 
+	//working
 	@Transactional
-	public void CreateUser(String fname, String lname, String username, String password, String email)
+	public void CreateUser(String fname, String lname, String username, String pword, String email)
 			throws Exception {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Transactional
-	public void InsertPerson(Person person) throws Exception {
 		Session session = sf.getCurrentSession();
-		//Transaction tx = session.beginTransaction();
-
+		Person person = new Person();
+		person.setFname(fname);
+		person.setLname(lname);
+		person.setUsername(username);
+		person.setPassword(pword);
+		person.setEmail(email);
 		session.save(person);
 		session.flush();
-		//tx.commit();
+		
+		// need to deal with uniqueness of a username
+		
+		
 
 	}
+
 
 	@Transactional
 	public void UploadImageByLink(Person person, Bookmark bookmark, String url) throws Exception {
@@ -278,5 +281,21 @@ public class DaoImpl implements DaoInterface {
 		// TODO Auto-generated method stub
 		
 	}
+	
+	
+	
+	
+	// testing usage
+	@Transactional
+	public void InsertPerson(Person person) throws Exception {
+		Session session = sf.getCurrentSession();
+		//Transaction tx = session.beginTransaction();
+
+		session.save(person);
+		session.flush();
+		//tx.commit();
+
+	}
+	
 
 }

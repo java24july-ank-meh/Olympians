@@ -12,10 +12,9 @@ import com.olympians.beans.Person;
 
 public interface DaoInterface {
 	
+	//works for now
 	public void CreateUser(String fname, String lname, String username,
-			 String password, String email) throws Exception; // not done
-	
-	public void InsertPerson(Person person) throws Exception; // done
+			 String pword, String email) throws Exception; // not done
 	
 	public void UploadImageByLink(Person person, Bookmark bookmark, String url) throws Exception; //done
 	
@@ -52,4 +51,7 @@ public interface DaoInterface {
 	
 	public void ImportSingleBookmark() throws Exception; // not done
 	
+	
+	// testing function not really necessary
+	public void InsertPerson(Person person) throws Exception; // done
 }

@@ -25,6 +25,8 @@ public class Main {
 		bmk.AddCategory("News");
 		System.out.println("check the category table");
 		
+		bmk.CreateUser("Diplo", "Diplo", "dip", "pwd", "dip@mail.com");
+		
 
 	}
 
