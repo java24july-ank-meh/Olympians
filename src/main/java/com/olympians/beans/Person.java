@@ -27,7 +27,7 @@ public class Person {
 	@Column
 	private String username;
 	@Column
-	private String password;
+	private String pword;
 	@Column
 	private String email;
 	@OneToMany
@@ -77,12 +77,12 @@ public class Person {
 
 
 	public String getPassword() {
-		return password;
+		return pword;
 	}
 
 
-	public void setPassword(String password) {
-		this.password = password;
+	public void setPassword(String pword) {
+		this.pword = pword;
 	}
 
 
@@ -111,14 +111,14 @@ public class Person {
 		this.fname = fname;
 		this.lname = lname;
 		this.username = username;
-		this.password = password;
+		this.pword = pword;
 		this.email = email;
 	}
 
 	@Override
 	public String toString() {
 		return "Person [pid=" + pid + ", fname=" + fname + ", lname=" + lname + ", username=" + username + ", password="
-				+ password + ", email=" + email + ", blist=" + blist + "]";
+				+ pword + ", email=" + email + ", blist=" + blist + "]";
 	}
 
 	public Person() {
