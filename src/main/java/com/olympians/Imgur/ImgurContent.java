@@ -20,8 +20,10 @@ public class ImgurContent {
 	 private static String clientID = "deab795319600c9";
 	
 //////////////////////////////////////////////////////////////////////////////////////////////////////////
-	public static String uploadByLink(String imgLink) throws Exception {
-	
+	public static String[] uploadByLink(String imgLink) throws Exception {
+		
+		String[] toReturn = new String[2];
+		
 	    URL url;
 	
 	    url = new URL("https://api.imgur.com/3/image");
@@ -65,15 +67,21 @@ public class ImgurContent {
 	   String deleteHash = tokens[23].substring(14, tokens[23].length()-1);
 	
 	   //System.out.println(deleteHash);
-	   System.out.println(link);
+	   // System.out.println(link);
 	   
-	   return deleteHash;
+	   toReturn[0] = link;
+	   toReturn[1] = deleteHash;
+	   
+	   
+	   return toReturn;
 	}
 	
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////
 	
-	public static String uploadByFile(String file) throws Exception {
+	public static String[] uploadByFile(String file) throws Exception {
+		
+		String[] toReturn = new String[2];
 		
 	    //convert image to a base 64 string
 		ByteArrayOutputStream baos = new ByteArrayOutputStream(1000);
@@ -129,9 +137,13 @@ public class ImgurContent {
 	   String deleteHash = tokens[23].substring(14, tokens[23].length()-1);
 	
 	  // System.out.println(deleteHash);
-	   System.out.println(link);
+	  //System.out.println(link);
 	   
-	   return deleteHash;
+	   toReturn[0] = link;
+	   toReturn[1] = deleteHash;
+	   
+	   
+	   return toReturn;
 	}
 	
 

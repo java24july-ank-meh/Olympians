@@ -18,10 +18,10 @@ public class ScratchWork {
       public static void main(String[] args) throws IOException, NoSuchAlgorithmException, InvalidKeySpecException
   {
       try{
-    	  /*String deleteHash = ImgurContent.uploadByLink("http://www.ikea.com/gb/en/images/products/ingolf-chair-brown-black__0355482_pe547815_s5.jpg");
+    	  /*String[] ret = ImgurContent.uploadByLink("http://www.ikea.com/gb/en/images/products/ingolf-chair-brown-black__0355482_pe547815_s5.jpg");
     	  ImgurContent.delete(deleteHash);
     	  *//*
-    	  String deleteHash = ImgurContent.uploadByFile("C:\\docs\\Revature\\pic\\kitty.jpg");
+    	  String[] ret2 = ImgurContent.uploadByFile("C:\\docs\\Revature\\pic\\kitty.jpg");
     	  ImgurContent.delete(deleteHash);*/
     	  
     	  

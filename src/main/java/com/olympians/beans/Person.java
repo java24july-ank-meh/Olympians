@@ -5,6 +5,7 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -29,13 +30,13 @@ public class Person {
 	private String fname;
 	@Column
 	private String lname;
-	@Column
+	@Column(unique=true)
 	private String username;
 	@Column
-	private String password;
+	private String pword;
 	@Column
 	private String email;
-	@OneToMany
+	@OneToMany(fetch=FetchType.LAZY)
 	@JoinColumn(name="pid")
 	private List<Bookmark> blist;
 	
@@ -81,12 +82,12 @@ public class Person {
 
 
 	public String getPassword() {
-		return password;
+		return pword;
 	}
 
 
 	public void setPassword(String password) {
-		this.password = password;
+		this.pword = password;
 	}
 
 
@@ -109,16 +110,14 @@ public class Person {
 		this.blist = blist;
 	}
 
-
-	public Person(String fname, String lname, String username, String password, String email) {
+	public Person(String fname, String lname, String username, String pword, String email) {
 		super();
 		this.fname = fname;
 		this.lname = lname;
 		this.username = username;
-		this.password = password;
+		this.pword = pword;
 		this.email = email;
 	}
-
 
 	public Person() {
 		super();
@@ -130,8 +129,5 @@ public class Person {
 	public String toString() {
 		return "Person [pid=" + pid + ", fname=" + fname + ", lname=" + lname + ", username=" + username + "]";
 	}
-	
-	
-	
 	
 }
