@@ -3,10 +3,12 @@ package com.olympians.Dao;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
+import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Collections;
 import java.util.List;
 
 import javax.persistence.criteria.CriteriaQuery;
@@ -118,15 +120,44 @@ public class DaoImpl implements DaoInterface {
 	}
 
 	@Transactional
-	public void CreateBookmark(String name, String address, String description, int pid, int rating, String category,
+	public void CreateBookmark(String name, String address, String description, Person person, int rating, String category,
 			String image) throws Exception {
-		Bookmark bookmark = new Bookmark();
 		
+		Session session = sf.getCurrentSession();
+		Transaction tx = session.beginTransaction();
+		Bookmark bookmark;
+		 
+		//get category if exists otherwise create
+		String hql = "FROM Category C WHERE C.cname = " + category;
+		Query query = session.createQuery(hql);
+		List<Category> results = query.list();
+		
+		if(results.isEmpty() == false) {
+			
+			bookmark = new Bookmark( name, address, description, person, rating, (Category)results.get(0), image);
+		}
+		else {
+			Category c = new Category();
+			c.setCname(name);
+			sf.getCurrentSession();
+			session.save(category);
+			bookmark = new Bookmark( name, address, description, person, rating, c, image);
+		}
+		
+		session.save(bookmark);
+		session.flush();
+		tx.commit();
 	}
 
 	@Transactional
 	public void DeleteBookmark(int pid, int bmid) throws Exception {
-		// TODO Auto-generated method stub
+		Session session = sf.getCurrentSession();
+		
+		Bookmark bookmark = session.get(Bookmark.class, bmid);
+		//if(bookmark == null) {return false;}
+		
+		session.delete(bookmark);
+		session.flush();
 		
 	}
 
@@ -154,32 +185,86 @@ public class DaoImpl implements DaoInterface {
 
 	@Transactional
 	public List<Bookmark> SortByCategory(int pid) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+		List<Bookmark> bookmarks;
+		Session session = sf.getCurrentSession();
+		Transaction tx = session.beginTransaction();
+		Bookmark bookmark;
+		 
+		String hql = "SELECT Category c FROM Category WHERE c.pid = " + pid; //does this work
+		Query query = session.createQuery(hql);
+		bookmarks = query.list();
+		
+		Collections.sort(bookmarks, new Bookmark.SortByCategory());
+		
+		session.flush();
+		tx.commit();
+		return bookmarks;
 	}
 
 	@Transactional
 	public List<Bookmark> SortbyName(int pid) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+		List<Bookmark> bookmarks;
+		Session session = sf.getCurrentSession();
+		Transaction tx = session.beginTransaction();
+		Bookmark bookmark;
+		 
+		String hql = "SELECT Category c FROM Category WHERE c.pid = " + pid; //does this work
+		Query query = session.createQuery(hql);
+		bookmarks = query.list();
+		
+		Collections.sort(bookmarks, new Bookmark.SortByName());
+		
+		session.flush();
+		tx.commit();
+		return bookmarks;
 	}
 
 	@Transactional
 	public List<Bookmark> SortByDate(int pid) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+		List<Bookmark> bookmarks;
+		Session session = sf.getCurrentSession();
+		Transaction tx = session.beginTransaction();
+		Bookmark bookmark;
+		 
+		String hql = "SELECT Category c FROM Category WHERE c.pid = " + pid; //does this work
+		Query query = session.createQuery(hql);
+		bookmarks = query.list();
+		
+		Collections.sort(bookmarks, new Bookmark.SortByDate());
+		
+		session.flush();
+		tx.commit();
+		return bookmarks;
 	}
 
 	@Transactional
 	public List<Bookmark> SortByRating(int pid) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+		List<Bookmark> bookmarks;
+		Session session = sf.getCurrentSession();
+		Transaction tx = session.beginTransaction();
+		Bookmark bookmark;
+		 
+		String hql = "SELECT Category c FROM Category WHERE c.pid = " + pid; //does this work
+		Query query = session.createQuery(hql);
+		bookmarks = query.list();
+		
+		Collections.sort(bookmarks, new Bookmark.SortByRating());
+		
+		session.flush();
+		tx.commit();
+		return bookmarks;
 	}
 
 	@Transactional
-	public void DeletePerson(String username, String password) throws Exception {
-		// TODO Auto-generated method stub
-		
+	public boolean DeletePerson(String username, String password, int pid) throws Exception {
+		if(Login(username, password) == false ) {
+			return false;
+		}
+		Session session = sf.getCurrentSession();
+		Person person = session.get(Person.class, pid);
+		session.delete(person);
+		session.flush();
+		return true;
 	}
 
 	@Transactional
