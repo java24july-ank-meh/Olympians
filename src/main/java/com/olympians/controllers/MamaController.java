@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.olympians.Dao.DaoInterface;
 import com.olympians.beans.Person;
+import com.olympians.beans.PersonImpl;
 
 @Controller
 public class MamaController {
@@ -23,6 +24,35 @@ public class MamaController {
 	
 	@Autowired
 	DaoInterface dao;
+	
+	
+
+	public MamaController() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	public MamaController(PersonImpl loggedIn, DaoInterface dao) {
+		super();
+		this.loggedIn = loggedIn;
+		this.dao = dao;
+	}
+
+	public Person getLoggedIn() {
+		return loggedIn;
+	}
+
+	public void setLoggedIn(Person loggedIn) {
+		this.loggedIn = loggedIn;
+	}
+
+	public DaoInterface getDao() {
+		return dao;
+	}
+
+	public void setDao(DaoInterface dao) {
+		this.dao = dao;
+	}
 
 	@RequestMapping(value="/", method=RequestMethod.GET)
 	public String goToLogin() {
@@ -74,9 +104,11 @@ public class MamaController {
 	
 	@RequestMapping(value="/logout", method=RequestMethod.GET)
 	public String logout(HttpServletRequest req) {
+		System.out.println("reached logout");
+		/*
 		HttpSession session = req.getSession();
-		session.invalidate();
-		return "/pages/index.html";
+		session.invalidate(); */
+		return "pages/index.html"; 
 	}
 	
 	@RequestMapping(value="/bookmarks", method=RequestMethod.GET)

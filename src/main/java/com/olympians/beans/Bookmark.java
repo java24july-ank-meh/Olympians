@@ -38,7 +38,7 @@ public class Bookmark {
 	private String description;
 	@ManyToOne
 	@JoinColumn(name = "pid")
-	private Person person;
+	private PersonImpl person;
 	@Column
 	private int rating;
 	@OneToOne
@@ -93,11 +93,11 @@ public class Bookmark {
 		this.description = description;
 	}
 
-	public Person getPerson() {
+	public PersonImpl getPerson() {
 		return person;
 	}
 
-	public void setPerson(Person person) {
+	public void setPerson(PersonImpl person) {
 		this.person = person;
 	}
 
@@ -140,7 +140,7 @@ public class Bookmark {
 				+ ", person=" + person + ", rating=" + rating + ", category=" + category + ", image=" + image + "]";
 	}
 
-	public Bookmark(String name, String address, String description, Person person, int rating, Category category,
+	public Bookmark(String name, String address, String description, PersonImpl person, int rating, Category category,
 			String image) {
 		super();
 		this.name = name;

@@ -4,7 +4,7 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import com.olympians.Dao.DaoInterface;
-import com.olympians.beans.Person;
+import com.olympians.beans.PersonImpl;
 
 public class Main {
 

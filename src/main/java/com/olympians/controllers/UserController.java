@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.olympians.Dao.DaoInterface;
 import com.olympians.beans.Person;
+import com.olympians.beans.PersonImpl;
 
 @Controller
 @RequestMapping("/usercontroller")
@@ -20,6 +21,35 @@ public class UserController {
 	@Autowired
 	DaoInterface dao;
 	
+	
+	
+	public UserController() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	public UserController(Person loggedIn, DaoInterface dao) {
+		super();
+		this.loggedIn = loggedIn;
+		this.dao = dao;
+	}
+
+	public Person getLoggedIn() {
+		return loggedIn;
+	}
+
+	public void setLoggedIn(Person loggedIn) {
+		this.loggedIn = loggedIn;
+	}
+
+	public DaoInterface getDao() {
+		return dao;
+	}
+
+	public void setDao(DaoInterface dao) {
+		this.dao = dao;
+	}
+
 	@RequestMapping("/all")
 	public ResponseEntity<Object> allUserFields(HttpServletRequest req){
 		return null;
@@ -39,8 +69,12 @@ public class UserController {
 		String email = req.getParameter("email");
 		String password = req.getParameter("pass1");
 		
-		loggedIn = new Person(fname, lname, username, password, email);
-		System.out.println("In register: " + loggedIn.getUsername());
+		loggedIn.setFname(fname);
+		loggedIn.setLname(lname);
+		loggedIn.setUsername(username);
+		loggedIn.setEmail(email);
+		loggedIn.setPassword(password);
+		
 		return "redirect:/homepage";
 	}
 	

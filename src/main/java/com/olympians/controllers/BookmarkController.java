@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.olympians.Dao.DaoInterface;
 import com.olympians.beans.Person;
+import com.olympians.beans.PersonImpl;
 
 @Controller
 @RequestMapping("/bookmarkcontroller")

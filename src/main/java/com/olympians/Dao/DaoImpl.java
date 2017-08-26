@@ -16,7 +16,7 @@ import javax.persistence.criteria.CriteriaQuery;
 import com.olympians.Imgur.ImgurContent;
 import com.olympians.beans.Bookmark;
 import com.olympians.beans.Category;
-import com.olympians.beans.Person;
+import com.olympians.beans.PersonImpl;
 
 @Component("bmrk")
 public class DaoImpl implements DaoInterface {
@@ -33,7 +33,7 @@ public class DaoImpl implements DaoInterface {
 	public void CreateUser(String fname, String lname, String username, String pword, String email)
 			throws Exception {
 		Session session = sf.getCurrentSession();
-		Person person = new Person();
+		PersonImpl person = new PersonImpl();
 		person.setFname(fname);
 		person.setLname(lname);
 		person.setUsername(username);
@@ -50,7 +50,7 @@ public class DaoImpl implements DaoInterface {
 
 
 	@Transactional
-	public void UploadImageByLink(Person person, Bookmark bookmark, String url) throws Exception {
+	public void UploadImageByLink(PersonImpl person, Bookmark bookmark, String url) throws Exception {
 		Session session = sf.getCurrentSession();
 		Transaction tx = session.beginTransaction();
 		
@@ -65,7 +65,7 @@ public class DaoImpl implements DaoInterface {
 	}
 
 	@Transactional
-	public void UploadImageByFile(Person person, Bookmark bookmark, String filePath) throws Exception {
+	public void UploadImageByFile(PersonImpl person, Bookmark bookmark, String filePath) throws Exception {
 		Session session = sf.getCurrentSession();
 		Transaction tx = session.beginTransaction();
 		
@@ -80,7 +80,7 @@ public class DaoImpl implements DaoInterface {
 	}
 
 	@Transactional
-	public void EditAccount(Person person, String fname, String lname, String username, String password, String email) {
+	public void EditAccount(PersonImpl person, String fname, String lname, String username, String password, String email) {
 		Session session = sf.getCurrentSession();
 		Transaction tx = session.beginTransaction();
 		
@@ -120,11 +120,11 @@ public class DaoImpl implements DaoInterface {
 	@Transactional
 	public boolean Login(String username, String pword) throws Exception {
 		Session session = sf.getCurrentSession();
-		Person person;
+		PersonImpl person;
 		String hql = "FROM Person P WHERE P.username = '"+username+"'"+
 		" AND P.pword = '"+pword+"'";
 		Query query = session.createQuery(hql);
-		List<Person> results = query.list();
+		List<PersonImpl> results = query.list();
 		
 		if(results.isEmpty() == false) {
 			System.out.println("Login was successful");
@@ -137,7 +137,7 @@ public class DaoImpl implements DaoInterface {
 	}
 
 	@Transactional
-	public void CreateBookmark(String name, String address, String description, Person person, int rating, int category,
+	public void CreateBookmark(String name, String address, String description, PersonImpl person, int rating, int category,
 			String image) throws Exception {
 		
 		Session session = sf.getCurrentSession();
@@ -261,7 +261,7 @@ public class DaoImpl implements DaoInterface {
 			return false;
 		}
 		Session session = sf.getCurrentSession();
-		Person person = session.get(Person.class, pid);
+		PersonImpl person = session.get(PersonImpl.class, pid);
 		session.delete(person);
 		session.flush();
 		return true;
@@ -290,7 +290,7 @@ public class DaoImpl implements DaoInterface {
 	
 	// testing usage
 	@Transactional
-	public void InsertPerson(Person person) throws Exception {
+	public void InsertPerson(PersonImpl person) throws Exception {
 		Session session = sf.getCurrentSession();
 		//Transaction tx = session.beginTransaction();
 
@@ -301,13 +301,13 @@ public class DaoImpl implements DaoInterface {
 	}
 
 	@Transactional
-	public Person getPersonInfo(String username, String pword) {
+	public PersonImpl getPersonInfo(String username, String pword) {
 		Session session = sf.getCurrentSession();
-		Person person = new Person();
+		PersonImpl person = new PersonImpl();
 		String hql = "FROM Person P WHERE P.username = '"+username+"'"+
 		" AND P.pword = '"+pword+"'";
 		Query query = session.createQuery(hql);
-		List<Person> results = query.list();
+		List<PersonImpl> results = query.list();
 		
 		if(results.isEmpty() == false) {
 			person = results.get(0);
