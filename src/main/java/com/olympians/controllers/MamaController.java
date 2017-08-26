@@ -12,6 +12,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.olympians.Dao.DaoInterface;
 import com.olympians.beans.Person;
 
 @Controller
@@ -19,6 +20,9 @@ public class MamaController {
 	
 	@Autowired
 	Person loggedIn;
+	
+	@Autowired
+	DaoInterface dao;
 
 	@RequestMapping(value="/", method=RequestMethod.GET)
 	public String goToLogin() {
@@ -41,6 +45,12 @@ public class MamaController {
 		return "redirect:homepage";
 	}
 	
+	@RequestMapping(value="/checkuser", method=RequestMethod.GET)
+	public ResponseEntity<String> checkUser(){
+		System.out.println("reached checkuser");
+		return ResponseEntity.ok(loggedIn.getUsername());
+	}
+	
 	@RequestMapping(value="/register", method=RequestMethod.POST)
 	public String register(HttpServletRequest req) {
 		return null;
@@ -59,32 +69,26 @@ public class MamaController {
 	}
 	
 	@RequestMapping(value="/bookmarks", method=RequestMethod.GET)
-	public ResponseEntity<Object> allBookmarks(HttpServletRequest req) {
-		List<Object> result = new ArrayList<>();
-		return ResponseEntity.ok(result);
+	public String allBookmarks(HttpServletRequest req) {
+		return "redirect:bookmarkcontroller/all";
 	}
 	@RequestMapping(value="/addbookmarks", method=RequestMethod.POST)
-	public ResponseEntity<Object> addBookmarks(HttpServletRequest req){
-		List<Object> result = new ArrayList<>();
-		return ResponseEntity.ok(result);
+	public String addBookmarks(HttpServletRequest req){
+		return "redirect:bookmarkcontroller/add";
 	}
 	@RequestMapping(value="/bookmarks", method=RequestMethod.POST)
-	public ResponseEntity<Object> editBookmarks(HttpServletRequest req){
-		List<Object> result = new ArrayList<>();
-		return ResponseEntity.ok(result);
+	public String editBookmarks(HttpServletRequest req){
+		return "redirect:bookmarkcontroller/edit";
 	}
 	
 	@RequestMapping(value="/settings", method=RequestMethod.GET)
-	public ResponseEntity<Object> allUserFields(HttpServletRequest req){
-		List<Object> userFields = new ArrayList<>();
-		return ResponseEntity.ok(userFields);
+	public String allUserFields(HttpServletRequest req){
+		return "redirect:usercontroller/all";
 	}
 	
 	@RequestMapping(value="/settings", method=RequestMethod.POST)
-	public ResponseEntity<Object> editUserFields(HttpServletRequest req){
-		List<Object> userFields = new ArrayList<>();
-		System.out.println("Done");
-		return ResponseEntity.ok(userFields);
+	public String editUserFields(HttpServletRequest req){
+		return "redirect:usercontroller/edit";
 	
 	}
 

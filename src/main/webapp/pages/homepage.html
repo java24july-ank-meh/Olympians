@@ -28,133 +28,24 @@
 }
 /* Modal Content/Box */
 .modal-content {
-    background-color: #fefefe;
-    margin: 15% auto; /* 15% from the top and centered */
-    padding: 20px;
-    border: 1px solid #888;
-    width: 80%; /* Could be more or less, depending on screen size */
+	background-color: #fefefe;
+	margin: 15% auto; /* 15% from the top and centered */
+	padding: 20px;
+	border: 1px solid #888;
+	width: 80%; /* Could be more or less, depending on screen size */
 }
-
 /* The Close Button */
 .close {
-    color: #aaa;
-    float: right;
-    font-size: 28px;
-    font-weight: bold;
+	color: #aaa;
+	float: right;
+	font-size: 28px;
+	font-weight: bold;
 }
-
-.close:hover,
-.close:focus {
-    color: black;
-    text-decoration: none;
-    cursor: pointer;
+.close:hover, .close:focus {
+	color: black;
+	text-decoration: none;
+	cursor: pointer;
 }
-
-  </style>
-</head>
-<body onload="onLoad()">
-  <div class="container"> <!-- Add space around text and underline-->
-    <div class="page-header">
-      <h1>Home</h1>Hello, <a id="username">Dummy</a> <br/>
-      <a href="#" class="btn btn-link btn-sm"> CHANGE USER INFO</a>
-    </div>
-  <!-- The Modal -->
-    <button class="btn btn-primary" id="myBtn">Add New Bookmark</button>
-<div id="myModal" class="modal" >
-
-  <!-- Modal content, Add Bookmark-->
-  <div class="modal-content">
-    <span class="close">&times;</span>
-    <form action="Add" method="post">
-      <div class="form-group">
-      <label for="textinput" class="col-form-label">Title</label>
-       <div class="col-10">
-        <input class="form-control" type="text" id="title" name="title" placeholder="Title" required>
-       </div>
-     </div>
-      <div class="form-group">
-      <label for="textinput" class="col-form-label">URL</label>
-       <div class="col-10">
-        <input class="form-control" type="text" id="url" name="url" placeholder="URL" required>
-       </div>
-     </div>
-     <div class="form-group">
-    <label for="exampleTextarea">Description</label>
-    <textarea class="form-control" id="desc" name="desc" rows="3" placeholder="Enter Description"></textarea>
-  </div>
-      <div class="form-group">
-      <label for="InputManager">Rating</label>
-      <select id="managerSelect" name="managerSelect">
-    <option value="1">1</option>
-    <option value="2">2</option>
-    <option value="3">3</option>
-    <option value="4">4</option>
-    <option value="5">5</option>
-    </select></br>
-      </div>
-      </br>
-  <input type="submit" value="Save" class="btn btn-primary"/>
-    </form>
-  </div>
-
-</div>
-<div name="replacebody" id="replacebody">
-  <table class="table">
-    <br/>
-    THIS IS A DUMMY BOOKMARK BELOW, WHEN CREATING "CARDS" REMOVE THIS LINE AND CREATE A NEW TABLE PER BOOKMARK.
-  <thead>
-    <tr>
-      <th>TITLE GOES HERE</th> <td></td><td></td>
-      <td><button class="btn btn-info btn-sm" onclick="editfunction(title, score, category, url)">Edit</button></td>
-    </tr>
-  </thead>
-  <tbody id="toReplace">
-    <tr>
-      <th scope="row">Title</th>
-      <td>DUMMYNAME</td>
-      <th>Score</th>
-      <td>4</td>
-    </tr>
-    <tr>
-      <th> Category:</th>
-      <td> Gaming </td>
-      <th scope="row">Hotlink:</th>
-      <td id="Hotlink"><a target="_blank" href="http://www.google.com" class="btn btn-info btn-sm">Click Here</a></td>
-    </tr>
-  </tbody>
-</table>
-</div>
-</body>
-<script>
-
-function onLoad(){
-	if(!sessionStorage.user){
-		logout();
-	}
-}
-function logout(){
-    sessionStorage.clear();
-    
-   // window.location.href = 'index.html';
-  }
-  // Get the modal
-var modal = document.getElementById('myModal');
-
-// Get the button that opens the modal
-var btn = document.getElementById("myBtn");
-
-// Get the <span> element that closes the modal
-var span = document.getElementsByClassName("close")[0];
-
-// When the user clicks on the button, open the modal 
-btn.onclick = function() {
-    modal.style.display = "block";
-    document.getElementById("user1").value = sessionStorage.user;
-	document.getElementById("email").value = sessionStorage.email;
-	document.getElementById("fname").value = sessionStorage.fname;
-	document.getElementById("lname").value = sessionStorage.lname;
-}
-
 .edit-modal-content {
 	background-color: #fefefe;
 	margin: 15% auto; /* 15% from the top and centered */
@@ -267,6 +158,7 @@ btn.onclick = function() {
 					</tr>
 				</tbody>
 			</table>
+          <h1 style='text-align: center;'><img src='http://i.imgur.com/CLxxxXv.jpg' style='max-height: 100px;'/></h1>
 		</div>
 
 		<!-- eidt modal content -->
@@ -330,9 +222,7 @@ btn.onclick = function() {
 		checksession();
 		populatebookmarks();
 	}
-
 	function checksession() {
-
 		let xhttp = new XMLHttpRequest();
 		xhttp.onreadystatechange = function() {
 			console.log(this.readyState);
@@ -340,10 +230,9 @@ btn.onclick = function() {
 				document.getElementById("usernamedisplay").innerHTML = xhttp.responseText;
 			}
 		};
-		xhttp.open("GET", "/checkuser", true);
+		xhttp.open("GET", "checkuser", true);
 		xhttp.send();
 	}
-
 	function populatebookmarks() {
 		let xhttp = new XMLHttpRequest();
 		xhttp.onreadystatechange = function() {
@@ -354,11 +243,8 @@ btn.onclick = function() {
 		};
 		xhttp.open("GET", "/bookmarks", true);
 		xhttp.send();
-
 	}
-
 	function editfunction(title, score, category, url, description, pid, imgurl) {
-
 		sessionStorage.title = title;
 		sessionStorage.score = score;
 		sessionStorage.category = category;
@@ -375,33 +261,20 @@ btn.onclick = function() {
 		document.getElementById("ePID").value = sessionStorage.pid;
 		document.getElementById("eiurl").value = sessionStorage.imgurl;
 	}
-
 	// Get the modal
 	var modal = document.getElementById('myModal');
 	// Get the button that opens the modal
 	var btn = document.getElementById("myBtn");
 	// Get the <span> element that closes the modal
 	var span = document.getElementsByClassName("close")[0];
-
 	// When the user clicks on the button, open the modal
 	btn.onclick = function() {
 		modal.style.display = "block";
 	}
->>>>>>> FrontEnd-Brook-Kevin
-
-// When the user clicks on <span> (x), close the modal
-span.onclick = function() {
-    modal.style.display = "none";
-}
-
-<<<<<<< HEAD
-// When the user clicks anywhere outside of the modal, close it
-window.onclick = function(event) {
-    if (event.target == modal) {
-        modal.style.display = "none";
-    }
-}
-=======
+	// When the user clicks on <span> (x), close the modal
+	span.onclick = function() {
+		modal.style.display = "none";
+	}
 	// When the user clicks anywhere outside of the modal, close it
 	window.onclick = function(event) {
 		if (event.target == modal || event.target == editModal) {
@@ -409,15 +282,12 @@ window.onclick = function(event) {
 			editModal.style.display = "none";
 		}
 	}
-
 	//get the editModal
 	var editModal = document.getElementById("editModal");
 	var editBtn = document.getElementById("editBtn");
 	var editSpan = document.getElementsByClassName("close")[1];
-
 	editSpan.onclick = function() {
 		editModal.style.display = "none";
 	}
->>>>>>> FrontEnd-Brook-Kevin
 </script>
 </html>
