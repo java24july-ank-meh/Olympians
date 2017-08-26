@@ -11,8 +11,8 @@ import com.olympians.Dao.DaoInterface;
 import com.olympians.beans.Person;
 
 @Controller
-@RequestMapping("usercontroller")
-public class UserControler {
+@RequestMapping("/usercontroller")
+public class UserController {
 
 	@Autowired
 	Person loggedIn;
@@ -28,6 +28,20 @@ public class UserControler {
 	@RequestMapping("/edit")
 	public ResponseEntity<Object> editUserFields(HttpServletRequest req){
 		return null;
+	}
+	
+	@RequestMapping("/new")
+	public String newUser(HttpServletRequest req) {
+		//forward:url lets you forward request from one controller to another
+		String fname = req.getParameter("fname");
+		String lname = req.getParameter("lname");
+		String username = req.getParameter("user1");
+		String email = req.getParameter("email");
+		String password = req.getParameter("pass1");
+		
+		loggedIn = new Person(fname, lname, username, password, email);
+		System.out.println("In register: " + loggedIn.getUsername());
+		return "redirect:/homepage";
 	}
 	
 }

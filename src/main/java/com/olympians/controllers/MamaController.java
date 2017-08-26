@@ -53,7 +53,18 @@ public class MamaController {
 	
 	@RequestMapping(value="/register", method=RequestMethod.POST)
 	public String register(HttpServletRequest req) {
-		return null;
+		/*
+		String fname = req.getParameter("fname");
+		String lname = req.getParameter("lname");
+		String username = req.getParameter("user1");
+		String email = req.getParameter("email");
+		String password = req.getParameter("pass1");
+		
+		loggedIn = new Person(fname, lname, username, password, email);
+		System.out.println("In register: " + username);
+		return "redirect:homepage"; */
+		
+		return "forward:usercontroller/new";
 	}
 
 	@RequestMapping(value="/updateuser", method=RequestMethod.POST)
