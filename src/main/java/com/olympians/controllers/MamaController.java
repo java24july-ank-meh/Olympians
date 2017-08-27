@@ -57,11 +57,10 @@ public class MamaController {
 	@RequestMapping(value="/", method=RequestMethod.GET)
 	public String goToLogin() {
 		return "/pages/index.html";
-	}
+	} 
 	
 	@RequestMapping(value="/homepage", method = RequestMethod.GET)
 	public String goHome() {
-		System.out.println("In goHome(): " + loggedIn.getUsername());
 		return "/pages/homepage.html";
 	}
 	
@@ -77,7 +76,6 @@ public class MamaController {
 	
 	@RequestMapping(value="/checkuser", method=RequestMethod.GET)
 	public ResponseEntity<String> checkUser(){
-		System.out.println("reached checkuser");
 		return ResponseEntity.ok(loggedIn.getUsername());
 	}
 	
@@ -101,15 +99,23 @@ public class MamaController {
 	public String updateuser(HttpServletRequest req) {
 		return "/pages/homepage.html";
 	}
-	
+	/*
 	@RequestMapping(value="/logout", method=RequestMethod.GET)
 	public String logout(HttpServletRequest req) {
 		System.out.println("reached logout");
 		/*
 		HttpSession session = req.getSession();
-		session.invalidate(); */
+		session.invalidate();  
 		return "pages/index.html"; 
+	} */
+	
+	@RequestMapping(value="/logout", method=RequestMethod.GET)
+	public String logout(HttpServletRequest req) {
+		System.out.println("reached logout");
+		return "pages/index.html";
 	}
+	
+	
 	
 	@RequestMapping(value="/bookmarks", method=RequestMethod.GET)
 	public String allBookmarks(HttpServletRequest req) {
@@ -134,7 +140,5 @@ public class MamaController {
 		return "redirect:usercontroller/edit";
 	
 	}
-
-	
 	
 }

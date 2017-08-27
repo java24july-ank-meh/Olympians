@@ -64,7 +64,7 @@
 			<h1>Home</h1>
 			Hello, <a id="usernamedisplay">Dummy</a> <br /> <a href="#"
 				class="btn btn-link btn-sm"> CHANGE USER INFO</a>
-			<button class="btn btn-primary" id="logout-btn" onclick="logout()">Logout</button>
+			<button class="btn btn-primary" id="logout-btn"><a href="logout">Logout</a></button>
 		</div>
 		<!-- The Modal -->
 		<button class="btn btn-primary" id="myBtn">Add New Bookmark</button>
@@ -221,7 +221,8 @@
 <script>
 	function onLoad() {
 		checksession();
-		populatebookmarks();
+		//comment line below to show dummy data on page load
+		//populatebookmarks();
 	}
 	function checksession() {
 		let xhttp = new XMLHttpRequest();
@@ -291,19 +292,5 @@
 		editModal.style.display = "none";
 	}
 	
-	function logout(e){
-		let xhttp = new XMLHttpRequest();
-		
-		xhttp.onreadystatechange = function() {
-			console.log(this.readyState);
-			if (this.readyState === 4 && this.status === 200) {
-				
-			}
-		};
-		
-		xhttp.open("GET", "logout", true);
-		xhttp.send();
-		alert("asdf");
-	}
 </script>
 </html>
