@@ -47,20 +47,18 @@ public interface DaoInterface {
 	public List<Bookmark> SortByDate(int pid) throws Exception; // done?
 	
 	public List<Bookmark> SortByRating(int pid) throws Exception; // done?
-	
 	// working
 	public boolean DeletePerson(String username, String password, int pid) throws Exception; //done
 	
 	public boolean ExportSingleBookmark(String fileName, Bookmark bookmark) throws Exception;  // done
 	
 	public boolean ImportSingleBookmark(String filePath, Person person) throws Exception; // done
-	
 	// working 
 	public List<Category> AllCategories() throws Exception; //done
 	// working
 	public Person getPersonInfo(String username, String pword); // done
-	
-	public Category getCategoryInfo(String cname); // not done
+	// working
+	public Category getCategoryInfo(int cid); // done
 	// working
 	public List<Bookmark> GetListOfPBM(Person person) throws Exception; // done
 	// testing function not really necessary

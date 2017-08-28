@@ -307,7 +307,7 @@ public class DaoImpl implements DaoInterface {
 		session.flush();
 		return bookmarks;
 	}
-
+	//working
 	@Transactional
 	public boolean DeletePerson(String username, String password, int pid) throws Exception {
 		if(Login(username, password) == false ) {
@@ -412,10 +412,16 @@ public class DaoImpl implements DaoInterface {
 		
 		
 	}
-	
-	@Override
-	public Category getCategoryInfo(String cname) {
-		return null;
+	//working
+	@Transactional
+	public Category getCategoryInfo(int cid) {
+		Category category;
+		Session session = sf.getCurrentSession();
+		String hql = "FROM Category c WHERE c.cid = "+cid;
+		Query query = session.createQuery(hql);
+		List<Category> results = query.list();
+		category = results.get(0);
+		return category;
 	}
 	//working
 	@Transactional

@@ -42,6 +42,10 @@ public class Main {
 		/*Person p1 = bmk.getPersonInfo("ero","pass");
 		List<Bookmark> blist= bmk.GetListOfPBM(person2);
 		System.out.println(blist);*/
+		
+		Category cat;
+		cat = bmk.getCategoryInfo(23);
+		System.out.println(cat);
 	}
 
 }
