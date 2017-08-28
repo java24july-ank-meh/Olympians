@@ -130,7 +130,7 @@ public class Person {
 	@Override
 	public String toString() {
 		return "Person [pid=" + pid + ", fname=" + fname + ", lname=" + lname + ", username=" + username + ", password="
-				+ pword + ", email=" + email + ", blist=" + blist + "]";
+				+ pword + ", email=" + email + "]";
 	}
 
 	public Person() {

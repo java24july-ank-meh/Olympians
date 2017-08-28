@@ -57,14 +57,12 @@ public interface DaoInterface {
 	
 	// working 
 	public List<Category> AllCategories() throws Exception; //done
-	
-	public Person getPersonInfo(String username, String pword); // not done
+	// working
+	public Person getPersonInfo(String username, String pword); // done
 	
 	public Category getCategoryInfo(String cname); // not done
-	
-	
+	// working
+	public List<Bookmark> GetListOfPBM(Person person) throws Exception; // done
 	// testing function not really necessary
 	public void InsertPerson(Person person) throws Exception; // done
-	
-	public List<Bookmark> GetListOfPBM(Person person) throws Exception; // not done
 }

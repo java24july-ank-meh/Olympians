@@ -31,9 +31,17 @@ public class Main {
 		
 		
 		Person person2 = new Person();
-		person2.setPid(3);
-		List<Bookmark> blist = bmk.SortByRating(3);
+		person2.setPid(22);
+		List<Bookmark> blist= bmk.GetListOfPBM(person2);
 		System.out.println(blist);
+		System.out.println(blist.size());
+		/*List<Bookmark> blist = bmk.SortByRating(3);
+		System.out.println(blist);
+		System.out.println(blist.size());*/
+		
+		/*Person p1 = bmk.getPersonInfo("ero","pass");
+		List<Bookmark> blist= bmk.GetListOfPBM(person2);
+		System.out.println(blist);*/
 	}
 
 }

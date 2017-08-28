@@ -53,7 +53,6 @@ public class DaoImpl implements DaoInterface {
 
 	}
 
-
 	@Transactional
 	public void UploadImageByLink(Person person, Bookmark bookmark, String url) throws Exception {
 		Session session = sf.getCurrentSession();
@@ -118,7 +117,6 @@ public class DaoImpl implements DaoInterface {
 		session.flush();
 		tx.commit();
 	}
-
 	// working
 	@Transactional
 	public boolean Login(String username, String pword) throws Exception {
@@ -292,7 +290,7 @@ public class DaoImpl implements DaoInterface {
 		tx.commit();
 		return bookmarks;
 	}
-
+	//working
 	@Transactional
 	public List<Bookmark> SortByRating(int pid) throws Exception {
 		List<Bookmark> bookmarks;
@@ -300,7 +298,7 @@ public class DaoImpl implements DaoInterface {
 		Bookmark bookmark;
 		 Person person = new Person();
 		 person.setPid(pid);
-		String hql = "FROM Bookmark b WHERE b.pid = '"+pid+"'"; //does this work
+		String hql = "FROM Bookmark b WHERE b.person = "+pid+""; //does this work
 		Query query = session.createQuery(hql);
 		bookmarks = query.list();
 		
@@ -383,7 +381,7 @@ public class DaoImpl implements DaoInterface {
         return true;
 		
 	}
-	
+	//working
 	@Transactional
 	public List<Category> AllCategories() throws Exception {
 		List<Category> clist;
@@ -391,26 +389,10 @@ public class DaoImpl implements DaoInterface {
 		String hql = "FROM Category";
 		Query query = session.createQuery(hql);
 		clist = query.list();
-		System.out.println(clist);
 		session.flush();
 		return clist;
 	}
-	
-	
-	
-	
-	// testing usage
-	@Transactional
-	public void InsertPerson(Person person) throws Exception {
-		Session session = sf.getCurrentSession();
-		//Transaction tx = session.beginTransaction();
-
-		session.save(person);
-		session.flush();
-		//tx.commit();
-
-	}
-
+	//Working
 	@Transactional
 	public Person getPersonInfo(String username, String pword) {
 		Session session = sf.getCurrentSession();
@@ -430,17 +412,32 @@ public class DaoImpl implements DaoInterface {
 		
 		
 	}
-
+	
 	@Override
 	public Category getCategoryInfo(String cname) {
 		return null;
 	}
-
-	@Override
+	//working
+	@Transactional
 	public List<Bookmark> GetListOfPBM(Person person) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+		List<Bookmark> clist;
+		Session session = sf.getCurrentSession();
+		String hql = "FROM Bookmark B Where B.person = "+person.getPid();
+		Query query = session.createQuery(hql);
+		clist = query.list();
+		session.flush();
+		return clist;
 	}
-	
+	// testing usage
+	@Transactional
+	public void InsertPerson(Person person) throws Exception {
+		Session session = sf.getCurrentSession();
+		//Transaction tx = session.beginTransaction();
+
+		session.save(person);
+		session.flush();
+		//tx.commit();
+
+	}
 
 }

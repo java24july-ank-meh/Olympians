@@ -17,9 +17,9 @@
 	<property name="url" value="jdbc:oracle:thin:@localhost:1521/orcl" />	
 	<property name="username" value="bmrks" />
 	<property name="password" value="bmrks" />
-		<!-- <property name="url" value="jdbc:oracle:thin:@admin.cy0yuz7rgmcs.us-east-2.rds.amazonaws.com:1521:orcl" />
-		<property name="username" value="madronegoldman" />
-		<property name="password" value="t9oejqhM1" /> -->
+	<!-- <property name="url" value="jdbc:oracle:thin:@admin.cy0yuz7rgmcs.us-east-2.rds.amazonaws.com:1521:orcl" />
+	<property name="username" value="madronegoldman" />
+	<property name="password" value="t9oejqhM1" /> -->
 </bean>
 
 <!-- local session factory bean -->
