@@ -240,17 +240,16 @@ public class DaoImpl implements DaoInterface {
 	public List<Bookmark> SortByRating(int pid) throws Exception {
 		List<Bookmark> bookmarks;
 		Session session = sf.getCurrentSession();
-		Transaction tx = session.beginTransaction();
 		Bookmark bookmark;
-		 
-		String hql = "SELECT Category c FROM Category WHERE c.pid = " + pid; //does this work
+		 Person person = new Person();
+		 person.setPid(pid);
+		String hql = "FROM Bookmark b WHERE b.pid = '"+pid+"'"; //does this work
 		Query query = session.createQuery(hql);
 		bookmarks = query.list();
 		
 		Collections.sort(bookmarks, new Bookmark.SortByRating());
 		
 		session.flush();
-		tx.commit();
 		return bookmarks;
 	}
 

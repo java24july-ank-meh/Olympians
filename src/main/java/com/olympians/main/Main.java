@@ -6,6 +6,7 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import com.olympians.Dao.DaoInterface;
+import com.olympians.beans.Bookmark;
 import com.olympians.beans.Category;
 import com.olympians.beans.Person;
 
@@ -31,9 +32,8 @@ public class Main {
 		
 		Person person2 = new Person();
 		person2.setPid(3);
-		
-		List<Category> clist = bmk.AllCategories();
-		System.out.println(clist);
+		List<Bookmark> blist = bmk.SortByRating(3);
+		System.out.println(blist);
 	}
 
 }
