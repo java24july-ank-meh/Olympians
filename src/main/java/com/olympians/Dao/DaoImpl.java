@@ -86,7 +86,7 @@ public class DaoImpl implements DaoInterface {
 		
 		return true;
 	}
-
+	//working
 	@Transactional
 	public boolean EditAccount(Person old, String fname, String lname, String username, String password, String email) {
 		Session session = sf.getCurrentSession();
@@ -104,13 +104,13 @@ public class DaoImpl implements DaoInterface {
 		
 		return true;
 	}
-
+	//currently Testing
 	@Transactional
-	public boolean EditBookmark(Bookmark bookmark, int rating, Category category, String name, String address, String description) {
+	public boolean EditBookmark(Bookmark old, int rating, Category category, String name, String address, String description) {
 		Session session = sf.getCurrentSession();
-		Transaction tx = session.beginTransaction();
 		
-		session.persist(bookmark);
+		Bookmark bookmark = new Bookmark(old);
+		
 		
 		if(rating != -1) {bookmark.setRating(rating);}  // -1 because int can't be null
 		if(category != null) {bookmark.setCategory(category);}
@@ -118,9 +118,8 @@ public class DaoImpl implements DaoInterface {
 		if(address != null) {bookmark.setAddress(address);}
 		if(description != null) {bookmark.setDescription(description);}
 
-		session.saveOrUpdate(bookmark);
+		session.update(bookmark);
 		session.flush();
-		tx.commit();
 		return true;
 	}
 	// working
@@ -142,7 +141,7 @@ public class DaoImpl implements DaoInterface {
 			return false;
 		}
 	}
-
+	//working
 	@Transactional
 	public boolean CreateBookmark(String name, String address, String description, Person person, int rating, int category,
 			String image) throws Exception {
@@ -157,7 +156,7 @@ public class DaoImpl implements DaoInterface {
 		
 		return true;
 	}
-
+	// working
 	@Transactional
 	public boolean DeleteBookmark(int pid, int bmid) throws Exception {
 		Session session = sf.getCurrentSession();
@@ -170,7 +169,7 @@ public class DaoImpl implements DaoInterface {
 		
 		return true;
 	}
-
+	//working
 	@Transactional
 	public boolean ExportAllBookmarks(String fileName, Person person) throws Exception {
 		List<Bookmark> bList = SortbyName(person.getPid());
@@ -186,7 +185,7 @@ public class DaoImpl implements DaoInterface {
 		return true;
 		
 	}
-
+	//working
 	@Transactional
 	public boolean ImportAllBookmarks(String filePath, Person person) throws Exception {
 		Session session = sf.getCurrentSession();
@@ -235,7 +234,7 @@ public class DaoImpl implements DaoInterface {
         return true;
 		
 	}
-
+	//working
 	@Transactional
 	public boolean AddCategory(String name) throws Exception {
 		Category category = new Category();
@@ -246,7 +245,7 @@ public class DaoImpl implements DaoInterface {
 		return true;
 		
 	}
-
+	//working
 	@Transactional
 	public List<Bookmark> SortByCategory(int pid) throws Exception {
 		List<Bookmark> bookmarks;
@@ -262,7 +261,7 @@ public class DaoImpl implements DaoInterface {
 		session.flush();
 		return bookmarks;
 	}
-
+	//working
 	@Transactional
 	public List<Bookmark> SortbyName(int pid) throws Exception {
 		List<Bookmark> bookmarks;
@@ -278,7 +277,7 @@ public class DaoImpl implements DaoInterface {
 		session.flush();
 		return bookmarks;
 	}
-	
+	//working
 	@Transactional
 	public List<Bookmark> SortByDate(int pid) throws Exception {
 		List<Bookmark> bookmarks;
@@ -323,7 +322,7 @@ public class DaoImpl implements DaoInterface {
 		session.flush();
 		return true;
 	}
-
+	//working
 	@Transactional
 	public boolean ExportSingleBookmark(String fileName, Bookmark bookmark) throws Exception {
 		try{
@@ -336,7 +335,7 @@ public class DaoImpl implements DaoInterface {
 		return true;
 		
 	}
-
+	//working
 	@Transactional
 	public boolean ImportSingleBookmark(String filePath, Person person) throws Exception {
 		Session session = sf.getCurrentSession();
@@ -444,6 +443,25 @@ public class DaoImpl implements DaoInterface {
 		session.flush();
 		return clist;
 	}
+	//working
+
+	@Transactional
+	public Bookmark GetBookMarkInfo(int pid, int bmid) throws Exception {
+		Session session = sf.getCurrentSession();
+		Bookmark bm;
+		String hql = "FROM Bookmark b WHERE b.person = "+pid+
+				" AND b.bmid = "+bmid;
+		Query query = session.createQuery(hql);
+		List<Bookmark> results = query.list();
+		
+		if(results.isEmpty() == false) {
+			bm = results.get(0);
+			return bm;
+		}
+		else {
+			return null;
+		}
+	}
 	// testing usage
 	@Transactional
 	public boolean InsertPerson(Person person) throws Exception {
@@ -454,7 +472,6 @@ public class DaoImpl implements DaoInterface {
 		session.flush();
 		//tx.commit();
 		return true;
-
 	}
 
 }
