@@ -132,10 +132,10 @@ public class Bookmark {
 
 
 	@Override
-	public String toString() {
-		return "Bookmark [bmid=" + bmid + ", name=" + name + ", address=" + address + ", description=" + description
-				+ ", person=" + person + ", rating=" + rating + ", category=" + category + ", image=" + image + "]";
-	}
+    public String toString() {
+        return "bmid=" + bmid + "| name=" + name + "| address=" + address + "| description=" + description
+                + "| person=" + person.getPid() + "| rating=" + rating + "| category=" + category.getCname() + "| image=" + image ;
+    }
 
 	public Bookmark(String name, String address, String description, Person person, int rating, Category category,
 			String image) {

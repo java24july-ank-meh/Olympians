@@ -14,7 +14,7 @@ public interface DaoInterface {
 	
 	//works for now
 	public void CreateUser(String fname, String lname, String username,
-			 String pword, String email) throws Exception; // not done
+			 String pword, String email) throws Exception; // done
 	
 	public void UploadImageByLink(Person person, Bookmark bookmark, String url) throws Exception; //done
 	
@@ -34,9 +34,9 @@ public interface DaoInterface {
 	//working
 	public void DeleteBookmark(int pid, int bmid) throws Exception; //done
 	
-	public boolean ExportAllBookmarks(String fileName, Person person) throws Exception; // not done
+	public boolean ExportAllBookmarks(String fileName, Person person) throws Exception; // done
 	
-	public boolean ImportAllBookmarks(String filePath, Person person) throws Exception; // not done
+	public boolean ImportAllBookmarks(String filePath, Person person) throws Exception; // done
 	
 	public void AddCategory(String name) throws Exception; //done
 	
@@ -51,9 +51,9 @@ public interface DaoInterface {
 	// working
 	public boolean DeletePerson(String username, String password, int pid) throws Exception; //done
 	
-	public boolean ExportSingleBookmark(String fileName, Bookmark bookmark) throws Exception;  // not done
+	public boolean ExportSingleBookmark(String fileName, Bookmark bookmark) throws Exception;  // done
 	
-	public boolean ImportSingleBookmark(String filePath, Person person) throws Exception; // not done
+	public boolean ImportSingleBookmark(String filePath, Person person) throws Exception; // done
 	
 	// working 
 	public List<Category> AllCategories() throws Exception; //done
@@ -66,5 +66,5 @@ public interface DaoInterface {
 	// testing function not really necessary
 	public void InsertPerson(Person person) throws Exception; // done
 	
-	public List<Bookmark> GetListOfPBM(Person person) throws Exception;
+	public List<Bookmark> GetListOfPBM(Person person) throws Exception; // not done
 }
