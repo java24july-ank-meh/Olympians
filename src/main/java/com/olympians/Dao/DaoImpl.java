@@ -413,9 +413,22 @@ public class DaoImpl implements DaoInterface {
 		
 	}
 	
-	@Override
+	//working
+	@Transactional
 	public Category getCategoryInfo(String cname) {
-		return null;
+		Session session = sf.getCurrentSession();
+		Category category = new Category();
+		String hql = "FROM Category C WHERE C.cname = '"+cname+"'";
+		Query query = session.createQuery(hql);
+		List<Category> results = query.list();
+		
+		if(results.isEmpty() == false) {
+			category = results.get(0);
+			return category;
+		}
+		else {
+			return null;
+		}
 	}
 	//working
 	@Transactional
