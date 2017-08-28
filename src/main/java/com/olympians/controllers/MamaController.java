@@ -25,8 +25,6 @@ public class MamaController {
 	@Autowired
 	DaoInterface dao;
 	
-	
-
 	public MamaController() {
 		super();
 		// TODO Auto-generated constructor stub
@@ -66,12 +64,21 @@ public class MamaController {
 	
 	@RequestMapping(value="/login", method=RequestMethod.POST)
 	public String login(String user, String pass, HttpServletRequest req) {
+		boolean valid = false;
+		try {valid = dao.Login(user, pass);}
+		catch(Exception e) {e.printStackTrace();}
 		
-		loggedIn.setUsername(user);
-		loggedIn.setPassword(pass);
+		if(valid) {
 		
-		System.out.println(loggedIn);
-		return "redirect:homepage";
+			loggedIn.setUsername(user);
+			loggedIn.setPassword(pass);
+		
+			System.out.println(loggedIn);
+			return "redirect:homepage";
+		}
+		else {
+			return "redirect:/";
+		}
 	}
 	
 	@RequestMapping(value="/checkuser", method=RequestMethod.GET)
@@ -99,23 +106,15 @@ public class MamaController {
 	public String updateuser(HttpServletRequest req) {
 		return "/pages/homepage.html";
 	}
-	/*
-	@RequestMapping(value="/logout", method=RequestMethod.GET)
+	
+	@RequestMapping(value="/logout")
 	public String logout(HttpServletRequest req) {
 		System.out.println("reached logout");
-		/*
 		HttpSession session = req.getSession();
-		session.invalidate();  
-		return "pages/index.html"; 
-	} */
-	
-	@RequestMapping(value="/logout", method=RequestMethod.GET)
-	public String logout(HttpServletRequest req) {
-		System.out.println("reached logout");
-		return "pages/index.html";
+		session.invalidate();
+		System.out.println("after session invalidate, username is: " + loggedIn.getUsername());
+		return "redirect:/";
 	}
-	
-	
 	
 	@RequestMapping(value="/bookmarks", method=RequestMethod.GET)
 	public String allBookmarks(HttpServletRequest req) {
@@ -130,6 +129,11 @@ public class MamaController {
 		return "redirect:bookmarkcontroller/edit";
 	}
 	
+	@RequestMapping(value="/retrievebookmark", method=RequestMethod.GET)
+	public String retrieveBookmark(HttpServletRequest req) {
+		return "redirect:bookmarkcontroller/retrieve";
+	}
+	
 	@RequestMapping(value="/settings", method=RequestMethod.GET)
 	public String allUserFields(HttpServletRequest req){
 		return "redirect:usercontroller/all";
@@ -138,7 +142,5 @@ public class MamaController {
 	@RequestMapping(value="/settings", method=RequestMethod.POST)
 	public String editUserFields(HttpServletRequest req){
 		return "redirect:usercontroller/edit";
-	
 	}
-	
 }

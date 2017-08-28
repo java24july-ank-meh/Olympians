@@ -11,6 +11,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
+import javax.persistence.Table;
 
 import org.springframework.context.annotation.Scope;
 import org.springframework.context.annotation.ScopedProxyMode;
@@ -21,6 +22,7 @@ import org.springframework.stereotype.Repository;
 @Scope(proxyMode=ScopedProxyMode.TARGET_CLASS, value="session")
 @Repository
 @Entity
+@Table(name="PERSON")
 public class PersonImpl implements Person{
 
 	@Id

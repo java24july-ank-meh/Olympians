@@ -93,7 +93,7 @@ public class Bookmark {
 		this.description = description;
 	}
 
-	public PersonImpl getPerson() {
+	public Person getPerson() {
 		return person;
 	}
 

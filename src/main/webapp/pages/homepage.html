@@ -54,6 +54,9 @@
 	width: 80%; /* Could be more or less, depending on screen size */
 }
 /*sytles for edit-modal*/
+.btn a{
+	color: white;
+}
 </style>
 
 </head>
@@ -67,13 +70,13 @@
 			<button class="btn btn-primary" id="logout-btn"><a href="logout">Logout</a></button>
 		</div>
 		<!-- The Modal -->
-		<button class="btn btn-primary" id="myBtn">Add New Bookmark</button>
+		<button class="btn btn-primary" id="new-bookmark-btn" onclick="addNewBookmark()">Add New Bookmark</button>
 		<div id="myModal" class="modal">
 
 			<!-- Modal content, Add Bookmark-->
 			<div class="modal-content">
 				<span class="close">&times;</span>
-				<form action="/addbookmarks" method="post">
+				<form action="addbookmarks" method="post">
 					<div class="form-group">
 						<label for="textinput" class="col-form-label">Title*</label>
 						<div class="col-10">
@@ -109,7 +112,7 @@
 							<option value="3">3</option>
 							<option value="4">4</option>
 							<option value="5">5</option>
-						</select></br>
+						</select><br/>
 					</div>
 					<div class="form-group">
 						<label for="exampleInputFile">Upload Image OR Link Image
@@ -126,20 +129,13 @@
 			</div>
 
 		</div>
-		<div name="replacebody" id="replacebody">
-			<table class="table">
-				<br /> THIS IS A DUMMY BOOKMARK BELOW, WHEN CREATING "CARDS" REMOVE
-				THIS LINE AND CREATE A NEW TABLE PER BOOKMARK.
+		<div id="replacebody">
+			<table class="table" id="bmrks-table">
 				<thead>
 					<tr>
-						<th>TITLE GOES HERE</th>
+						<th>Your Bookmarks</th>
 						<td></td>
 						<td></td>
-
-
-						<td><button id="editBtn" class="btn btn-info btn-sm"
-								onclick="editfunction('title', 4, 'category', 'url', 'description', 192, 'imgurl')">Edit</button></td>
-
 					</tr>
 				</thead>
 				<tbody id="toReplace">
@@ -166,7 +162,7 @@
 		<div id="editModal" class="modal">
 			<div class="modal-content">
 				<span class="close">&times;</span>
-				<form action="/bookmarks" method="post">
+				<form action="bookmarks" method="post">
 					<div class="form-group">
 						<label for="textinput" class="col-form-label">Title*</label>
 						<div class="col-10">
@@ -222,7 +218,7 @@
 	function onLoad() {
 		checksession();
 		//comment line below to show dummy data on page load
-		//populatebookmarks();
+		populatebookmarks();
 	}
 	function checksession() {
 		let xhttp = new XMLHttpRequest();
@@ -236,6 +232,7 @@
 		xhttp.send();
 	}
 	function populatebookmarks() {
+		/*
 		let xhttp = new XMLHttpRequest();
 		xhttp.onreadystatechange = function() {
 			console.log(this.readyState);
@@ -245,34 +242,50 @@
 		};
 		xhttp.open("GET", "bookmarks", true);
 		xhttp.send();
+		*/
+		
+		$.get("bookmarks", function(responseJson){
+			let $tablebody = $("#toReplace");
+			$tablebody.empty();
+			$.each(responseJson, function(index, bookmark){
+				$("<tr>").appendTo($tablebody)
+						 .append("<th scope='row'>Title</th>")
+						 .append("<td><a target='_blank' href='" +bookmark.address + "' class='btn btn-info btn-sm'>" + bookmark.name + "</a></td>")
+						 .append("<th>Rating</th>")
+						 .append("<td>" + bookmark.rating + "</td>"); 
+				$("<tr>").appendTo($tablebody)
+						 .append("<th>Category</th>").text("Category")
+						 .append("<td>" + bookmark.category.cname + "</td>")
+						 .append("<th scope='row'>Edit</th>")
+						 .append("<td <button class= 'editBtn btn btn-info btn-sm'>Edit</button></td>");
+				
+			});
+		});
 	}
-	function editfunction(title, score, category, url, description, pid, imgurl) {
+	function editfunction() {
+		/*
 		sessionStorage.title = title;
 		sessionStorage.score = score;
 		sessionStorage.category = category;
 		sessionStorage.url = url;
 		sessionStorage.description = description;
 		sessionStorage.pid = pid;
-		sessionStorage.imgurl = imgurl;
+		sessionStorage.imgurl = imgurl; */
+		let editModal = $("#editModal");
 		editModal.style.display = "block";
+		/*
 		document.getElementById("etitle").value = sessionStorage.title;
 		document.getElementById("eurl").value = sessionStorage.url;
 		document.getElementById("ecategory").value = sessionStorage.category;
 		document.getElementById("edesc").value = sessionStorage.description;
 		document.getElementById("escoreSelect").value = sessionStorage.score;
 		document.getElementById("ePID").value = sessionStorage.pid;
-		document.getElementById("eiurl").value = sessionStorage.imgurl;
+		document.getElementById("eiurl").value = sessionStorage.imgurl; */
 	}
 	// Get the modal
-	var modal = document.getElementById('myModal');
-	// Get the button that opens the modal
-	var btn = document.getElementById("myBtn");
+	var modal = document.getElementById("myModal");
 	// Get the <span> element that closes the modal
 	var span = document.getElementsByClassName("close")[0];
-	// When the user clicks on the button, open the modal
-	btn.onclick = function() {
-		modal.style.display = "block";
-	}
 	// When the user clicks on <span> (x), close the modal
 	span.onclick = function() {
 		modal.style.display = "none";
@@ -290,6 +303,25 @@
 	var editSpan = document.getElementsByClassName("close")[1];
 	editSpan.onclick = function() {
 		editModal.style.display = "none";
+	}
+	
+	$(document).on("click", ".editBtn", function(){
+		editModal.style.display = "block";
+		
+		//initiate HTTP request for bookmark fields
+		$.get("retrievebookmark", function(responseJson){
+			$.each(responseJson, function(index, bookmark){
+				$("#etitle").val(bookmark.name);
+				$("#eurl").val(bookmark.address);
+				$("#ecategory").val(bookmark.category.cname);
+				$("#edesc").text(bookmark.description);
+				$("#escoreSelect").val(bookmark.rating.toString());
+			});	
+		});
+	});
+	
+	function addNewBookmark(){
+		editModal.style.display = "block";
 	}
 	
 </script>

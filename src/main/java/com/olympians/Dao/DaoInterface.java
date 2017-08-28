@@ -8,6 +8,7 @@ import javax.persistence.OneToOne;
 
 import com.olympians.beans.Bookmark;
 import com.olympians.beans.Category;
+import com.olympians.beans.Person;
 import com.olympians.beans.PersonImpl;
 
 public interface DaoInterface {

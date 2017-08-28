@@ -16,6 +16,7 @@ import javax.persistence.criteria.CriteriaQuery;
 import com.olympians.Imgur.ImgurContent;
 import com.olympians.beans.Bookmark;
 import com.olympians.beans.Category;
+import com.olympians.beans.Person;
 import com.olympians.beans.PersonImpl;
 
 @Component("bmrk")
@@ -121,7 +122,7 @@ public class DaoImpl implements DaoInterface {
 	public boolean Login(String username, String pword) throws Exception {
 		Session session = sf.getCurrentSession();
 		PersonImpl person;
-		String hql = "FROM Person P WHERE P.username = '"+username+"'"+
+		String hql = "FROM PersonImpl P WHERE P.username = '"+username+"'"+
 		" AND P.pword = '"+pword+"'";
 		Query query = session.createQuery(hql);
 		List<PersonImpl> results = query.list();
