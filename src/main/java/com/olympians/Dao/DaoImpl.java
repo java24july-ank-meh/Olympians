@@ -251,17 +251,15 @@ public class DaoImpl implements DaoInterface {
 	public List<Bookmark> SortByCategory(int pid) throws Exception {
 		List<Bookmark> bookmarks;
 		Session session = sf.getCurrentSession();
-		Transaction tx = session.beginTransaction();
 		Bookmark bookmark;
 		 
-		String hql = "SELECT Category c FROM Category WHERE c.pid = " + pid; //does this work
+		String hql = "FROM Bookmark b WHERE b.person = " + pid; //does this work
 		Query query = session.createQuery(hql);
 		bookmarks = query.list();
 		
 		Collections.sort(bookmarks, new Bookmark.SortByCategory());
 		
 		session.flush();
-		tx.commit();
 		return bookmarks;
 	}
 
@@ -269,35 +267,31 @@ public class DaoImpl implements DaoInterface {
 	public List<Bookmark> SortbyName(int pid) throws Exception {
 		List<Bookmark> bookmarks;
 		Session session = sf.getCurrentSession();
-		Transaction tx = session.beginTransaction();
 		Bookmark bookmark;
 		 
-		String hql = "SELECT Category c FROM Category WHERE c.pid = " + pid; //does this work
+		String hql = "FROM Bookmark b WHERE b.person = " + pid; //does this work
 		Query query = session.createQuery(hql);
 		bookmarks = query.list();
 		
 		Collections.sort(bookmarks, new Bookmark.SortByName());
 		
 		session.flush();
-		tx.commit();
 		return bookmarks;
 	}
-
+	
 	@Transactional
 	public List<Bookmark> SortByDate(int pid) throws Exception {
 		List<Bookmark> bookmarks;
 		Session session = sf.getCurrentSession();
-		Transaction tx = session.beginTransaction();
 		Bookmark bookmark;
 		 
-		String hql = "SELECT Category c FROM Category WHERE c.pid = " + pid; //does this work
+		String hql = "FROM Bookmark b WHERE b.person = " + pid; //does this work
 		Query query = session.createQuery(hql);
 		bookmarks = query.list();
 		
 		Collections.sort(bookmarks, new Bookmark.SortByDate());
 		
 		session.flush();
-		tx.commit();
 		return bookmarks;
 	}
 	//working

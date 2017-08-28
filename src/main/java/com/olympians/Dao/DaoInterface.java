@@ -39,14 +39,14 @@ public interface DaoInterface {
 	public boolean ImportAllBookmarks(String filePath, Person person) throws Exception; // done
 	
 	public boolean AddCategory(String name) throws Exception; //done
-	
-	public List<Bookmark> SortByCategory(int pid) throws Exception; // done?
-	
-	public List<Bookmark> SortbyName(int pid) throws Exception; // done?
-	
-	public List<Bookmark> SortByDate(int pid) throws Exception; // done?
-	
-	public List<Bookmark> SortByRating(int pid) throws Exception; // done?
+	//working
+	public List<Bookmark> SortByCategory(int pid) throws Exception; // done
+	//working
+	public List<Bookmark> SortbyName(int pid) throws Exception; // done
+	//working
+	public List<Bookmark> SortByDate(int pid) throws Exception; // done
+	//working
+	public List<Bookmark> SortByRating(int pid) throws Exception; // done
 	// working
 	public boolean DeletePerson(String username, String password, int pid) throws Exception; //done
 	

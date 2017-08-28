@@ -134,7 +134,8 @@ public class Bookmark {
 	@Override
     public String toString() {
         return "bmid=" + bmid + "| name=" + name + "| address=" + address + "| description=" + description
-                + "| person=" + person.getPid() + "| rating=" + rating + "| category=" + category.getCname() + "| image=" + image ;
+                + "| person=" + person.getPid() + "| rating=" + rating + "| category=" + category.getCname() + "| image=" + image
+                + "| date=" + dateAdded;
     }
 
 	public Bookmark(String name, String address, String description, Person person, int rating, Category category,
