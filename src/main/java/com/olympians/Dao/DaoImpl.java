@@ -8,6 +8,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -161,14 +165,67 @@ public class DaoImpl implements DaoInterface {
 	}
 
 	@Transactional
-	public void ExportAllBookmarks() throws Exception {
-		// TODO Auto-generated method stub
+	public boolean ExportAllBookmarks(String fileName, Person person) throws Exception {
+		List<Bookmark> bList = SortbyName(person.getPid());
+		try{
+			PrintWriter writer = new PrintWriter(fileName, "UTF-8");
+			for (Bookmark bookmark : bList) {
+				writer.println(bookmark.toString());
+			}
+			writer.close();
+		} catch (IOException e) {
+			return false;
+		}
+		return true;
 		
 	}
 
 	@Transactional
-	public void ImportAllBookmarks() throws Exception {
-		// TODO Auto-generated method stub
+	public boolean ImportAllBookmarks(String filePath, Person person) throws Exception {
+		Session session = sf.getCurrentSession();
+        
+        String line;
+        String[] bookmarkArray = new String[16];
+        try (BufferedReader br = new BufferedReader(new FileReader(filePath))) {
+            while ((line = br.readLine()) != null) {
+                 bookmarkArray = line.split("||\\=");
+                
+                 Bookmark bookmark = new Bookmark();
+                 Category category = null;
+                 int newBmid = Integer.parseInt(bookmarkArray[1]);
+                 int newRating = Integer.parseInt(bookmarkArray[11]);
+                
+                 List<Category> cList = AllCategories();
+                 boolean found = false;
+                 for(Category c : cList) {
+                     if(c.getCname() == bookmarkArray[13]) {
+                         category = c;
+                         found = true;
+                     }
+                 }
+                 if(found == false) {
+                     category = new Category(bookmarkArray[13]);
+                 }
+                
+                 bookmark.setBmid( newBmid );
+                 bookmark.setName(bookmarkArray[3]);
+                 bookmark.setAddress(bookmarkArray[5]);
+                 bookmark.setDescription(bookmarkArray[7]);
+                 bookmark.setPerson(person);
+                 bookmark.setRating(newRating);
+                 bookmark.setCategory(category);
+                 bookmark.setCategory(category);
+                 bookmark.setImage(bookmarkArray[15]);
+                
+                    session.save(bookmark);
+                    session.flush();                    
+             }
+        }
+        catch(Exception e) {
+            return false;
+        }
+
+        return true;
 		
 	}
 
@@ -266,14 +323,64 @@ public class DaoImpl implements DaoInterface {
 	}
 
 	@Transactional
-	public void ExportSingleBookmark() throws Exception {
-		// TODO Auto-generated method stub
+	public boolean ExportSingleBookmark(String fileName, Bookmark bookmark) throws Exception {
+		try{
+			PrintWriter writer = new PrintWriter(fileName, "UTF-8");
+			writer.println(bookmark.toString());
+			writer.close();
+		} catch (IOException e) {
+			return false;
+		}
+		return true;
 		
 	}
 
 	@Transactional
-	public void ImportSingleBookmark() throws Exception {
-		// TODO Auto-generated method stub
+	public boolean ImportSingleBookmark(String filePath, Person person) throws Exception {
+		Session session = sf.getCurrentSession();
+        String line;
+        String[] bookmarkArray = new String[16];
+        try (BufferedReader br = new BufferedReader(new FileReader(filePath))) {
+            line = br.readLine();
+            if(line == null) {return false;}
+        }
+        catch(Exception e) {
+            return false;
+        }
+        
+         bookmarkArray = line.split("||\\=");
+        
+         Bookmark bookmark = new Bookmark();
+         Category category = null;
+         int newBmid = Integer.parseInt(bookmarkArray[1]);
+         int newRating = Integer.parseInt(bookmarkArray[11]);
+        
+         List<Category> cList = AllCategories();
+         boolean found = false;
+         for(Category c : cList) {
+             if(c.getCname() == bookmarkArray[13]) {
+                 category = c;
+                 found = true;
+             }
+         }
+         if(found == false) {
+             category = new Category(bookmarkArray[13]);
+         }
+        
+         bookmark.setBmid( newBmid );
+         bookmark.setName(bookmarkArray[3]);
+         bookmark.setAddress(bookmarkArray[5]);
+         bookmark.setDescription(bookmarkArray[7]);
+         bookmark.setPerson(person);
+         bookmark.setRating(newRating);
+         bookmark.setCategory(category);
+         bookmark.setCategory(category);
+         bookmark.setImage(bookmarkArray[15]);
+        
+        session.save(bookmark);
+        session.flush();
+        
+        return true;
 		
 	}
 	
@@ -326,6 +433,12 @@ public class DaoImpl implements DaoInterface {
 
 	@Override
 	public Category getCategoryInfo(String cname) {
+		return null;
+	}
+
+	@Override
+	public List<Bookmark> GetListOfPBM(Person person) throws Exception {
+		// TODO Auto-generated method stub
 		return null;
 	}
 	

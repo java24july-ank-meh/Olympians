@@ -34,9 +34,9 @@ public interface DaoInterface {
 	//working
 	public void DeleteBookmark(int pid, int bmid) throws Exception; //done
 	
-	public void ExportAllBookmarks() throws Exception; // not done
+	public boolean ExportAllBookmarks(String fileName, Person person) throws Exception; // not done
 	
-	public void ImportAllBookmarks() throws Exception; // not done
+	public boolean ImportAllBookmarks(String filePath, Person person) throws Exception; // not done
 	
 	public void AddCategory(String name) throws Exception; //done
 	
@@ -51,9 +51,9 @@ public interface DaoInterface {
 	// working
 	public boolean DeletePerson(String username, String password, int pid) throws Exception; //done
 	
-	public void ExportSingleBookmark() throws Exception; // not done
+	public boolean ExportSingleBookmark(String fileName, Bookmark bookmark) throws Exception;  // not done
 	
-	public void ImportSingleBookmark() throws Exception; // not done
+	public boolean ImportSingleBookmark(String filePath, Person person) throws Exception; // not done
 	
 	// working 
 	public List<Category> AllCategories() throws Exception; //done
@@ -65,4 +65,6 @@ public interface DaoInterface {
 	
 	// testing function not really necessary
 	public void InsertPerson(Person person) throws Exception; // done
+	
+	public List<Bookmark> GetListOfPBM(Person person) throws Exception;
 }
