@@ -35,7 +35,7 @@ public class DaoImpl implements DaoInterface {
 
 	//working
 	@Transactional
-	public void CreateUser(String fname, String lname, String username, String pword, String email)
+	public boolean CreateUser(String fname, String lname, String username, String pword, String email)
 			throws Exception {
 		Session session = sf.getCurrentSession();
 		Person person = new Person();
@@ -49,12 +49,12 @@ public class DaoImpl implements DaoInterface {
 		
 		// need to deal with uniqueness of a username
 		
-		
+		return true;
 
 	}
 
 	@Transactional
-	public void UploadImageByLink(Person person, Bookmark bookmark, String url) throws Exception {
+	public boolean UploadImageByLink(Person person, Bookmark bookmark, String url) throws Exception {
 		Session session = sf.getCurrentSession();
 		Transaction tx = session.beginTransaction();
 		
@@ -66,10 +66,12 @@ public class DaoImpl implements DaoInterface {
 		session.saveOrUpdate(bookmark);
 		session.flush();
 		tx.commit();
+		
+		return true;
 	}
 
 	@Transactional
-	public void UploadImageByFile(Person person, Bookmark bookmark, String filePath) throws Exception {
+	public boolean UploadImageByFile(Person person, Bookmark bookmark, String filePath) throws Exception {
 		Session session = sf.getCurrentSession();
 		Transaction tx = session.beginTransaction();
 		
@@ -81,10 +83,12 @@ public class DaoImpl implements DaoInterface {
 		session.saveOrUpdate(bookmark);
 		session.flush();
 		tx.commit();
+		
+		return true;
 	}
 
 	@Transactional
-	public void EditAccount(Person old, String fname, String lname, String username, String password, String email) {
+	public boolean EditAccount(Person old, String fname, String lname, String username, String password, String email) {
 		Session session = sf.getCurrentSession();
 
 		Person person = new Person(old);
@@ -97,11 +101,12 @@ public class DaoImpl implements DaoInterface {
 
 		session.update(person);
 		session.flush();
-
+		
+		return true;
 	}
 
 	@Transactional
-	public void EditBookmark(Bookmark bookmark, int rating, Category category, String name, String address, String description) {
+	public boolean EditBookmark(Bookmark bookmark, int rating, Category category, String name, String address, String description) {
 		Session session = sf.getCurrentSession();
 		Transaction tx = session.beginTransaction();
 		
@@ -116,6 +121,7 @@ public class DaoImpl implements DaoInterface {
 		session.saveOrUpdate(bookmark);
 		session.flush();
 		tx.commit();
+		return true;
 	}
 	// working
 	@Transactional
@@ -138,7 +144,7 @@ public class DaoImpl implements DaoInterface {
 	}
 
 	@Transactional
-	public void CreateBookmark(String name, String address, String description, Person person, int rating, int category,
+	public boolean CreateBookmark(String name, String address, String description, Person person, int rating, int category,
 			String image) throws Exception {
 		
 		Session session = sf.getCurrentSession();
@@ -148,10 +154,12 @@ public class DaoImpl implements DaoInterface {
 		
 		session.save(bookmark);
 		session.flush();
+		
+		return true;
 	}
 
 	@Transactional
-	public void DeleteBookmark(int pid, int bmid) throws Exception {
+	public boolean DeleteBookmark(int pid, int bmid) throws Exception {
 		Session session = sf.getCurrentSession();
 		
 		Bookmark bookmark = session.get(Bookmark.class, bmid);
@@ -160,6 +168,7 @@ public class DaoImpl implements DaoInterface {
 		session.delete(bookmark);
 		session.flush();
 		
+		return true;
 	}
 
 	@Transactional
@@ -228,12 +237,13 @@ public class DaoImpl implements DaoInterface {
 	}
 
 	@Transactional
-	public void AddCategory(String name) throws Exception {
+	public boolean AddCategory(String name) throws Exception {
 		Category category = new Category();
 		category.setCname(name);
 		Session session = sf.getCurrentSession();
 		session.save(category);
 		session.flush();
+		return true;
 		
 	}
 
@@ -443,13 +453,14 @@ public class DaoImpl implements DaoInterface {
 	}
 	// testing usage
 	@Transactional
-	public void InsertPerson(Person person) throws Exception {
+	public boolean InsertPerson(Person person) throws Exception {
 		Session session = sf.getCurrentSession();
 		//Transaction tx = session.beginTransaction();
 
 		session.save(person);
 		session.flush();
 		//tx.commit();
+		return true;
 
 	}
 
