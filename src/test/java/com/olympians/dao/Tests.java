@@ -29,6 +29,8 @@ public class Tests {
 		String rand = Integer.toString(r); 
 		
 		// Test Add Person
+		System.out.println("## Testing Add Person ##");
+		
 		Person person = new Person("testPerson[" + rand + "]", "lname[" + rand + "]", "username[" + rand + "]", "pword[" + rand + "]", "email[" + rand + "]");
 		try {
 			dao.InsertPerson(person);
@@ -40,12 +42,16 @@ public class Tests {
 		assertEquals(person.getUsername(), person1.getUsername());
 		
 		// Test Edit Person
+		System.out.println("## Testing Edit Person ##");
+		
 		dao.EditAccount(person, person.getFname(), null, "newUsername[" + rand + "]", null, null);
 		person1 = dao.getPersonInfo("newUsername[" + rand + "]", person.getPassword());
 		
 		assertEquals(person.getPid(), person1.getPid());
 		
 		// Test Delete Person
+		System.out.println("## Testing Delete Person ##");
+		
 		try {
 			 dao.DeletePerson(person.getUsername(), person.getPassword(), person.getPid());
 		} catch (Exception e) {
@@ -76,8 +82,9 @@ public class Tests {
 			e.printStackTrace();
 		}
 		
-		
 		// Test Add Bookmark
+		System.out.println("## Testing Add Bookmark ##");
+		
 		try {
 			List<Category> cList = dao.AllCategories();
 			int anyCid = cList.get(0).getCid();
@@ -89,6 +96,8 @@ public class Tests {
 		assertEquals(1, bList.size());
 		
 		// Test Edit Bookmark
+		System.out.println("## Testing Edit Bookmark ##");
+		
 		dao.EditBookmark(null, 5, null, null , null, null);
 		try {
 			bList = dao.SortbyName(person.getPid());
@@ -100,6 +109,8 @@ public class Tests {
 		assertEquals(5, bList.get(0).getRating());
 		
 		// Test Delete Bookmark
+		System.out.println("## Testing Delete Bookmark ##");
+		
 		try {
 			dao.DeleteBookmark(person.getPid(), bList.get(0).getBmid());
 			bList = dao.SortbyName(person.getPid());
@@ -110,6 +121,42 @@ public class Tests {
 		
 	}
 	
+	@Test
+	public void addCategory(){
+		ApplicationContext ctx = 
+				new ClassPathXmlApplicationContext("beans.xml");
+		DaoInterface dao =
+				(DaoInterface)ctx.getBean("bmrk");
+		
+		Random random = new Random();
+		int r = random.nextInt(9999);
+		String rand = Integer.toString(r); 
+		
+		// Test Add Category
+		System.out.println("## Testing Add Category ##");
+		
+		List<Category> catList =  null;
+		boolean cExists = false;
+		String name = "testCat["+rand+"]";
+		
+		try {
+			dao.AddCategory(name);
+			catList = dao.AllCategories();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		for(Category c : catList) {
+			if(c.getCname().equals(name)) {
+				cExists = true;
+				break;
+			}
+		}
+		
+		assertEquals(true,cExists);
+		
+	}
 
 	
 	
