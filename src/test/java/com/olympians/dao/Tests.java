@@ -199,7 +199,6 @@ public class Tests {
 			bList = dao.SortbyName(person.getPid());
 			bookmark = bList.get(0);
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
