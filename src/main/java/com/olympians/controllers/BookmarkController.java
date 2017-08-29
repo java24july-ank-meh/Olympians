@@ -55,7 +55,7 @@ public class BookmarkController {
 	}
 	
 	@RequestMapping("/add")
-	public ResponseEntity<Object> addBookmark(HttpServletRequest req){
+	public String addBookmark(HttpServletRequest req){
 		
 		String title = req.getParameter("title");
 		System.out.println(title);
@@ -75,7 +75,7 @@ public class BookmarkController {
 		try{dao.CreateBookmark(title, url, description, loggedIn, 4, categoryString, image);}
 		catch(Exception e) {e.printStackTrace();} 
 		
-		return null;
+		return "redirect:homepage";
 	}
 	
 	@RequestMapping("/edit")
