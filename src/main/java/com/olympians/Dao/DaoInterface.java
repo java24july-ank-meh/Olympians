@@ -19,11 +19,10 @@ public interface DaoInterface {
 	public boolean UploadImageByLink(Person person, Bookmark bookmark, String url) throws Exception; //done
 	
 	public boolean UploadImageByFile(Person person, Bookmark bookmark, String filePath) throws Exception; //might be done
-	
+	//working
 	public boolean EditAccount(Person person, String fname, String lname, String username, String password, String email); //done
-	
+	//working
 	public boolean EditBookmark(Bookmark bookmark, int rating, Category category, String name, String address, String description); //done
-	
 	// working 
 	public boolean Login(String username, String pword) throws Exception;//done
 	// working
@@ -35,7 +34,7 @@ public interface DaoInterface {
 	public boolean ExportAllBookmarks(String fileName, Person person) throws Exception; // done
 	//working
 	public boolean ImportAllBookmarks(String filePath, Person person) throws Exception; // done
-	
+	//working
 	public boolean AddCategory(String name) throws Exception; //done
 	//working
 	public List<Bookmark> SortByCategory(int pid) throws Exception; // done
@@ -59,7 +58,7 @@ public interface DaoInterface {
 	public Category getCategoryInfo(int cid); // done
 	// working
 	public List<Bookmark> GetListOfPBM(Person person) throws Exception; // done
-	
+	//working
 	public Bookmark GetBookMarkInfo(int pid, int bmid) throws Exception; //done
 	
 	// testing function not really necessary

@@ -104,7 +104,7 @@ public class DaoImpl implements DaoInterface {
 		
 		return true;
 	}
-	//currently Testing
+	//working
 	@Transactional
 	public boolean EditBookmark(Bookmark old, int rating, Category category, String name, String address, String description) {
 		Session session = sf.getCurrentSession();
