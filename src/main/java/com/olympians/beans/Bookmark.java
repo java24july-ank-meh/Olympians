@@ -38,7 +38,7 @@ public class Bookmark {
 	private Person person;
 	@Column
 	private int rating;
-	@OneToOne
+	@ManyToOne
 	@JoinColumn(name = "cid")
 	private Category category;
 	@Column

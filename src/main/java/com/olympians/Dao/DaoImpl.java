@@ -149,7 +149,7 @@ public class DaoImpl implements DaoInterface {
 		Session session = sf.getCurrentSession();
 		Category temp = new Category();
 		temp.setCid(category);
-		Bookmark bookmark = new Bookmark( name, address, description, person, rating, temp, image);
+		Bookmark bookmark = new Bookmark(name, address, description, person, rating, temp, image);
 		
 		session.save(bookmark);
 		session.flush();
