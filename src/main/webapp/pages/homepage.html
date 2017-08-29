@@ -172,6 +172,13 @@
 			<div class="modal-content">
 				<span class="close">&times;</span>
 				<form action="bookmarks" method="post">
+					<div class="form-group" style="display:none;">
+						<label for="textinput" class="col-form-label">bmid</label>
+						<div class="col-10">
+							<input class="form-control" type="text" id="ebmid" name="ebmid"
+								placeholder="bmid">
+						</div>
+					</div>
 					<div class="form-group">
 						<label for="textinput" class="col-form-label">Title*</label>
 						<div class="col-10">
@@ -223,7 +230,7 @@
 			</div>
 		</div>
 		
-		<!-- eidt modal content -->
+		<!-- user modal content -->
 		<div id="userModal" class="modal">
 			<div class="modal-content">
 				<span class="close">&times;</span>
@@ -299,37 +306,17 @@
 			$.each(responseJson, function(index, bookmark){
 				$("<tr>").appendTo($tablebody)
 						 .append("<th scope='row'>Title</th>")
-						 .append("<td><a target='_blank' href='" +bookmark.address + "' class='btn btn-info btn-sm'>" + bookmark.name + "</a></td>")
+						 .append("<td><a target='_blank' href='" +bookmark.address + "' class='address btn btn-info btn-sm'>" + bookmark.name + "</a></td>")
 						 .append("<th>Rating</th>")
-						 .append("<td>" + bookmark.rating + "</td>"); 
+						 .append("<td class='rating'>" + bookmark.rating + "</td>"); 
 				$("<tr>").appendTo($tablebody)
 						 .append("<th>Category</th>").text("Category")
-						 .append("<td>" + bookmark.category.cname + "</td>")
+						 .append("<td class='category'>" + bookmark.category.cname + "</td>")
 						 .append("<th scope='row'>Edit</th>")
-						 .append("<td <button class= 'editBtn btn btn-info btn-sm'>Edit</button></td>");
-				
+						 .append("<td <button class= 'editBtn btn btn-info btn-sm'>Edit</button></td>")
+						 .append("<td style='display: none;' class='bmid'>" + bookmark.bmid + "</td>");
 			});
 		});
-	}
-	function editfunction() {
-		/*
-		sessionStorage.title = title;
-		sessionStorage.score = score;
-		sessionStorage.category = category;
-		sessionStorage.url = url;
-		sessionStorage.description = description;
-		sessionStorage.pid = pid;
-		sessionStorage.imgurl = imgurl; */
-		let editModal = $("#editModal");
-		editModal.style.display = "block";
-		/*
-		document.getElementById("etitle").value = sessionStorage.title;
-		document.getElementById("eurl").value = sessionStorage.url;
-		document.getElementById("ecategory").value = sessionStorage.category;
-		document.getElementById("edesc").value = sessionStorage.description;
-		document.getElementById("escoreSelect").value = sessionStorage.score;
-		document.getElementById("ePID").value = sessionStorage.pid;
-		document.getElementById("eiurl").value = sessionStorage.imgurl; */
 	}
 	// Get the modal
 	var modal = document.getElementById("newBookmarkModal");
@@ -358,19 +345,22 @@
 		});
 	});
 	
-	$(document).on("click", ".editBtn", function(){
+	$(document).on("click", ".editBtn", function(e){
 		editModal.style.display = "block";
+		let $specificEditBtn = $(e.target);
+		let $bmid = $specificEditBtn.next();
 		
-		//initiate HTTP request for bookmark fields
-		$.get("retrievebookmark", function(responseJson){
-			$.each(responseJson, function(index, bookmark){
-				$("#etitle").val(bookmark.name);
-				$("#eurl").val(bookmark.address);
-				$("#ecategory").val(bookmark.category.cname);
-				$("#edesc").text(bookmark.description);
-				$("#escoreSelect").val(bookmark.rating.toString());
-			});	
-		});
+		let $em = $(editModal);
+		let bmid = $specificEditBtn.siblings(".bmid").html();
+		let category = $specificEditBtn.siblings(".category").html();
+		let title = $specificEditBtn.closest("tr").prev("tr").find(".address").html();
+		let address = $specificEditBtn.closest("tr").prev("tr").find(".address").attr("href");
+		let rating = $specificEditBtn.closest("tr").prev("tr").find(".rating").html();
+		
+		$em.find("#etitle").val(title);
+		$em.find("#eurl").val(address);
+		$em.find("#ecategory").val(category);
+		$em.find("#ebmid").val(bmid);
 	});
 	
 	function addNewBookmark(){
@@ -380,6 +370,6 @@
 	function changeUserInfo(){
 		userModal.style.display = "block";
 	}
-	
+
 </script>
 </html>

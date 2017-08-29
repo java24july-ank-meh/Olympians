@@ -23,7 +23,7 @@ public interface DaoInterface {
 	//working
 	public boolean EditAccount(Person person, String fname, String lname, String username, String password, String email); //done
 	//working
-	public boolean EditBookmark(Bookmark bookmark, int rating, Category category, String name, String address, String description); //done
+	public boolean EditBookmark(int bmid, int rating, String categoryString, String name, String address, String description); //done
 	// working 
 	public boolean Login(String username, String pword) throws Exception;//done
 	// working

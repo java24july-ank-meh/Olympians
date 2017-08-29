@@ -79,12 +79,25 @@ public class BookmarkController {
 	}
 	
 	@RequestMapping("/edit")
-	public ResponseEntity<Object> editBookmark(HttpServletRequest req){
-		return null;
+	public String editBookmark(HttpServletRequest req){
+		
+		int bmid = Integer.parseInt(req.getParameter("ebmid"));
+		System.out.println("bmid: "+bmid);
+		String name = req.getParameter("etitle");
+		String address = req.getParameter("eurl");
+		int rating = Integer.parseInt(req.getParameter("escoreSelect"));
+		String category = req.getParameter("category");
+		String description = req.getParameter("edesc");
+		
+		dao.EditBookmark(bmid, rating, category, name, address, description);
+		return "redirect:homepage";
 	}
 	
 	@RequestMapping("/retrieve")
 	public ResponseEntity<Object> retrieveBookmark(HttpServletRequest req){
+		
+		String bmid = req.getParameter("bmid");
+		System.out.println("received bmid: " + bmid);
 		/*
 		PersonImpl person = new PersonImpl("chris", "palmour", "chp", "pass", "chp@gmal.com");
 		Category category = new Category("social media");
@@ -93,10 +106,8 @@ public class BookmarkController {
 		
 		List<Bookmark> result = new ArrayList<>();
 		result.add(bookmark1); */
-		List<Bookmark> result = null;
-		try{result = dao.GetListOfPBM(loggedIn);}
-		catch(Exception e) {e.printStackTrace();}
-		return ResponseEntity.ok(result);
+		
+		return null;
 	}
 	
 }
