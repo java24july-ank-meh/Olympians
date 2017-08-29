@@ -38,9 +38,6 @@ public class Main {
 		System.out.println(blist);
 		System.out.println(blist.size());
 		
-<<<<<<< HEAD
-		*/
-=======
 		List<Bookmark> blist5 = bmk.SortbyName(3);
 		System.out.println(blist5);
 		System.out.println(blist5.size());
@@ -67,12 +64,12 @@ public class Main {
 		bmk.EditAccount(person3, "eleazar", "rosales", "erosales", "pass", "erosales@gmail.com");
 		//person3 = bmk.getPersonInfo("erosales", "pass");*/
 		
-		Bookmark bm = bmk.GetBookMarkInfo(3, 26);
-		Category category;
-		category = bmk.getCategoryInfo(2);
-		System.out.println(category);
-		System.out.println(bm);
-		bmk.EditBookmark(bm, 4, category, "Tesla", "www.Testa.com", "This is tesla's main page");
->>>>>>> BackEnd-Eleazar-Madrone
+//		Bookmark bm = bmk.GetBookMarkInfo(3, 26);
+//		Category category;
+//		category = bmk.getCategoryInfo(2);
+//		System.out.println(category);
+//		System.out.println(bm);
+//		bmk.EditBookmark(bm, 4, category, "Tesla", "www.Testa.com", "This is tesla's main page");
+
 	}
 }

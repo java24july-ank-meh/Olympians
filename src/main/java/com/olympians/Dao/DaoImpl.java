@@ -22,6 +22,7 @@ import com.olympians.Imgur.ImgurContent;
 import com.olympians.beans.Bookmark;
 import com.olympians.beans.Category;
 import com.olympians.beans.Person;
+import com.olympians.beans.PersonImpl;
 
 @Component("bmrk")
 public class DaoImpl implements DaoInterface {
@@ -38,7 +39,7 @@ public class DaoImpl implements DaoInterface {
 	public boolean CreateUser(String fname, String lname, String username, String pword, String email)
 			throws Exception {
 		Session session = sf.getCurrentSession();
-		Person person = new Person();
+		Person person = new PersonImpl();
 		person.setFname(fname);
 		person.setLname(lname);
 		person.setUsername(username);
@@ -91,7 +92,7 @@ public class DaoImpl implements DaoInterface {
 	public boolean EditAccount(Person old, String fname, String lname, String username, String password, String email) {
 		Session session = sf.getCurrentSession();
 
-		Person person = new Person(old);
+		Person person = new PersonImpl(old);
 
 		if (fname != null) {person.setFname(fname);}
 		if (lname != null) {person.setLname(lname);}
@@ -127,7 +128,7 @@ public class DaoImpl implements DaoInterface {
 	public boolean Login(String username, String pword) throws Exception {
 		Session session = sf.getCurrentSession();
 		Person person;
-		String hql = "FROM Person P WHERE P.username = '"+username+"'"+
+		String hql = "FROM PersonImpl P WHERE P.username = '"+username+"'"+
 		" AND P.pword = '"+pword+"'";
 		Query query = session.createQuery(hql);
 		List<Person> results = query.list();
@@ -146,10 +147,11 @@ public class DaoImpl implements DaoInterface {
 	public boolean CreateBookmark(String name, String address, String description, Person person, int rating, int category,
 			String image) throws Exception {
 		
+		PersonImpl personimpl = (PersonImpl)person;
 		Session session = sf.getCurrentSession();
 		Category temp = new Category();
 		temp.setCid(category);
-		Bookmark bookmark = new Bookmark( name, address, description, person, rating, temp, image);
+		Bookmark bookmark = new Bookmark( name, address, description, personimpl, rating, temp, image);
 		
 		session.save(bookmark);
 		session.flush();
@@ -212,12 +214,14 @@ public class DaoImpl implements DaoInterface {
                  if(found == false) {
                      category = new Category(bookmarkArray[13]);
                  }
+                 
+                 PersonImpl personimpl = (PersonImpl) person;
                 
                  bookmark.setBmid( newBmid );
                  bookmark.setName(bookmarkArray[3]);
                  bookmark.setAddress(bookmarkArray[5]);
                  bookmark.setDescription(bookmarkArray[7]);
-                 bookmark.setPerson(person);
+                 bookmark.setPerson(personimpl);
                  bookmark.setRating(newRating);
                  bookmark.setCategory(category);
                  bookmark.setCategory(category);
@@ -299,7 +303,7 @@ public class DaoImpl implements DaoInterface {
 		List<Bookmark> bookmarks;
 		Session session = sf.getCurrentSession();
 		Bookmark bookmark;
-		 Person person = new Person();
+		 Person person = new PersonImpl();
 		 person.setPid(pid);
 		String hql = "FROM Bookmark b WHERE b.person = "+pid+""; //does this work
 		Query query = session.createQuery(hql);
@@ -368,11 +372,13 @@ public class DaoImpl implements DaoInterface {
              category = new Category(bookmarkArray[13]);
          }
         
+         PersonImpl personimpl = (PersonImpl) person;
+         
          bookmark.setBmid( newBmid );
          bookmark.setName(bookmarkArray[3]);
          bookmark.setAddress(bookmarkArray[5]);
          bookmark.setDescription(bookmarkArray[7]);
-         bookmark.setPerson(person);
+         bookmark.setPerson(personimpl);
          bookmark.setRating(newRating);
          bookmark.setCategory(category);
          bookmark.setCategory(category);
@@ -399,7 +405,7 @@ public class DaoImpl implements DaoInterface {
 	@Transactional
 	public Person getPersonInfo(String username, String pword) {
 		Session session = sf.getCurrentSession();
-		Person person = new Person();
+		Person person = new PersonImpl();
 		String hql = "FROM Person P WHERE P.username = '"+username+"'"+
 		" AND P.pword = '"+pword+"'";
 		Query query = session.createQuery(hql);

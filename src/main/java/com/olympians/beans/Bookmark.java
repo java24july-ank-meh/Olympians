@@ -165,7 +165,7 @@ public class Bookmark {
 		this.name = b.getName();
 		this.address = b.getAddress();
 		this.description = b.getDescription();
-		this.person = b.getPerson();
+		this.person = (PersonImpl)b.getPerson();
 		this.rating = b.getRating();
 		this.category = b.getCategory();
 		this.image = b.getImage();

@@ -126,6 +126,16 @@ public class PersonImpl implements Person{
 		// TODO Auto-generated constructor stub
 	}
 
+	//copy constructor
+		public PersonImpl(Person p) {
+			this.pid = p.getPid();
+			this.lname = p.getLname();
+			this.username = p.getUsername();
+			this.pword = p.getPassword();
+			this.email = p.getEmail();
+			this.blist = p.getBlist();
+			this.fname = p.getFname();
+		}
 
 	@Override
 	public String toString() {
