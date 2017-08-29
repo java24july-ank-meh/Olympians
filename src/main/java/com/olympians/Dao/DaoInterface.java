@@ -9,57 +9,58 @@ import javax.persistence.OneToOne;
 import com.olympians.beans.Bookmark;
 import com.olympians.beans.Category;
 import com.olympians.beans.Person;
-import com.olympians.beans.PersonImpl;
 
 public interface DaoInterface {
 	
 	//works for now
-	public void CreateUser(String fname, String lname, String username,
-			 String pword, String email) throws Exception; // not done
+	public boolean CreateUser(String fname, String lname, String username,
+			 String pword, String email) throws Exception; // done
 	
-	public void UploadImageByLink(PersonImpl person, Bookmark bookmark, String url) throws Exception; //done
+	public boolean UploadImageByLink(Person person, Bookmark bookmark, String url) throws Exception; //done
 	
-	public void UploadImageByFile(PersonImpl person, Bookmark bookmark, String filePath) throws Exception; //might be done
-	
-	public void EditAccount(PersonImpl person, String fname, String lname, String username, String password, String email); //done
-	
-	public void EditBookmark(Bookmark bookmark, int rating, Category category, String name, String address, String description); //done
-	
+	public boolean UploadImageByFile(Person person, Bookmark bookmark, String filePath) throws Exception; //might be done
+	//working
+	public boolean EditAccount(Person person, String fname, String lname, String username, String password, String email); //done
+	//working
+	public boolean EditBookmark(Bookmark bookmark, int rating, Category category, String name, String address, String description); //done
 	// working 
 	public boolean Login(String username, String pword) throws Exception;//done
-	
-	public void CreateBookmark(String name, String address, String description,
-			PersonImpl person, int rating, int category, String image) throws Exception; // done?? no idea if this works
-	
-	public void DeleteBookmark(int pid, int bmid) throws Exception; // done
-	
-	public void ExportAllBookmarks() throws Exception; // not done
-	
-	public void ImportAllBookmarks() throws Exception; // not done
-	
-	public void AddCategory(String name) throws Exception; //done
-	
-	public List<Bookmark> SortByCategory(int pid) throws Exception; // done?
-	
-	public List<Bookmark> SortbyName(int pid) throws Exception; // done?
-	
-	public List<Bookmark> SortByDate(int pid) throws Exception; // done?
-	
-	public List<Bookmark> SortByRating(int pid) throws Exception; // done?
-	
-	public boolean DeletePerson(String username, String password, int pid) throws Exception; //  done
-	
-	public void ExportSingleBookmark() throws Exception; // not done
-	
-	public void ImportSingleBookmark() throws Exception; // not done
-	
-	public List<Category> AllCategories() throws Exception;
-	
-	public PersonImpl getPersonInfo(String username, String pword);
-	
-	public Category getCategoryInfo(String cname);
-	
+	// working
+	public boolean CreateBookmark(String name, String address, String description,
+			Person person, int rating, int category, String image) throws Exception; //done
+	//working
+	public boolean DeleteBookmark(int pid, int bmid) throws Exception; //done
+	//working
+	public boolean ExportAllBookmarks(String fileName, Person person) throws Exception; // done
+	//working
+	public boolean ImportAllBookmarks(String filePath, Person person) throws Exception; // done
+	//working
+	public boolean AddCategory(String name) throws Exception; //done
+	//working
+	public List<Bookmark> SortByCategory(int pid) throws Exception; // done
+	//working
+	public List<Bookmark> SortbyName(int pid) throws Exception; // done
+	//working
+	public List<Bookmark> SortByDate(int pid) throws Exception; // done
+	//working
+	public List<Bookmark> SortByRating(int pid) throws Exception; // done
+	// working
+	public boolean DeletePerson(String username, String password, int pid) throws Exception; //done
+	// working
+	public boolean ExportSingleBookmark(String fileName, Bookmark bookmark) throws Exception;  // done
+	//working
+	public boolean ImportSingleBookmark(String filePath, Person person) throws Exception; // done
+	// working 
+	public List<Category> AllCategories() throws Exception; //done
+	// working
+	public Person getPersonInfo(String username, String pword); // done
+	// working
+	public Category getCategoryInfo(int cid); // done
+	// working
+	public List<Bookmark> GetListOfPBM(Person person) throws Exception; // done
+	//working
+	public Bookmark GetBookMarkInfo(int pid, int bmid) throws Exception; //done
 	
 	// testing function not really necessary
-	public void InsertPerson(PersonImpl person) throws Exception; // done
+	public boolean InsertPerson(Person person) throws Exception; // done
 }

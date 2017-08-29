@@ -135,10 +135,11 @@ public class Bookmark {
 
 
 	@Override
-	public String toString() {
-		return "Bookmark [bmid=" + bmid + ", name=" + name + ", address=" + address + ", description=" + description
-				+ ", person=" + person + ", rating=" + rating + ", category=" + category + ", image=" + image + "]";
-	}
+    public String toString() {
+        return "bmid=" + bmid + "| name=" + name + "| address=" + address + "| description=" + description
+                + "| person=" + person.getPid() + "| rating=" + rating + "| category=" + category.getCname() + "| image=" + image
+                + "| date=" + dateAdded;
+    }
 
 	public Bookmark(String name, String address, String description, PersonImpl person, int rating, Category category,
 			String image) {
@@ -156,7 +157,21 @@ public class Bookmark {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	//cat name date rating
+	
+	
+	//copy constructor
+	public Bookmark(Bookmark b) {
+		this.bmid = b.getBmid();
+		this.name = b.getName();
+		this.address = b.getAddress();
+		this.description = b.getDescription();
+		this.person = b.getPerson();
+		this.rating = b.getRating();
+		this.category = b.getCategory();
+		this.image = b.getImage();
+		this.dateAdded = b.getDateAdded();  
+		this.imageDeleteHash = b.getImageDeleteHash();
+	}
 	// comparator to order by category
 	public static class SortByCategory implements Comparator<Bookmark> {
 		@Override
