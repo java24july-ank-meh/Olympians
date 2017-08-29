@@ -12,11 +12,9 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import javax.persistence.criteria.CriteriaQuery;
 
 import com.olympians.Imgur.ImgurContent;
 import com.olympians.beans.Bookmark;
@@ -126,7 +124,7 @@ public class DaoImpl implements DaoInterface {
 	@Transactional
 	public boolean Login(String username, String pword) throws Exception {
 		Session session = sf.getCurrentSession();
-		Person person;
+		
 		String hql = "FROM Person P WHERE P.username = '"+username+"'"+
 		" AND P.pword = '"+pword+"'";
 		Query query = session.createQuery(hql);
@@ -252,7 +250,7 @@ public class DaoImpl implements DaoInterface {
 		Session session = sf.getCurrentSession();
 		Bookmark bookmark;
 		 
-		String hql = "FROM Bookmark b WHERE b.person = " + pid; //does this work
+		String hql = "FROM Bookmark b WHERE b.person = " + pid; 
 		Query query = session.createQuery(hql);
 		bookmarks = query.list();
 		
@@ -284,7 +282,7 @@ public class DaoImpl implements DaoInterface {
 		Session session = sf.getCurrentSession();
 		Bookmark bookmark;
 		 
-		String hql = "FROM Bookmark b WHERE b.person = " + pid; //does this work
+		String hql = "FROM Bookmark b WHERE b.person = " + pid; 
 		Query query = session.createQuery(hql);
 		bookmarks = query.list();
 		
@@ -301,7 +299,7 @@ public class DaoImpl implements DaoInterface {
 		Bookmark bookmark;
 		 Person person = new Person();
 		 person.setPid(pid);
-		String hql = "FROM Bookmark b WHERE b.person = "+pid+""; //does this work
+		String hql = "FROM Bookmark b WHERE b.person = "+pid+""; 
 		Query query = session.createQuery(hql);
 		bookmarks = query.list();
 		
@@ -466,11 +464,9 @@ public class DaoImpl implements DaoInterface {
 	@Transactional
 	public boolean InsertPerson(Person person) throws Exception {
 		Session session = sf.getCurrentSession();
-		//Transaction tx = session.beginTransaction();
 
 		session.save(person);
 		session.flush();
-		//tx.commit();
 		return true;
 	}
 
