@@ -38,9 +38,10 @@ public class PersonImpl implements Person{
 	private String pword;
 	@Column
 	private String email;
+	/*
 	@OneToMany(fetch=FetchType.LAZY)
 	@JoinColumn(name="pid")
-	private List<Bookmark> blist;
+	private List<Bookmark> blist; */
 	
 
 	public int getPid() {
@@ -102,7 +103,7 @@ public class PersonImpl implements Person{
 		this.email = email;
 	}
 
-
+	/*
 	public List<Bookmark> getBlist() {
 		return blist;
 	}
@@ -110,7 +111,7 @@ public class PersonImpl implements Person{
 
 	public void setBlist(List<Bookmark> blist) {
 		this.blist = blist;
-	}
+	} */
 
 	public PersonImpl(String fname, String lname, String username, String pword, String email) {
 		super();
@@ -133,7 +134,7 @@ public class PersonImpl implements Person{
 			this.username = p.getUsername();
 			this.pword = p.getPassword();
 			this.email = p.getEmail();
-			this.blist = p.getBlist();
+			//this.blist = p.getBlist();
 			this.fname = p.getFname();
 		}
 

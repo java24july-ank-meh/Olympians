@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -32,6 +33,7 @@ public class BookmarkController {
 		/* 1. call dao's allBookmarks method (should return list of Bookmark objects)
 		 * 2. return response entity of Bookmark Objects
 		*/
+		/*
 		PersonImpl person = new PersonImpl("chris", "palmour", "chp", "pass", "chp@gmal.com");
 		Category category = new Category("social media");
 		Bookmark bookmark1 = new Bookmark("Test Bookmark", "https://youtube.com", "this is a test",
@@ -40,23 +42,38 @@ public class BookmarkController {
 				person, 5, category, "");
 		List<Bookmark> result = new ArrayList<>();
 		result.add(bookmark1);
-		result.add(bookmark2);
+		result.add(bookmark2); */
+		List<Bookmark> result = null;
+		try{
+			result = dao.GetListOfPBM(loggedIn);
+			for(Bookmark b : result) {
+				System.out.println(b);
+			}
+		}
+		catch(Exception e) {e.printStackTrace();}
 		return ResponseEntity.ok(result);
 	}
 	
 	@RequestMapping("/add")
 	public ResponseEntity<Object> addBookmark(HttpServletRequest req){
 		
-		/*
 		String title = req.getParameter("title");
+		System.out.println(title);
 		String url = req.getParameter("url");
-		int category = Integer.parseInt(req.getParameter("category"));
+		System.out.println(url);
+		String categoryString = req.getParameter("category");
+		/*
+		System.out.println(categoryString);
+		Category category = dao.getCategoryByName(categoryString);
+		System.out.println(category); */
 		String description = req.getParameter("desc");
-		int rating = Integer.parseInt(req.getParameter("score"));
+		System.out.println(description);
+		//int rating = Integer.parseInt(req.getParameter("scoreSelect"));
 		String image = req.getParameter("iurl");
+		System.out.println(image);
 		
-		try{dao.CreateBookmark(title, url, description, loggedIn, rating, category, image);}
-		catch(Exception e) {e.printStackTrace();} */
+		try{dao.CreateBookmark(title, url, description, loggedIn, 4, categoryString, image);}
+		catch(Exception e) {e.printStackTrace();} 
 		
 		return null;
 	}
@@ -68,13 +85,17 @@ public class BookmarkController {
 	
 	@RequestMapping("/retrieve")
 	public ResponseEntity<Object> retrieveBookmark(HttpServletRequest req){
+		/*
 		PersonImpl person = new PersonImpl("chris", "palmour", "chp", "pass", "chp@gmal.com");
 		Category category = new Category("social media");
 		Bookmark bookmark1 = new Bookmark("Test Bookmark", "https://youtube.com", "this is a test",
 				person, 4, category, "");
 		
 		List<Bookmark> result = new ArrayList<>();
-		result.add(bookmark1);
+		result.add(bookmark1); */
+		List<Bookmark> result = null;
+		try{result = dao.GetListOfPBM(loggedIn);}
+		catch(Exception e) {e.printStackTrace();}
 		return ResponseEntity.ok(result);
 	}
 	

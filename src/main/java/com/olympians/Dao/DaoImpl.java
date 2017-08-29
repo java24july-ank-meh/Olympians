@@ -144,16 +144,22 @@ public class DaoImpl implements DaoInterface {
 	}
 	//working
 	@Transactional
-	public boolean CreateBookmark(String name, String address, String description, Person person, int rating, int category,
+	public boolean CreateBookmark(String name, String address, String description, Person person, int rating, String categoryString,
 			String image) throws Exception {
 		
-		PersonImpl personimpl = (PersonImpl)person;
 		Session session = sf.getCurrentSession();
-		Category temp = new Category();
-		temp.setCid(category);
-		Bookmark bookmark = new Bookmark( name, address, description, personimpl, rating, temp, image);
+		PersonImpl personimpl = this.GetPersonbyUserName(person.getUsername());
 		
-		session.save(bookmark);
+		session.persist(personimpl);
+		session.flush();
+		
+		Category category = this.getCategoryByName(categoryString);
+		session.persist(category);
+		session.flush();
+		
+		Bookmark bookmark = new Bookmark(name, address, description, personimpl, rating, category, image);
+		
+		session.persist(bookmark);
 		session.flush();
 		
 		return true;
@@ -439,11 +445,29 @@ public class DaoImpl implements DaoInterface {
 		}
 	}
 	//working
+		@Transactional
+		public Category getCategoryByName(String name) {
+			Session session = sf.getCurrentSession();
+			Category category = new Category();
+			String hql = "FROM Category C WHERE C.cname = '"+ name + "'";
+			Query query = session.createQuery(hql);
+			List<Category> results = query.list();
+			
+			if(results.isEmpty() == false) {
+				category = results.get(0);
+				return category;
+			}
+			else {
+				return null;
+			}
+		}
+	//working
 	@Transactional
 	public List<Bookmark> GetListOfPBM(Person person) throws Exception {
 		List<Bookmark> clist;
 		Session session = sf.getCurrentSession();
-		String hql = "FROM Bookmark B Where B.person = "+person.getPid();
+		PersonImpl personimpl = this.GetPersonbyUserName(person.getUsername());
+		String hql = "FROM Bookmark B Where B.person = "+personimpl.getPid();
 		Query query = session.createQuery(hql);
 		clist = query.list();
 		session.flush();
@@ -478,6 +502,20 @@ public class DaoImpl implements DaoInterface {
 		session.flush();
 		//tx.commit();
 		return true;
+	}
+
+	@Transactional
+	public PersonImpl GetPersonbyUserName(String username) throws Exception {
+		Session session = sf.getCurrentSession();
+		PersonImpl person = new PersonImpl();
+		String hql = "From PersonImpl P WHERE P.username = '"+username + "'";
+		Query query = session.createQuery(hql);
+		List<PersonImpl> results = query.list();
+		
+		if(results.isEmpty() == false) {
+			person = results.get(0);
+		}
+		return person;
 	}
 
 }

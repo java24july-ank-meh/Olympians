@@ -122,7 +122,7 @@ public class MamaController {
 	}
 	@RequestMapping(value="/addbookmarks", method=RequestMethod.POST)
 	public String addBookmarks(HttpServletRequest req){
-		return "redirect:bookmarkcontroller/add";
+		return "forward:bookmarkcontroller/add";
 	}
 	@RequestMapping(value="/bookmarks", method=RequestMethod.POST)
 	public String editBookmarks(HttpServletRequest req){

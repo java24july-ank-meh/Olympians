@@ -9,6 +9,7 @@ import javax.persistence.OneToOne;
 import com.olympians.beans.Bookmark;
 import com.olympians.beans.Category;
 import com.olympians.beans.Person;
+import com.olympians.beans.PersonImpl;
 
 public interface DaoInterface {
 	
@@ -27,7 +28,7 @@ public interface DaoInterface {
 	public boolean Login(String username, String pword) throws Exception;//done
 	// working
 	public boolean CreateBookmark(String name, String address, String description,
-			Person person, int rating, int category, String image) throws Exception; //done
+			Person person, int rating, String categoryString, String image) throws Exception; //done
 	//working
 	public boolean DeleteBookmark(int pid, int bmid) throws Exception; //done
 	//working
@@ -61,6 +62,9 @@ public interface DaoInterface {
 	//working
 	public Bookmark GetBookMarkInfo(int pid, int bmid) throws Exception; //done
 	
+	public PersonImpl GetPersonbyUserName(String username) throws Exception;
 	// testing function not really necessary
 	public boolean InsertPerson(Person person) throws Exception; // done
+	
+	public Category getCategoryByName(String name);
 }

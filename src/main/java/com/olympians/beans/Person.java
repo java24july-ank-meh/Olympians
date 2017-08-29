@@ -16,6 +16,6 @@ public interface Person {
 	public void setPassword(String password);
 	public String getEmail();
 	public void setEmail(String email);
-	public List<Bookmark> getBlist();
-	public void setBlist(List<Bookmark> blist);
+	//public List<Bookmark> getBlist();
+	//public void setBlist(List<Bookmark> blist);
 }
