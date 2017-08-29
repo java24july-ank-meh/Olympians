@@ -18,6 +18,7 @@ public class Tests {
 
 	@Test
 	public void addDeleteEditPersonTest(){
+		@SuppressWarnings("resource")
 		ApplicationContext ctx = 
 				new ClassPathXmlApplicationContext("beans.xml");
 		DaoInterface dao =
@@ -55,7 +56,6 @@ public class Tests {
 		try {
 			 dao.DeletePerson(person.getUsername(), person.getPassword(), person.getPid());
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		Person nullPerson = dao.getPersonInfo(person.getUsername(), person.getPassword());
@@ -66,6 +66,7 @@ public class Tests {
 	
 	@Test
 	public void addDeleteEditBookmarkTest(){
+		@SuppressWarnings("resource")
 		ApplicationContext ctx = 
 				new ClassPathXmlApplicationContext("beans.xml");
 		DaoInterface dao =
@@ -102,7 +103,6 @@ public class Tests {
 		try {
 			bList = dao.SortbyName(person.getPid());
 		} catch (Exception e1) {
-			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
 		assertEquals(1, bList.size());
@@ -123,6 +123,7 @@ public class Tests {
 	
 	@Test
 	public void addCategory(){
+		@SuppressWarnings("resource")
 		ApplicationContext ctx = 
 				new ClassPathXmlApplicationContext("beans.xml");
 		DaoInterface dao =
@@ -143,7 +144,6 @@ public class Tests {
 			dao.AddCategory(name);
 			catList = dao.AllCategories();
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		

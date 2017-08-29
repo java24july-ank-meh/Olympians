@@ -12,11 +12,9 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import javax.persistence.criteria.CriteriaQuery;
 
 import com.olympians.Imgur.ImgurContent;
 import com.olympians.beans.Bookmark;
@@ -126,7 +124,7 @@ public class DaoImpl implements DaoInterface {
 	@Transactional
 	public boolean Login(String username, String pword) throws Exception {
 		Session session = sf.getCurrentSession();
-		Person person;
+		
 		String hql = "FROM Person P WHERE P.username = '"+username+"'"+
 		" AND P.pword = '"+pword+"'";
 		Query query = session.createQuery(hql);
