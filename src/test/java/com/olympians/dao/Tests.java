@@ -99,7 +99,7 @@ public class Tests {
 		// Test Edit Bookmark
 		System.out.println("## Testing Edit Bookmark ##");
 		
-		dao.EditBookmark(null, 5, null, null , null, null);
+		dao.EditBookmark(bList.get(0), 5, null, null , null, null);
 		try {
 			bList = dao.SortbyName(person.getPid());
 		} catch (Exception e1) {
