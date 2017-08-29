@@ -51,8 +51,8 @@ public interface DaoInterface {
 	
 	
 	/*	------------------ Imgur Methods	------------------  */
-	public boolean UploadImageByLink(Person person, Bookmark bookmark, String url) throws Exception; 
-	public boolean UploadImageByFile(Person person, Bookmark bookmark, String filePath) throws Exception; 
+	public boolean UploadImageByLink(Bookmark old, String url) throws Exception; 
+	public boolean UploadImageByFile(Bookmark old, String filePath) throws Exception; 
 	
 	
 	// testing function not really necessary

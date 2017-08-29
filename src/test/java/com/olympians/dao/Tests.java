@@ -157,6 +157,57 @@ public class Tests {
 		assertEquals(true,cExists);
 		
 	}
+	
+	@Test
+	public void uploadImagebyURL(){
+		@SuppressWarnings("resource")
+		ApplicationContext ctx = 
+				new ClassPathXmlApplicationContext("beans.xml");
+		DaoInterface dao =
+				(DaoInterface)ctx.getBean("bmrk");
+		
+		Bookmark bookmark = null;
+		List<Bookmark> bList = null;
+		Random random = new Random();
+		int r = random.nextInt(9999);
+		String rand = Integer.toString(r); 
+		
+		//Create Person
+		Person person = new Person("testPerson[" + rand + "]", "lname[" + rand + "]", "username[" + rand + "]", "pword[" + rand + "]", "email[" + rand + "]");
+		try {
+			dao.InsertPerson(person);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		// Create Bookmark
+		System.out.println("## Testing Add Bookmark ##");
+		
+		try {
+			List<Category> cList = dao.AllCategories();
+			int anyCid = cList.get(0).getCid();
+			dao.CreateBookmark("address", "address", "description", person, 1, anyCid, "image@imageurl");
+			bList = dao.SortbyName(person.getPid());
+			bookmark = bList.get(0);
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		
+		String link = "http://www.ikea.com/gb/en/images/products/ingolf-chair-brown-black__0355482_pe547815_s5.jpg";
+		try {
+			dao.UploadImageByLink(bookmark, link);
+			bList = dao.SortbyName(person.getPid());
+			bookmark = bList.get(0);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		System.out.println("Check that: " 
+				+ "\nURL 1: " + link  
+				+ "\nURL 2: " + bookmark.getImage() 
+				+ "\nare both the same picture of a chair");
+	}
 
 	
 	

@@ -435,35 +435,31 @@ public class DaoImpl implements DaoInterface {
 		}
 	}
 	@Transactional
-	public boolean UploadImageByLink(Person person, Bookmark bookmark, String url) throws Exception {
+	public boolean UploadImageByLink(Bookmark old, String url) throws Exception {
 		Session session = sf.getCurrentSession();
-		Transaction tx = session.beginTransaction();
 		
+		Bookmark bookmark = new Bookmark(old);
 		String[] imgurData = ImgurContent.uploadByLink(url);
-		session.persist(bookmark);
 		bookmark.setImage(imgurData[0]);
 		bookmark.setImageDeleteHash(imgurData[1]);
 	
 		session.saveOrUpdate(bookmark);
 		session.flush();
-		tx.commit();
 		
 		return true;
 	}
 
 	@Transactional
-	public boolean UploadImageByFile(Person person, Bookmark bookmark, String filePath) throws Exception {
+	public boolean UploadImageByFile(Bookmark old, String filePath) throws Exception {
 		Session session = sf.getCurrentSession();
-		Transaction tx = session.beginTransaction();
 		
+		Bookmark bookmark = new Bookmark(old);
 		String[] imgurData = ImgurContent.uploadByFile(filePath);
-		session.persist(bookmark);
 		bookmark.setImage(imgurData[0]);
 		bookmark.setImageDeleteHash(imgurData[1]);
 	
-		session.saveOrUpdate(bookmark);
+		session.update(bookmark);
 		session.flush();
-		tx.commit();
 		
 		return true;
 	}
