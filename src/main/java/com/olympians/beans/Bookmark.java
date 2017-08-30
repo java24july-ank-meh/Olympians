@@ -1,5 +1,6 @@
 package com.olympians.beans;
 
+import java.sql.Blob;
 import java.sql.Timestamp;
 import java.util.Comparator;
 import java.util.Date;
@@ -35,7 +36,7 @@ public class Bookmark {
 	private String address;
 	@Column
 	private String description;
-	@ManyToOne(cascade = CascadeType.ALL)
+	@ManyToOne
 	@JoinColumn(name = "pid")
 	private PersonImpl person;
 	@Column
