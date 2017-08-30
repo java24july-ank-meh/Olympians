@@ -52,75 +52,6 @@ public class DaoImpl implements DaoInterface {
 
 	}
 
-	@Transactional
-	public boolean UploadImageByLink(Person person, Bookmark bookmark, String url) throws Exception {
-		Session session = sf.getCurrentSession();
-		Transaction tx = session.beginTransaction();
-		
-		String[] imgurData = ImgurContent.uploadByLink(url);
-		session.persist(bookmark);
-		bookmark.setImage(imgurData[0]);
-		bookmark.setImageDeleteHash(imgurData[1]);
-
-		session.saveOrUpdate(bookmark);
-		session.flush();
-		tx.commit();
-		
-		return true;
-	}
-
-	@Transactional
-	public boolean UploadImageByFile(Person person, Bookmark bookmark, String filePath) throws Exception {
-		Session session = sf.getCurrentSession();
-		Transaction tx = session.beginTransaction();
-		
-		String[] imgurData = ImgurContent.uploadByFile(filePath);
-		session.persist(bookmark);
-		bookmark.setImage(imgurData[0]);
-		bookmark.setImageDeleteHash(imgurData[1]);
-
-		session.saveOrUpdate(bookmark);
-		session.flush();
-		tx.commit();
-		
-		return true;
-	}
-	//working
-	@Transactional
-	public boolean EditAccount(Person old, String fname, String lname, String username, String password, String email) {
-		Session session = sf.getCurrentSession();
-
-		Person person = new Person(old);
-
-		if (fname != null) {person.setFname(fname);}
-		if (lname != null) {person.setLname(lname);}
-		if (username != null) {person.setUsername(username);}
-		if (password != null) {person.setPassword(password);}
-		if (email != null) {person.setEmail(email);}
-
-		session.update(person);
-		session.flush();
-		
-		return true;
-	}
-	//working
-	@Transactional
-	public boolean EditBookmark(Bookmark old, int rating, Category category, String name, String address, String description) {
-		Session session = sf.getCurrentSession();
-		
-		Bookmark bookmark = new Bookmark(old);
-		
-		
-		if(rating != -1) {bookmark.setRating(rating);}  // -1 because int can't be null
-		if(category != null) {bookmark.setCategory(category);}
-		if(name != null) {bookmark.setName(name);}
-		if(address != null) {bookmark.setAddress(address);}
-		if(description != null) {bookmark.setDescription(description);}
-
-		session.update(bookmark);
-		session.flush();
-		return true;
-	}
 	// working
 	@Transactional
 	public boolean Login(String username, String pword) throws Exception {
@@ -139,6 +70,77 @@ public class DaoImpl implements DaoInterface {
 			System.out.println("Either Username or Password doesn't match");
 			return false;
 		}
+	}
+	//Working
+	@Transactional
+	public Person getPersonInfo(String username, String pword) {
+		Session session = sf.getCurrentSession();
+		Person person = new Person();
+		String hql = "FROM Person P WHERE P.username = '"+username+"'"+
+		" AND P.pword = '"+pword+"'";
+		Query query = session.createQuery(hql);
+		List<Person> results = query.list();
+		
+		if(results.isEmpty() == false) {
+			person = results.get(0);
+			return person;
+		}
+		else {
+			return null;
+		}
+		
+		
+	}
+
+	//working
+	@Transactional
+	public boolean DeletePerson(String username, String password, int pid) throws Exception {
+		if(Login(username, password) == false ) {
+			return false;
+		}
+		Session session = sf.getCurrentSession();
+		Person person = session.get(Person.class, pid);
+		session.delete(person);
+		session.flush();
+		return true;
+	}
+
+	//working
+	@Transactional
+	public boolean EditAccount(Person old, String fname, String lname, String username, String password, String email) {
+		Session session = sf.getCurrentSession();
+
+		Person person = new Person(old);
+
+		if (fname != null) {person.setFname(fname);}
+		if (lname != null) {person.setLname(lname);}
+		if (username != null) {person.setUsername(username);}
+		if (password != null) {person.setPassword(password);}
+		if (email != null) {person.setEmail(email);}
+
+		session.update(person);
+		session.flush();
+		
+		return true;
+	}
+
+	//working
+	@Transactional
+	public boolean EditBookmark(Bookmark old, int rating, Category category, String name, String address, String description) {
+		Session session = sf.getCurrentSession();
+		
+		Bookmark bookmark = new Bookmark(old);
+		
+		
+		if(rating != -1) {bookmark.setRating(rating);}  // -1 because int can't be null
+		if(category != null) {bookmark.setCategory(category);}
+		if(name != null) {bookmark.setName(name);}
+		if(address != null) {bookmark.setAddress(address);}
+		if(description != null) {bookmark.setDescription(description);}
+
+		session.update(bookmark);
+		session.flush();
+		return true;
 	}
 	//working
 	@Transactional
@@ -235,17 +237,6 @@ public class DaoImpl implements DaoInterface {
 	}
 	//working
 	@Transactional
-	public boolean AddCategory(String name) throws Exception {
-		Category category = new Category();
-		category.setCname(name);
-		Session session = sf.getCurrentSession();
-		session.save(category);
-		session.flush();
-		return true;
-		
-	}
-	//working
-	@Transactional
 	public List<Bookmark> SortByCategory(int pid) throws Exception {
 		List<Bookmark> bookmarks;
 		Session session = sf.getCurrentSession();
@@ -311,16 +302,36 @@ public class DaoImpl implements DaoInterface {
 	}
 	//working
 	@Transactional
-	public boolean DeletePerson(String username, String password, int pid) throws Exception {
-		if(Login(username, password) == false ) {
-			return false;
-		}
+	public List<Bookmark> GetListOfPBM(Person person) throws Exception {
+		List<Bookmark> clist;
 		Session session = sf.getCurrentSession();
-		Person person = session.get(Person.class, pid);
-		session.delete(person);
+		String hql = "FROM Bookmark B Where B.person = "+person.getPid();
+		Query query = session.createQuery(hql);
+		clist = query.list();
 		session.flush();
-		return true;
+		return clist;
 	}
+
+	//working
+	
+	@Transactional
+	public Bookmark GetBookMarkInfo(int pid, int bmid) throws Exception {
+		Session session = sf.getCurrentSession();
+		Bookmark bm;
+		String hql = "FROM Bookmark b WHERE b.person = "+pid+
+				" AND b.bmid = "+bmid;
+		Query query = session.createQuery(hql);
+		List<Bookmark> results = query.list();
+		
+		if(results.isEmpty() == false) {
+			bm = results.get(0);
+			return bm;
+		}
+		else {
+			return null;
+		}
+	}
+
 	//working
 	@Transactional
 	public boolean ExportSingleBookmark(String fileName, Bookmark bookmark) throws Exception {
@@ -385,6 +396,18 @@ public class DaoImpl implements DaoInterface {
 	}
 	//working
 	@Transactional
+	public boolean AddCategory(String name) throws Exception {
+		Category category = new Category();
+		category.setCname(name);
+		Session session = sf.getCurrentSession();
+		session.save(category);
+		session.flush();
+		return true;
+		
+	}
+
+	//working
+	@Transactional
 	public List<Category> AllCategories() throws Exception {
 		List<Category> clist;
 		Session session = sf.getCurrentSession();
@@ -393,26 +416,6 @@ public class DaoImpl implements DaoInterface {
 		clist = query.list();
 		session.flush();
 		return clist;
-	}
-	//Working
-	@Transactional
-	public Person getPersonInfo(String username, String pword) {
-		Session session = sf.getCurrentSession();
-		Person person = new Person();
-		String hql = "FROM Person P WHERE P.username = '"+username+"'"+
-		" AND P.pword = '"+pword+"'";
-		Query query = session.createQuery(hql);
-		List<Person> results = query.list();
-		
-		if(results.isEmpty() == false) {
-			person = results.get(0);
-			return person;
-		}
-		else {
-			return null;
-		}
-		
-		
 	}
 	//working
 	@Transactional
@@ -431,36 +434,36 @@ public class DaoImpl implements DaoInterface {
 			return null;
 		}
 	}
-	//working
 	@Transactional
-	public List<Bookmark> GetListOfPBM(Person person) throws Exception {
-		List<Bookmark> clist;
+	public boolean UploadImageByLink(Bookmark old, String url) throws Exception {
 		Session session = sf.getCurrentSession();
-		String hql = "FROM Bookmark B Where B.person = "+person.getPid();
-		Query query = session.createQuery(hql);
-		clist = query.list();
+		
+		Bookmark bookmark = new Bookmark(old);
+		String[] imgurData = ImgurContent.uploadByLink(url);
+		bookmark.setImage(imgurData[0]);
+		bookmark.setImageDeleteHash(imgurData[1]);
+	
+		session.saveOrUpdate(bookmark);
 		session.flush();
-		return clist;
+		
+		return true;
 	}
-	//working
 
 	@Transactional
-	public Bookmark GetBookMarkInfo(int pid, int bmid) throws Exception {
+	public boolean UploadImageByFile(Bookmark old, String filePath) throws Exception {
 		Session session = sf.getCurrentSession();
-		Bookmark bm;
-		String hql = "FROM Bookmark b WHERE b.person = "+pid+
-				" AND b.bmid = "+bmid;
-		Query query = session.createQuery(hql);
-		List<Bookmark> results = query.list();
 		
-		if(results.isEmpty() == false) {
-			bm = results.get(0);
-			return bm;
-		}
-		else {
-			return null;
-		}
+		Bookmark bookmark = new Bookmark(old);
+		String[] imgurData = ImgurContent.uploadByFile(filePath);
+		bookmark.setImage(imgurData[0]);
+		bookmark.setImageDeleteHash(imgurData[1]);
+	
+		session.update(bookmark);
+		session.flush();
+		
+		return true;
 	}
+
 	// testing usage
 	@Transactional
 	public boolean InsertPerson(Person person) throws Exception {
