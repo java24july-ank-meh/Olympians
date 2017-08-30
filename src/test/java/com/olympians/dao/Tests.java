@@ -17,7 +17,7 @@ import com.olympians.beans.Person;
 
 
 public class Tests {
-	@Ignore
+
 	@Test
 	public void addDeleteEditPersonTest(){
 		@SuppressWarnings("resource")
@@ -65,7 +65,7 @@ public class Tests {
 		assertEquals(null, notAPerson);
 		System.out.println(notAPerson);
 	}
-	@Ignore
+	
 	@Test
 	public void addDeleteEditBookmarkTest(){
 		@SuppressWarnings("resource")
@@ -125,7 +125,7 @@ public class Tests {
 		assertEquals(0, bList.size());
 		
 	}
-	@Ignore
+	
 	@Test
 	public void addCategory(){
 		@SuppressWarnings("resource")
@@ -164,7 +164,7 @@ public class Tests {
 		assertEquals(true,cExists);
 		
 	}
-	@Ignore
+	
 	@Test
 	public void uploadImagebyURL(){
 		@SuppressWarnings("resource")
@@ -214,7 +214,7 @@ public class Tests {
 				+ "\nURL 2: " + bookmark.getImage() 
 				+ "\nare both the same picture of a chair");
 	}
-	@Ignore
+	
 	@Test
 	public void testGettingPersonInfo() {
 		@SuppressWarnings("resource")
@@ -244,7 +244,7 @@ public class Tests {
 		}
 		
 	}
-	@Ignore
+	
 	@Test
 	public void testGetCategoryInfo() {
 		@SuppressWarnings("resource")
@@ -266,7 +266,7 @@ public class Tests {
 		Category temp = dao.getCategoryByName("cat"+rand);
 		assertNotNull(temp);
 	}
-	@Ignore
+	
 	@Test
 	public void testGettingAllCategories() {
 		@SuppressWarnings("resource")
