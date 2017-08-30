@@ -21,7 +21,7 @@
 
 		<div id="Modify">
 			<h1>Modify User Info:</h1>
-			<form name="regInfo" action="ChangeInfo" method="post">
+			<form name="regInfo" action="/settings" method="post">
 				<div class="form-group">
 					<label for="textinput" class="col-form-label">Username</label>
 					<div class="col-10">
@@ -62,24 +62,37 @@
 <script>
 	function onLoad() {
 		//Test Variables.
-		sessionStorage.user = "Dummy";
-		sessionStorage.email = "Dummy@Dummy.com"
-      //getuserinfo();
+		//sessionStorage.user = "Dummy";
+		//sessionStorage.email = "Dummy@Dummy.com"
+		checkvalidity();
+		getuserinfo();
 		document.getElementById("user").value = sessionStorage.user;
 		document.getElementById("email").value = sessionStorage.email;
 	}
-  function getuserinfo{
-    let xhttp = new XMLHttpRequest();
-	xhttp.onreadystatechange = function() {
-		console.log(this.readyState);
-		if (this.readyState === 4 && this.status === 200){
-			let tempuser = JSON.parse(xhttp.responseText);
-            sessionStorage.user = tempuser.
-		}
-	};
-	xhttp.open("GET", "/settings", true);
-	xhttp.send();
-  }
+	function checkvalidity(){
+		let xhttp = new XMLHttpRequest();
+		xhttp.onreadystatechange = function() {
+			console.log(this.readyState);
+			if (this.readyState === 4 && this.status === 200) {
+				
+			}
+		};
+		xhttp.open("GET", "/checkuser", true);
+		xhttp.send();
+	}
+	function getuserinfo() {
+		let xhttp = new XMLHttpRequest();
+		xhttp.onreadystatechange = function() {
+			console.log(this.readyState);
+			if (this.readyState === 4 && this.status === 200) {
+				let tempuser = JSON.parse(xhttp.responseText);
+				sessionStorage.user = tempuser.username;
+				sessionStorage.email = tempuser.email;
+			}
+		};
+		xhttp.open("GET", "/settings", true);
+		xhttp.send();
+	}
 	var password = document.getElementById("passn1"), confirm_password = document
 			.getElementById("passn2"), new_password = document
 			.getElementById("passOld");

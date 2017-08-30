@@ -16,7 +16,7 @@ import org.springframework.stereotype.Repository;
 public class Category {
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy=GenerationType.AUTO) //change primary key to cname?
 	private int cid;
 	@Column
 	private String cname;
