@@ -62,8 +62,9 @@ public class BookmarkController {
 		String url = req.getParameter("url");
 		System.out.println(url);
 		String categoryString = req.getParameter("category");
-		/*
+
 		System.out.println(categoryString);
+		/*
 		Category category = dao.getCategoryByName(categoryString);
 		System.out.println(category); */
 		String description = req.getParameter("desc");
