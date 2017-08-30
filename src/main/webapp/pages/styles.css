@@ -22,6 +22,20 @@ table {
     border: 1px solid;
 }
 
+/*styles index page main div*/
+#index-div {
+    text-align: center;
+    align-content: center;
+    border:1px solid #760C0C;
+    padding: 20px;
+}
+
+/*styles login div*/
+#RegisterPage, #LoginPage {
+    border:1px solid #760C0C;
+    align-content: center;
+    padding: 20px;
+}
 /*
 td, th{
     border: 1px solid;
@@ -35,7 +49,9 @@ body {
     font-family: menlo;
 }
 
-
+.jumbotron {
+  background-color: #96C1A7;
+}
 .modal {
 	display: none; /* Hidden by default */
 	position: fixed; /* Stay in place */

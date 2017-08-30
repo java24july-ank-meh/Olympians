@@ -9,71 +9,17 @@
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-<<<<<<< HEAD
 <link rel="stylesheet" href="styles.css">
-=======
->>>>>>> 059b2c7fccb908eb7f101e495170b6b09d8e3a43
 <title>Home</title>
 <!-- if IE, use latest rendering -->
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-<<<<<<< HEAD
-=======
-<style>
-.modal {
-	display: none; /* Hidden by default */
-	position: fixed; /* Stay in place */
-	z-index: 1; /* Sit on top */
-	left: 0;
-	top: 0;
-	width: 100%; /* Full width */
-	height: 100%; /* Full height */
-	overflow: auto; /* Enable scroll if needed */
-	background-color: rgb(0, 0, 0); /* Fallback color */
-	background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
-}
-/* Modal Content/Box */
-.modal-content {
-	background-color: #fefefe;
-	margin: 15% auto; /* 15% from the top and centered */
-	padding: 20px;
-	border: 1px solid #888;
-	width: 80%; /* Could be more or less, depending on screen size */
-}
-/* The Close Button */
-.close {
-	color: #aaa;
-	float: right;
-	font-size: 28px;
-	font-weight: bold;
-}
-
-.close:hover, .close:focus {
-	color: black;
-	text-decoration: none;
-	cursor: pointer;
-}
-
-.edit-modal-content {
-	background-color: #fefefe;
-	margin: 15% auto; /* 15% from the top and centered */
-	padding: 20px;
-	border: 1px solid #888;
-	width: 80%; /* Could be more or less, depending on screen size */
-}
-/*sytles for edit-modal*/
-.btn a {
-	color: white;
-}
-</style>
->>>>>>> 059b2c7fccb908eb7f101e495170b6b09d8e3a43
 
 </head>
 <body onload="onLoad()">
 	<div class="container">
 		<!-- Add space around text and underline-->
 		<div class="page-header">
-<<<<<<< HEAD
 			<ul class="nav nav-tabs">
   			<li role="presentation" class="active"><a href="#">Home</a></li>
   			<li role="presentation"><a id="new-bookmark-btn" onclick="addNewBookmark()">Add new bookmark</a></li>
@@ -88,30 +34,10 @@
 			<option value="Date">Date</option>
 		</select>
 		<select id="direction">
-=======
-			<h1>Home</h1>
-			Hello, <a id="usernamedisplay">Dummy</a> <br />
-			<button class="btn btn-primary" id="user-info-btn"
-				onclick="changeUserInfo()">Change User Info</button>
-			<button class="btn btn-primary" id="logout-btn">
-				<a href="logout">Logout</a>
-			</button>
-		</div>
-
-		<select id="sort-criterion" onchange="sortfunction()">
-			<option value="Rating">Rating</option>
-			<option value="Date">Date</option>
-		</select> <select id="direction" onchange="sortfunction()">
->>>>>>> 059b2c7fccb908eb7f101e495170b6b09d8e3a43
 			<option value="asc">Ascending</option>
 			<option value="desc">Descending</option>
 		</select>
 		<!-- The Modal -->
-<<<<<<< HEAD
-=======
-		<button class="btn btn-primary" id="new-bookmark-btn"
-			onclick="addNewBookmark()">Add New Bookmark</button>
->>>>>>> 059b2c7fccb908eb7f101e495170b6b09d8e3a43
 		<div id="newBookmarkModal" class="modal">
 
 			<!-- Modal content, Add Bookmark-->
@@ -119,42 +45,25 @@
 				<span class="close">&times;</span>
 				<form action="addbookmarks" method="post">
 					<div class="form-group">
-<<<<<<< HEAD
-=======
-						<label for="textinput" class="col-form-label">Title*</label>
->>>>>>> 059b2c7fccb908eb7f101e495170b6b09d8e3a43
 						<div class="col-10">
 							<input class="form-control" type="text" id="title" name="title"
 								placeholder="Title" required>
 						</div>
 					</div>
 					<div class="form-group">
-<<<<<<< HEAD
-=======
-						<label for="textinput" class="col-form-label">URL*</label>
->>>>>>> 059b2c7fccb908eb7f101e495170b6b09d8e3a43
 						<div class="col-10">
 							<input class="form-control" type="text" id="url" name="url"
 								placeholder="URL" required>
 						</div>
 					</div>
 					<div class="form-group">
-<<<<<<< HEAD
-=======
-						<label for="textinput" class="col-form-label">Category</label>
->>>>>>> 059b2c7fccb908eb7f101e495170b6b09d8e3a43
 						<div class="col-10">
 							<input class="form-control" type="text" id="category"
 								name="category" placeholder="Category">
 						</div>
 					</div>
 					<div class="form-group">
-<<<<<<< HEAD
 						<textarea class="form-control" id="desc" name="desc" rows="2"
-=======
-						<label for="exampleTextarea">Description</label>
-						<textarea class="form-control" id="desc" name="desc" rows="3"
->>>>>>> 059b2c7fccb908eb7f101e495170b6b09d8e3a43
 							placeholder="Enter Description"></textarea>
 					</div>
 
@@ -166,11 +75,7 @@
 							<option value="3">3</option>
 							<option value="4">4</option>
 							<option value="5">5</option>
-<<<<<<< HEAD
 						</select><br/>
-=======
-						</select><br />
->>>>>>> 059b2c7fccb908eb7f101e495170b6b09d8e3a43
 					</div>
 					<div class="form-group">
 						<label for="exampleInputFile">Upload Image OR Link Image
@@ -178,13 +83,8 @@
 							placeholder="URL" required> <input type="file"
 							class="form-control-file" id="fileIn" name="fileIn"
 							aria-describedby="file" accept=".jpg,.png,.gif,.bmp,.jpeg">
-<<<<<<< HEAD
 						<!-- <small id="fileHelp" class="form-text text-muted">Upload
 							file here.</small> -->
-=======
-						<small id="fileHelp" class="form-text text-muted">Upload
-							file here.</small>
->>>>>>> 059b2c7fccb908eb7f101e495170b6b09d8e3a43
 					</div>
 					<input type="submit" value="Save" class="btn btn-primary" /><br>
 
@@ -218,10 +118,7 @@
 					</tr>
 				</tbody>
 			</table>
-<<<<<<< HEAD
           <h1 style='text-align: center;'><img src='http://i.imgur.com/CLxxxXv.jpg' style='max-height: 100px;'/></h1>
-=======
->>>>>>> 059b2c7fccb908eb7f101e495170b6b09d8e3a43
 		</div>
 
 		<!-- eidt modal content -->
@@ -229,11 +126,7 @@
 			<div class="modal-content">
 				<span class="close">&times;</span>
 				<form action="bookmarks" method="post">
-<<<<<<< HEAD
 					<div class="form-group" style="display:none;">
-=======
-					<div class="form-group" style="display: none;">
->>>>>>> 059b2c7fccb908eb7f101e495170b6b09d8e3a43
 						<label for="textinput" class="col-form-label">bmid</label>
 						<div class="col-10">
 							<input class="form-control" type="text" id="ebmid" name="ebmid"
@@ -241,44 +134,26 @@
 						</div>
 					</div>
 					<div class="form-group">
-<<<<<<< HEAD
-=======
-						<label for="textinput" class="col-form-label">Title*</label>
->>>>>>> 059b2c7fccb908eb7f101e495170b6b09d8e3a43
 						<div class="col-10">
 							<input class="form-control" type="text" id="etitle" name="title"
 								placeholder="Title" required>
 						</div>
 					</div>
 					<div class="form-group">
-<<<<<<< HEAD
-=======
-						<label for="textinput" class="col-form-label">URL*</label>
->>>>>>> 059b2c7fccb908eb7f101e495170b6b09d8e3a43
 						<div class="col-10">
 							<input class="form-control" type="text" id="eurl" name="url"
 								placeholder="URL" required>
 						</div>
 					</div>
 					<div class="form-group">
-<<<<<<< HEAD
-=======
-						<label for="textinput" class="col-form-label">Category</label>
->>>>>>> 059b2c7fccb908eb7f101e495170b6b09d8e3a43
 						<div class="col-10">
 							<input class="form-control" type="text" id="ecategory"
 								name="category" placeholder="Category">
 						</div>
 					</div>
 					<div class="form-group">
-<<<<<<< HEAD
 						<textarea class="form-control" id="edesc" name="edesc" rows="3"
 							placeholder="Description"></textarea>
-=======
-						<label for="exampleTextarea">Description</label>
-						<textarea class="form-control" id="edesc" name="edesc" rows="3"
-							placeholder="Enter Description"></textarea>
->>>>>>> 059b2c7fccb908eb7f101e495170b6b09d8e3a43
 					</div>
 					<div class="form-group">
 						<label for="InputManager">Rating</label> <select id="escoreSelect"
@@ -299,13 +174,8 @@
 						<small id="fileHelp" class="form-text text-muted">Upload
 							file here.</small>
 					</div>
-<<<<<<< HEAD
 					<input type="submit" value="Save" class="btn btn-primary" />
 					<input type="number" name="ePID" id="ePID" style="display: none;" />
-=======
-					<input type="submit" value="Save" class="btn btn-primary" /> <input
-						type="number" name="ePID" id="ePID" style="display: none;" />
->>>>>>> 059b2c7fccb908eb7f101e495170b6b09d8e3a43
 				</form>
 			</div>
 		</div>
@@ -319,28 +189,19 @@
 						<label for="textinput" class="col-form-label">First Name</label>
 						<div class="col-10">
 							<input class="form-control" type="text" id="fname" name="fname"
-<<<<<<< HEAD
 								placeholder="First Name" required>
-=======
-								placeholder="First Name">
->>>>>>> 059b2c7fccb908eb7f101e495170b6b09d8e3a43
 						</div>
 					</div>
 					<div class="form-group">
 						<label for="textinput" class="col-form-label">Last Name</label>
 						<div class="col-10">
 							<input class="form-control" type="text" id="lnlame" name="lname"
-<<<<<<< HEAD
 								placeholder="Last Name" required>
-=======
-								placeholder="Last Name">
->>>>>>> 059b2c7fccb908eb7f101e495170b6b09d8e3a43
 						</div>
 					</div>
 					<div class="form-group">
 						<label for="textinput" class="col-form-label">Username</label>
 						<div class="col-10">
-<<<<<<< HEAD
 							<input class="form-control" type="text" id="uname"
 								name="uname" placeholder="Username">
 						</div>
@@ -356,28 +217,6 @@
 
 					<input type="submit" value="Save" class="btn btn-primary" />
 					<input type="number" name="uPID" id="uPID" style="display: none;" />
-=======
-							<input class="form-control" type="text" id="uname" name="uname"
-								placeholder="Username" required>
-						</div>
-					</div>
-					<div class="form-group">
-						<label for="textinput" class="col-form-label">Password</label>
-						<div class="col-10">
-							<input class="form-control" type="text" id="pword" name="pword"
-								placeholder="Password">
-						</div>
-					</div>
-					<div class="form-group">
-						<label for="textinput" class="col-form-label">Old Password</label>
-						<div class="col-10">
-							<input class="form-control" type="text" id="opword" name="opword"
-								placeholder="Password" required>
-						</div>
-					</div>
-					<input type="submit" value="Save" class="btn btn-primary" /> <input
-						type="number" name="uPID" id="uPID" style="display: none;" />
->>>>>>> 059b2c7fccb908eb7f101e495170b6b09d8e3a43
 				</form>
 			</div>
 		</div>
@@ -410,7 +249,6 @@
 		};
 		xhttp.open("GET", "bookmarks", true);
 		xhttp.send();
-<<<<<<< HEAD
 		*/
 
 		$.get("bookmarks", function(responseJson){
@@ -484,104 +322,5 @@
 		userModal.style.display = "block";
 	}
 
-=======
-		 */
-
-		$.get("bookmarks",function(responseJson) {
-			let $tablebody = $("#toReplace");
-			$tablebody.empty();
-			$.each(responseJson, function(index, bookmark) {
-				$("<tr>").appendTo($tablebody)
-				.append("<th scope='row'>Title</th>")
-				.append("<td><a target='_blank' href='" +bookmark.address + "' class='address btn btn-info btn-sm'>"+ bookmark.name+ "</a></td>")
-				.append("<th>Rating</th>")
-				.append("<td class='rating'>"+ bookmark.rating+ "</td>");
-				$("<tr>").appendTo($tablebody)
-				.append("<th>Category</th>").text("Category")
-				.append("<td class='category'>"+ bookmark.category.cname+ "</td>")
-				.append("<th scope='row'>Edit</th>")
-				.append("<td <button class= 'editBtn btn btn-info btn-sm'>Edit</button></td>")
-				.append("<td style='display: none;' class='bmid'>"+ bookmark.bmid+ "</td>");
-			});
-		});
-	}
-	// Get the modal
-	var modal = document.getElementById("newBookmarkModal");
-
-	// When the user clicks anywhere outside of the modal, close it
-	window.onclick = function(event) {
-		if (event.target == modal || event.target == editModal
-				|| event.target == userModal) {
-			modal.style.display = "none";
-			editModal.style.display = "none";
-			userModal.style.display = "none";
-		}
-	}
-	//get the editModal
-	var editModal = document.getElementById("editModal");
-	var newBookmarkModal = document.getElementById("newBookmarkModal");
-	var userModal = document.getElementById("userModal");
-	var editBtn = document.getElementById("editBtn");
-
-	//When a close span is clicked, close all modals
-	var $closeSpans = $(".close");
-	$closeSpans.click(function() {
-		$.each($closeSpans, function(index, elt) {
-			let $closeSpan = $(elt);
-			let $modal = $closeSpan.parents(".modal");
-			$modal.css("display", "none");
-		});
-	});
-
-	$(document).on(
-			"click",
-			".editBtn",
-			function(e) {
-				editModal.style.display = "block";
-				let $specificEditBtn = $(e.target);
-				let $bmid = $specificEditBtn.next();
-
-				let $em = $(editModal);
-				let bmid = $specificEditBtn.siblings(".bmid").html();
-				let category = $specificEditBtn.siblings(".category").html();
-				let title = $specificEditBtn.closest("tr").prev("tr").find(
-						".address").html();
-				let address = $specificEditBtn.closest("tr").prev("tr").find(
-						".address").attr("href");
-				let rating = $specificEditBtn.closest("tr").prev("tr").find(
-						".rating").html();
-
-				$em.find("#etitle").val(title);
-				$em.find("#eurl").val(address);
-				$em.find("#ecategory").val(category);
-				$em.find("#ebmid").val(bmid);
-			});
-
-	function addNewBookmark() {
-		newBookmarkModal.style.display = "block";
-	}
-
-	function changeUserInfo() {
-		userModal.style.display = "block";
-	}
-
-	function sortfunction() {
-		$.ajax({
-			url : "/TestPage.aspx",
-			type: "get",
-			data : {
-				"criterion" : document.getElementById("sort-criterion"),
-				"direction" : document.getElementById("direction")
-			},
-			success : function(response) {
-				//Copy over the function from populatebookmarks
-			},
-			error : function(xhr) {
-				//Do Something to handle error
-			}
-		});
-
-	}
->>>>>>> 059b2c7fccb908eb7f101e495170b6b09d8e3a43
 </script>
 </html>

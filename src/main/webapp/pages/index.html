@@ -11,16 +11,18 @@
 </head>
 <body>
 </br>
-  <div class="container" style="text-align:center;"> <!-- Add space around text and underline-->
+  <div id="index-div" class="container"> <!-- Add space around text and underline-->
+  </br>
       <div class="jumbotron">
         <h2>hello, world!</h2>
         <p>welcome to your bookmarks manager web application.</p>
     </div>
-    <div class="btn-group btn-group-lg" role="group" aroa=labels="...">
+    <div id="LoginPage">
+    <div id="aroa" class="btn-group btn-group-lg" role="group" aroa=labels="...">
         <button type="button" class="btn btn-default" onclick="showlogin()">Login</button>
         <button type="button" class="btn btn-default" onclick="showreg()">Register</button>
     </div>
-    <div id="LoginPage">
+
 	<form name="LoginInfo" action="Login" method="post">
      <div class="form-group">
      </br>
@@ -40,6 +42,10 @@
 
   <div id="RegisterPage" style="display: none;">
   </br>
+    <div id="aroa" class="btn-group btn-group-lg" role="group" aroa=labels="...">
+        <button type="button" class="btn btn-default" onclick="showlogin()">Login</button>
+        <button type="button" class="btn btn-default" onclick="showreg()">Register</button>
+    </div>
 	<form name="regInfo" action="Register" method="post">
      <div class="form-group">
       <label for="textinput" class="col-form-label"/>
@@ -48,7 +54,6 @@
        </div>
      </div>
 
-<<<<<<< HEAD
       <div class="form-group">
       <label for="textinput" class="col-form-label">
        <div class="col-10">
@@ -69,54 +74,6 @@
     </span>
   </div>
   </div>
-=======
-		<div id="RegisterPage" style="display: none;">
-			<h1>Register:</h1>
-			<form name="regInfo" action="register" method="post">
-				<div class="form-group">
-					<label for="textinput" class="col-form-label">Username*</label>
-					<div class="col-10">
-						<input class="form-control" type="text" id="user1" name="user1"
-							placeholder="Username" required>
-					</div>
-				</div>
-				<div class="form-group">
-					<label for="textinput" class="col-form-label">First Name</label>
-					<div class="col-10">
-						<input class="form-control" type="text" id="fname" name="fname"
-							placeholder="First Name">
-					</div>
-				</div>
-				<div class="form-group">
-					<label for="textinput" class="col-form-label">Last Name</label>
-					<div class="col-10">
-						<input class="form-control" type="text" id="lname" name="lname"
-							placeholder="Last Name">
-					</div>
-				</div>
-				<div class="form-group">
-					<label for="textinput" class="col-form-label">E-Mail*</label>
-					<div class="col-10">
-						<input class="form-control" type="email" id="email" name="email"
-							placeholder="Example@abc.com" required>
-					</div>
-				</div>
-				<div class="form-group">
-					<label for="InputPassword1">Password*</label> <input
-						type="password" class="form-control" id="pass1" name="pass1"
-						placeholder="Password" required>
-				</div>
-				<div class="form-group">
-					<label for="InputPassword1"> Confirm Password*</label> <input
-						type="password" class="form-control" id="pass2" name="pass2"
-						placeholder="Password" required>
-				</div>
-				</br> <input type="submit" value="Register" class="btn btn-primary" />
-			</form>
-			</span>
-		</div>
-	</div>
->>>>>>> 059b2c7fccb908eb7f101e495170b6b09d8e3a43
 </body>
 <script>
 
