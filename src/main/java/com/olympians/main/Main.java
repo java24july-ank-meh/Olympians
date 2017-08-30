@@ -59,17 +59,37 @@ public class Main {
 		bmk.AddCategory("Beauty");
 		bmk.EditBookmark(bookmark, rating, category, name, address, description)*/
 		
-		/*Person person3 = bmk.getPersonInfo("ero", "pass");
-		System.out.println(person3);
-		bmk.EditAccount(person3, "eleazar", "rosales", "erosales", "pass", "erosales@gmail.com");
+		//System.out.println(person3);
+		//bmk.EditAccount(person3, "eleazar", "rosales", "erosales", "pass", "erosales@gmail.com");
 		//person3 = bmk.getPersonInfo("erosales", "pass");*/
 		
+<<<<<<< HEAD
 //		Bookmark bm = bmk.GetBookMarkInfo(3, 26);
 //		Category category;
 //		category = bmk.getCategoryInfo(2);
 //		System.out.println(category);
 //		System.out.println(bm);
 //		bmk.EditBookmark(bm, 4, category, "Tesla", "www.Testa.com", "This is tesla's main page");
+=======
+		/*Bookmark bm = bmk.GetBookMarkInfo(3, 26);
+		Category category;
+		category = bmk.getCategoryInfo(2);
+		System.out.println(category);
+		System.out.println(bm);
+		bmk.EditBookmark(bm, 4, category, "Tesla", "www.Testa.com", "This is tesla's main page");*/
+		
+		/*Person person1 = bmk.getPersonInfo("erosales", "pass");
+		bmk.CreateBookmark("apple", "apple.com", "Best ever", person1, 3, 4, "somepic");*/
+	
+		System.out.println("new database info");
+		
+		Category category = new Category();
+		category = bmk.getCategoryByName("LifeStyle");
+		System.out.println(category);
+		
+		
+	}
+>>>>>>> BackEnd-Eleazar-Madrone
 
 	}
 }
