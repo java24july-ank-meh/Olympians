@@ -1,5 +1,8 @@
 package com.olympians.controllers;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -55,12 +58,35 @@ public class UserController {
 
 	@RequestMapping("/all")
 	public ResponseEntity<Object> allUserFields(HttpServletRequest req){
-		return null;
+		List<Person> result = new ArrayList<>();
+		Person toReturn = null;
+		try{toReturn = dao.GetPersonbyUserName(loggedIn.getUsername());}
+		catch(Exception e) {e.printStackTrace();}
+		System.out.println("In allUserFields: " + toReturn);
+		result.add(toReturn);
+		return ResponseEntity.ok(result);
 	}
 	
 	@RequestMapping("/edit")
-	public ResponseEntity<Object> editUserFields(HttpServletRequest req){
-		return null;
+	public String editUserFields(HttpServletRequest req){
+		Person person = null;
+		try{person = dao.GetPersonbyUserName(loggedIn.getUsername());}
+		catch(Exception e ) {e.printStackTrace();}
+		
+		String fname = req.getParameter("fname");
+		String lname = req.getParameter("lname");
+		String username = req.getParameter("uname");
+		String opword = req.getParameter("opword");
+		String npword = req.getParameter("npword");
+		String email = req.getParameter("email");
+		
+		if(!opword.equals(person.getPassword()) || !(opword.equals(npword))) {
+		}
+		else {
+			dao.EditAccount(person, fname, lname, username, npword, email);
+		}
+		return "redirect:homepage";
+		
 	}
 	
 	@RequestMapping("/new")

@@ -140,7 +140,7 @@ public class PersonImpl implements Person{
 
 	@Override
 	public String toString() {
-		return "Person [pid=" + pid + ", fname=" + fname + ", lname=" + lname + ", username=" + username + "]";
+		return "Person [pid=" + pid + ", fname=" + fname + ", lname=" + lname + ", username=" + username + ", password=" + pword + "]";
 	}
 	
 }

@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.olympians.Dao.DaoInterface;
+import com.olympians.beans.Category;
 import com.olympians.beans.Person;
 import com.olympians.beans.PersonImpl;
 
@@ -116,6 +117,22 @@ public class MamaController {
 		return "redirect:/";
 	}
 	
+	@RequestMapping(value="/allcategories", method=RequestMethod.GET)
+	public ResponseEntity<Object> allCategories(HttpServletRequest req){
+		List<Category> result = null;
+		try{result = dao.AllCategories();}
+		catch(Exception e) {e.printStackTrace();}
+		
+		return ResponseEntity.ok(result);
+	}
+	
+	@RequestMapping(value="/addcategory", method=RequestMethod.POST)
+	public String addCategory(HttpServletRequest req) {
+		String cname = req.getParameter("new-cname");
+		try{dao.AddCategory(cname);}
+		catch(Exception e) {e.printStackTrace();}
+		return "redirect:homepage";
+	}
 	@RequestMapping(value="/bookmarks", method=RequestMethod.GET)
 	public String allBookmarks(HttpServletRequest req) {
 		return "redirect:bookmarkcontroller/all";
@@ -136,11 +153,17 @@ public class MamaController {
 	
 	@RequestMapping(value="/settings", method=RequestMethod.GET)
 	public String allUserFields(HttpServletRequest req){
-		return "redirect:usercontroller/all";
+		return "forward:usercontroller/all";
 	}
 	
 	@RequestMapping(value="/settings", method=RequestMethod.POST)
 	public String editUserFields(HttpServletRequest req){
-		return "redirect:usercontroller/edit";
+		return "forward:usercontroller/edit";
 	}
+	
+	@RequestMapping(value="/sort", method=RequestMethod.GET)
+	public String sortBookmarks(HttpServletRequest req) {
+		return "forward:bookmarkcontroller/sort";
+	}
+	
 }
