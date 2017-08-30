@@ -18,6 +18,10 @@
 
 </head>
 <body onload="onLoad()">
+	<div class="jumbotron">
+		<h1 style="text-align: center;">Easymarks</h2>
+		<p style="text-align: center;">Hello, <a id="usernamedisplay">User</a></p>
+	</div>
 	<div class="container">
 		<!-- Add space around text and underline-->
 		<div class="page-header">
@@ -29,7 +33,7 @@
 					onclick="changeUserInfo()">Profile</a></li>
 				<li role="presentation"><a id="logout-btn" href="/logout">Logout</a></li>
 			</ul>
-			Hello, <a id="usernamedisplay">mmy</a> <br />
+			
 		</div>
 
 		<select id="sort-criterion" onchange="sortfunction()">
