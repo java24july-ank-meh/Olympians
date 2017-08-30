@@ -150,9 +150,11 @@ public class Tests {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
+		Category temp = new Category();
 		for(Category c : catList) {
 			if(c.getCname().equals(name)) {
+				temp.setCid(c.getCid());
+				temp.setCname(c.getCname());
 				cExists = true;
 				break;
 			}
@@ -223,7 +225,7 @@ public class Tests {
 		Random random = new Random();
 		int r = random.nextInt(9999);
 		String rand = Integer.toString(r);
-		
+		System.out.println("###TestingGetPersonInfo###");
 		try {
 			dao.CreateUser("testPerson[" + rand + "]", "lname[" + rand + "]", "username[" + rand + "]",
 					"pword[" + rand + "]", "email[" + rand + "]");
@@ -232,15 +234,35 @@ public class Tests {
 		}
 		Person person = dao.getPersonInfo("username[" + rand + "]", "pword[" + rand + "]");
 		System.out.println(person);
-		assertEquals(person.getUsername(), "username[" + rand + "]");
+		assertNotNull(person);
+		System.out.println(person);
 		try {
 			dao.DeletePerson(person.getUsername(), person.getPassword(), person.getPid());
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		
 	}
-	
-	
+	@Ignore
+	@Test
+	public void testGetCategoryInfo() {
+		@SuppressWarnings("resource")
+		ApplicationContext ctx = 
+				new ClassPathXmlApplicationContext("beans.xml");
+		DaoInterface dao =
+				(DaoInterface)ctx.getBean("bmrk");
+		
+		Random random = new Random();
+		int r = random.nextInt(9999);
+		String rand = Integer.toString(r); 
+		System.out.println("###TestGettingCategoryInfo###");
+		
+		try {
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
 		
 	
 }

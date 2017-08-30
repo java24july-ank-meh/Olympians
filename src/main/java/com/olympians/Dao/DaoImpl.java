@@ -47,7 +47,6 @@ public class DaoImpl implements DaoInterface {
 		session.flush();
 		
 		// need to deal with uniqueness of a username
-		
 		return true;
 
 	}
