@@ -72,11 +72,19 @@ public class Main {
 		/*Person person1 = bmk.getPersonInfo("erosales", "pass");
 		bmk.CreateBookmark("apple", "apple.com", "Best ever", person1, 3, 4, "somepic");*/
 	
-		System.out.println("new database info");
+		/*System.out.println("new database info");
 		
-		Category category = new Category();
-		category = bmk.getCategoryByName("LifeStyle");
-		System.out.println(category);
+		bmk.DeletePerson("Ahern", "passw", 1);*/
+		
+		/*bmk.CreateUser("Alma", "Hernandez", "Ahern", "passw", "ahern@mail.com");
+		bmk.AddCategory("Tech");
+		bmk.AddCategory("LifeStyle");*/
+		
+		/*Person person = bmk.getPersonInfo("Ahern", "passw");
+		Category category = bmk.getCategoryByName("LifeStyle");
+		bmk.CreateBookmark("Tesla", "tesla.com", "best car ever", person, 5, 2, "somePic");*/
+		
+		bmk.DeletePerson("Ahern", "passw", 1);
 		
 		
 	}

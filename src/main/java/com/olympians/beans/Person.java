@@ -12,6 +12,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 
+import org.hibernate.annotations.Cascade;
 import org.springframework.stereotype.Repository;
 
 @Repository
@@ -31,7 +32,7 @@ public class Person {
 	private String pword;
 	@Column
 	private String email;
-	@OneToMany(fetch=FetchType.LAZY)
+	@OneToMany(fetch=FetchType.LAZY, cascade = CascadeType.ALL)
 	@JoinColumn(name="pid")
 	private List<Bookmark> blist;
 	
