@@ -1,12 +1,12 @@
 package com.olympians.beans;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
 import org.springframework.stereotype.Repository;
@@ -18,7 +18,7 @@ public class Category {
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO) //change primary key to cname?
 	private int cid;
-	@Column
+	@Column(unique=true)
 	private String cname;
 	
 	public int getCid() {
