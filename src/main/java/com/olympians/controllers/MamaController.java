@@ -126,6 +126,13 @@ public class MamaController {
 		return ResponseEntity.ok(result);
 	}
 	
+	@RequestMapping(value="/addcategory", method=RequestMethod.POST)
+	public String addCategory(HttpServletRequest req) {
+		String cname = req.getParameter("new-cname");
+		try{dao.AddCategory(cname);}
+		catch(Exception e) {e.printStackTrace();}
+		return "redirect:homepage";
+	}
 	@RequestMapping(value="/bookmarks", method=RequestMethod.GET)
 	public String allBookmarks(HttpServletRequest req) {
 		return "redirect:bookmarkcontroller/all";
@@ -153,4 +160,10 @@ public class MamaController {
 	public String editUserFields(HttpServletRequest req){
 		return "forward:usercontroller/edit";
 	}
+	
+	@RequestMapping(value="/sort", method=RequestMethod.GET)
+	public String sortBookmarks(HttpServletRequest req) {
+		return "forward:bookmarkcontroller/sort";
+	}
+	
 }

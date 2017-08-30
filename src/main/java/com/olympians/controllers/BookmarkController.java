@@ -68,11 +68,11 @@ public class BookmarkController {
 		System.out.println(category); */
 		String description = req.getParameter("desc");
 		System.out.println(description);
-		//int rating = Integer.parseInt(req.getParameter("scoreSelect"));
+		int rating = Integer.parseInt(req.getParameter("scoreSelect"));
 		String image = req.getParameter("iurl");
 		System.out.println(image);
 		
-		try{dao.CreateBookmark(title, url, description, loggedIn, 4, categoryString, image);}
+		try{dao.CreateBookmark(title, url, description, loggedIn, rating, categoryString, image);}
 		catch(Exception e) {e.printStackTrace();} 
 		
 		return "redirect:homepage";
@@ -108,6 +108,42 @@ public class BookmarkController {
 		result.add(bookmark1); */
 		
 		return null;
+	}
+	
+	@RequestMapping("/sort")
+	public ResponseEntity<Object> sortBookmarks(HttpServletRequest req){
+		
+		String criterion = req.getParameter("criterion");
+		criterion = criterion.substring(1, criterion.length()-1);
+		String direction = req.getParameter("direction");
+		
+		int pid = -1;
+		try{pid = dao.GetPersonbyUserName(loggedIn.getUsername()).getPid();}
+		catch(Exception e) {e.printStackTrace();}
+		
+		List<Bookmark> bookmarks = null;
+		
+		if(criterion.equalsIgnoreCase("Rating")) {
+			
+			try {bookmarks = dao.SortByRating(pid);}
+			catch(Exception e) {e.printStackTrace();}
+			
+			return ResponseEntity.ok(bookmarks);
+		}
+		else if(criterion.equalsIgnoreCase("Date")) {
+			try {bookmarks = dao.SortByDate(pid);}
+			catch(Exception e) {e.printStackTrace();}
+		}
+		else if(criterion.equalsIgnoreCase("Category")) {
+			try {bookmarks = dao.SortByCategory(pid);}
+			catch(Exception e) {e.printStackTrace();}
+		}
+		else if(criterion.equalsIgnoreCase("Name")) {
+			try {bookmarks = dao.SortbyName(pid);}
+			catch(Exception e) {e.printStackTrace();}
+		}
+		
+		return ResponseEntity.ok(bookmarks);
 	}
 	
 }

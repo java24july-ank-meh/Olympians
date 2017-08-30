@@ -73,12 +73,25 @@
 		<select id="sort-criterion" onchange="sortfunction()">
 			<option value="Rating">Rating</option>
 			<option value="Date">Date</option>
+			<option value="Category">Category</option>
+			<option value="Name">Name</option>
 		</select> <select id="direction" onchange="sortfunction()">
 			<option value="asc">Ascending</option>
 			<option value="desc">Descending</option>
 		</select>
 		<!-- The Modal -->
 		<button class="btn btn-primary" id="new-bookmark-btn" onclick="addNewBookmark()">Add New Bookmark</button>
+		<div class="col-lg-6">
+			<div class="input-group">
+				<form action="addcategory", method="post">
+					<span class="input-group-btn">
+						<input type="submit" id="add-category" class="btn btn-primary" type="button" value="Add">
+					</span>
+					<input id="new-cname" type="text" class="form-control" placeholder="New Category" name="new-cname"></input>
+					
+				</form>
+			</div>
+		</div>
 		<div id="newBookmarkModal" class="modal">
 
 			<!-- Modal content, Add Bookmark-->
@@ -106,7 +119,7 @@
 							<input class="form-control" type="text" id="category"
 								name="category" placeholder="Category">
 						</div>
-					</div> -->
+					</div> -->  
 					<div class="form-group">
 						<label for="InputManager">Category:</label> <select id="category"
 							name="category">
@@ -404,17 +417,33 @@
 	}
 	
 	function sortfunction() {
-		alert("sort fucntion");
+		let criterion = $("#sort-criterion").val();
+		let direction = $("#direction").val();
 		$.ajax({
 			//change this property to appropriate requestmapping url		
-			url : "/TestPage.aspx",
+			url : "sort",
 			type: "get",
+			dataType: "JSON",
 			data : {
-				"criterion" : document.getElementById("sort-criterion"),
-				"direction" : document.getElementById("direction")
+				criterion : JSON.stringify(criterion),
+				direction : JSON.stringify(direction)
 			},
-			success : function(response) {
-				//Copy over the function from populatebookmarks
+			success : function(responseJson) {
+				let $tablebody = $("#toReplace");
+				$tablebody.empty();
+				$.each(responseJson, function(index, bookmark){
+				$("<tr>").appendTo($tablebody)
+						 .append("<th scope='row'>Title</th>")
+						 .append("<td><a target='_blank' href='" +bookmark.address + "' class='address btn btn-info btn-sm'>" + bookmark.name + "</a></td>")
+						 .append("<th>Rating</th>")
+						 .append("<td class='rating'>" + bookmark.rating + "</td>"); 
+				$("<tr>").appendTo($tablebody)
+						 .append("<th>Category</th>").text("Category")
+						 .append("<td class='category'>" + bookmark.category.cname + "</td>")
+						 .append("<th scope='row'>Edit</th>")
+						 .append("<td <button class= 'editBtn btn btn-info btn-sm'>Edit</button></td>")
+						 .append("<td style='display: none;' class='bmid'>" + bookmark.bmid + "</td>");
+				});
 			},
 			error : function(xhr) {
 				//Do Something to handle error
@@ -429,6 +458,11 @@
 				$("#category").append($("<option>", {value: category.cname, text:category.cname}));
 			});
 		});
+	}
+	
+	function addCategory(){
+	
+		
 	}
 
 </script>
