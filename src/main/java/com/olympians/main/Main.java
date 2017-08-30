@@ -70,7 +70,10 @@ public class Main {
 		bmk.EditBookmark(bm, 4, category, "Tesla", "www.Testa.com", "This is tesla's main page");*/
 		
 		Person person1 = bmk.getPersonInfo("erosales", "pass");
-		bmk.CreateBookmark("Tesla", "tesla.com", "Best Cars ever", person1, 5, 4, "somepic");
+		bmk.CreateBookmark("apple", "apple.com", "Best ever", person1, 3, 4, "somepic");
+	
+		
+		
 		
 	}
 
