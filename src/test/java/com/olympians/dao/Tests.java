@@ -16,7 +16,7 @@ import com.olympians.beans.Person;
 
 
 public class Tests {
-
+	@Ignore
 	@Test
 	public void addDeleteEditPersonTest(){
 		@SuppressWarnings("resource")
@@ -83,10 +83,9 @@ public class Tests {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
+		person = dao.getPersonInfo(person.getUsername(), person.getPassword());
 		// Test Add Bookmark
-		System.out.println("## Testing Add Bookmark ##");
-		
+		System.out.println("###Testing Add Bookmark###");
 		try {
 			List<Category> cList = dao.AllCategories();
 			int anyCid = cList.get(0).getCid();
@@ -96,9 +95,8 @@ public class Tests {
 			e.printStackTrace();
 		}
 		assertEquals(1, bList.size());
-		
 		// Test Edit Bookmark
-		System.out.println("## Testing Edit Bookmark ##");
+		System.out.println("###Testing Edit Bookmark###");
 		
 		dao.EditBookmark(bList.get(0), 5, null, null , null, null);
 		try {
@@ -110,12 +108,17 @@ public class Tests {
 		assertEquals(5, bList.get(0).getRating());
 		
 		// Test Delete Bookmark
-		System.out.println("## Testing Delete Bookmark ##");
+		System.out.println("###Testing Delete Bookmark###");
 		
 		try {
 			dao.DeleteBookmark(person.getPid(), bList.get(0).getBmid());
 			bList = dao.SortbyName(person.getPid());
 		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		try {
+			dao.DeletePerson(person.getUsername(), person.getPassword(), person.getPid());
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		assertEquals(0, bList.size());
@@ -208,7 +211,34 @@ public class Tests {
 				+ "\nURL 2: " + bookmark.getImage() 
 				+ "\nare both the same picture of a chair");
 	}
-
+	@Ignore
+	@Test
+	public void testGettingPersonInfo() {
+		@SuppressWarnings("resource")
+		ApplicationContext ctx = 
+				new ClassPathXmlApplicationContext("beans.xml");
+		DaoInterface dao =
+				(DaoInterface)ctx.getBean("bmrk");
+		
+		Random random = new Random();
+		int r = random.nextInt(9999);
+		String rand = Integer.toString(r);
+		
+		try {
+			dao.CreateUser("testPerson[" + rand + "]", "lname[" + rand + "]", "username[" + rand + "]",
+					"pword[" + rand + "]", "email[" + rand + "]");
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		Person person = dao.getPersonInfo("username[" + rand + "]", "pword[" + rand + "]");
+		System.out.println(person);
+		assertEquals(person.getUsername(), "username[" + rand + "]");
+		try {
+			dao.DeletePerson(person.getUsername(), person.getPassword(), person.getPid());
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
 	
 	
 		
