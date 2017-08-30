@@ -434,6 +434,22 @@ public class DaoImpl implements DaoInterface {
 		}
 	}
 	@Transactional
+	public Category getCategoryByName(String name) {
+		Session session = sf.getCurrentSession();
+		Category category = new Category();
+		String hql = "FROM Category C WHERE C.cname = '"+name+"'";
+		Query query = session.createQuery(hql);
+		List<Category> results = query.list();
+		if(results.isEmpty() == false) {
+			category = results.get(0);
+			return category;
+		}
+		else {
+			return null;
+		}
+	}
+	
+	@Transactional
 	public boolean UploadImageByLink(Bookmark old, String url) throws Exception {
 		Session session = sf.getCurrentSession();
 		
@@ -472,5 +488,7 @@ public class DaoImpl implements DaoInterface {
 		session.flush();
 		return true;
 	}
+
+
 
 }

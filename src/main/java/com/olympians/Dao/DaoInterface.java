@@ -48,6 +48,8 @@ public interface DaoInterface {
 	public List<Category> AllCategories() throws Exception; 
 	public Person getPersonInfo(String username, String pword); 
 	public Category getCategoryInfo(int cid); 
+	public Category getCategoryByName(String name);
+	
 	
 	
 	/*	------------------ Imgur Methods	------------------  */

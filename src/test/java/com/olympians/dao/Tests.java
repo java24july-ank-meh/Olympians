@@ -1,6 +1,7 @@
 package com.olympians.dao;
 import static org.junit.Assert.*;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
@@ -258,11 +259,32 @@ public class Tests {
 		System.out.println("###TestGettingCategoryInfo###");
 		
 		try {
-			
+			dao.AddCategory("cat"+rand);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		Category temp = dao.getCategoryByName("cat"+rand);
+		assertNotNull(temp);
 	}
+	@Ignore
+	@Test
+	public void testGettingAllCategories() {
+		@SuppressWarnings("resource")
+		ApplicationContext ctx = 
+				new ClassPathXmlApplicationContext("beans.xml");
+		DaoInterface dao =
+				(DaoInterface)ctx.getBean("bmrk");
+		System.out.println("###TestingGettingAllCategories###");
+		List<Category> clist = new ArrayList();
+		try {
+			clist = dao.AllCategories();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		System.out.println(clist);
 		
-	
+		assertNotNull(clist);	
+		
+	}
+
 }

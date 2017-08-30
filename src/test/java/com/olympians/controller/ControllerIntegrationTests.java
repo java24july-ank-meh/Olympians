@@ -38,7 +38,7 @@ public class ControllerIntegrationTests {
         this.mockMvc = MockMvcBuilders.webAppContextSetup(this.wac).build();
     }
 
-    @Test void test_name() {
+   /* @Test void test_name() {
     	this.mockMvc.perform(get("something"))
     	.param("key", "value")
         .andExpect( "something" );
@@ -47,6 +47,6 @@ public class ControllerIntegrationTests {
          
 		String content = result.getResponse().getContentAsString();
 		assertEquals("something",content);
-    }
+    }*/
 
 }

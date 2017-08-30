@@ -74,6 +74,10 @@ public class Main {
 	
 		System.out.println("new database info");
 		
+		Category category = new Category();
+		category = bmk.getCategoryByName("LifeStyle");
+		System.out.println(category);
+		
 		
 	}
 
