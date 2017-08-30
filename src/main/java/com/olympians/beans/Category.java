@@ -18,7 +18,7 @@ public class Category {
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO) //change primary key to cname?
 	private int cid;
-	@Column
+	@Column(unique=true)
 	private String cname;
 	
 	public int getCid() {

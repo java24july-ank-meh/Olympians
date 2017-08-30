@@ -7,6 +7,7 @@ import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.StringUtils;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -157,7 +158,7 @@ public class DaoImpl implements DaoInterface {
 		session.persist(category);
 		session.flush();
 		
-		Bookmark bookmark = new Bookmark(name, address, description, personimpl, rating, category, image);
+		Bookmark bookmark = new Bookmark(StringUtils.capitalize(name), address, description, personimpl, rating, category, image);
 		
 		session.persist(bookmark);
 		session.flush();

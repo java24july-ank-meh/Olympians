@@ -66,15 +66,14 @@
 		<div class="page-header">
 			<h1>Home</h1>
 			Hello, <a id="usernamedisplay">Dummy</a> <br /> 
-			<button class="btn btn-primary" id="user-info-btn" onclick="changeUserInfo()">Change User Info</button>
+			<button class="btn btn-primary" id="user-info-btn" onclick="getUserInfo()">Change User Info</button>
 			<button class="btn btn-primary" id="logout-btn"><a href="logout">Logout</a></button>
 		</div>
 		
-		<select id="sort-criterion">
+		<select id="sort-criterion" onchange="sortfunction()">
 			<option value="Rating">Rating</option>
 			<option value="Date">Date</option>
-		</select>
-		<select id="direction">
+		</select> <select id="direction" onchange="sortfunction()">
 			<option value="asc">Ascending</option>
 			<option value="desc">Descending</option>
 		</select>
@@ -100,12 +99,18 @@
 								placeholder="URL" required>
 						</div>
 					</div>
+					<!-- 
 					<div class="form-group">
 						<label for="textinput" class="col-form-label">Category</label>
 						<div class="col-10">
 							<input class="form-control" type="text" id="category"
 								name="category" placeholder="Category">
 						</div>
+					</div> -->
+					<div class="form-group">
+						<label for="InputManager">Category:</label> <select id="category"
+							name="category">
+						</select><br/>
 					</div>
 					<div class="form-group">
 						<label for="exampleTextarea">Description</label>
@@ -234,7 +239,7 @@
 		<div id="userModal" class="modal">
 			<div class="modal-content">
 				<span class="close">&times;</span>
-				<form action="fields" method="post">
+				<form action="settings" method="post">
 					<div class="form-group">
 						<label for="textinput" class="col-form-label">First Name</label>
 						<div class="col-10">
@@ -245,7 +250,7 @@
 					<div class="form-group">
 						<label for="textinput" class="col-form-label">Last Name</label>
 						<div class="col-10">
-							<input class="form-control" type="text" id="lnlame" name="lname"
+							<input class="form-control" type="text" id="lname" name="lname"
 								placeholder="Last Name" required>
 						</div>
 					</div>
@@ -257,10 +262,24 @@
 						</div>
 					</div>
 					<div class="form-group">
-						<label for="textinput" class="col-form-label">Password</label>
+						<label for="textinput" class="col-form-label">Email</label>
 						<div class="col-10">
-							<input class="form-control" type="text" id="pword"
-								name="pword" placeholder="Password">
+							<input class="form-control" type="email" id="email"
+								name="email" placeholder="Email">
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="textinput" class="col-form-label">Old Password</label>
+						<div class="col-10">
+							<input class="form-control" type="password" id="opword"
+								name="opword" placeholder="Password">
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="textinput" class="col-form-label">New Password</label>
+						<div class="col-10">
+							<input class="form-control" type="password" id="npword"
+								name="npword" placeholder="Password">
 						</div>
 					</div>
 					
@@ -275,6 +294,7 @@
 		checksession();
 		//comment line below to show dummy data on page load
 		populatebookmarks();
+		populateCategories();
 	}
 	function checksession() {
 		let xhttp = new XMLHttpRequest();
@@ -367,8 +387,48 @@
 		newBookmarkModal.style.display = "block";
 	}
 	
-	function changeUserInfo(){
+	function getUserInfo(){
 		userModal.style.display = "block";
+		let $um = $(userModal);
+		let username = $("#usernamedisplay").html();
+		$.get("settings", function(responseJson){
+			$.each(responseJson, function(index, person){
+				alert(person.password);
+				$um.find("#fname").val(person.fname);
+				$um.find("#lname").val(person.lname);
+				$um.find("#uname").val(person.username);
+				$um.find("#opword").val(person.password);
+				$um.find("#email").val(person.email);
+			});
+		});
+	}
+	
+	function sortfunction() {
+		alert("sort fucntion");
+		$.ajax({
+			//change this property to appropriate requestmapping url		
+			url : "/TestPage.aspx",
+			type: "get",
+			data : {
+				"criterion" : document.getElementById("sort-criterion"),
+				"direction" : document.getElementById("direction")
+			},
+			success : function(response) {
+				//Copy over the function from populatebookmarks
+			},
+			error : function(xhr) {
+				//Do Something to handle error
+			}
+		});
+
+	}
+	
+	function populateCategories(){
+		$.get("allcategories", function(responseJson){
+			$.each(responseJson, function(index, category){
+				$("#category").append($("<option>", {value: category.cname, text:category.cname}));
+			});
+		});
 	}
 
 </script>
