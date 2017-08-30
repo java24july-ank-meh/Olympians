@@ -4,6 +4,7 @@ import static org.junit.Assert.*;
 import java.util.List;
 import java.util.Random;
 
+import org.junit.Ignore;
 import org.junit.Test;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
@@ -34,36 +35,36 @@ public class Tests {
 		
 		Person person = new Person("testPerson[" + rand + "]", "lname[" + rand + "]", "username[" + rand + "]", "pword[" + rand + "]", "email[" + rand + "]");
 		try {
-			dao.InsertPerson(person);
-		} catch (Exception e) {
+			dao.InsertPerson(person); 	// we won't actually use this method when making a person
+		} catch (Exception e) {			// we will use the CreateUser() method
 			e.printStackTrace();
 		}
 		Person person1 = dao.getPersonInfo(person.getUsername(), person.getPassword());
-		
+		System.out.println(person1);
 		assertEquals(person.getUsername(), person1.getUsername());
 		
 		// Test Edit Person
-		System.out.println("## Testing Edit Person ##");
-		
-		dao.EditAccount(person, person.getFname(), null, "newUsername[" + rand + "]", null, null);
-		person1 = dao.getPersonInfo("newUsername[" + rand + "]", person.getPassword());
-		
-		assertEquals(person.getPid(), person1.getPid());
-		
-		// Test Delete Person
-		System.out.println("## Testing Delete Person ##");
-		
+		System.out.println("###Testing edit Person###");
 		try {
-			 dao.DeletePerson(person.getUsername(), person.getPassword(), person.getPid());
+			dao.EditAccount(person1, "Testuser", null, "newUsername[" + rand + "]", null, "testedit@mail.com");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		Person nullPerson = dao.getPersonInfo(person.getUsername(), person.getPassword());
-		
-		assertEquals(null, nullPerson);
-		
+		person1 = dao.getPersonInfo("newUsername[" + rand + "]", person.getPassword());
+		assertEquals(person1.getUsername(), "newUsername[" + rand + "]");
+		System.out.println(person1);
+		// Test delete person
+		System.out.println("###Testing Delete Person###");
+		try {
+			dao.DeletePerson(person1.getUsername(), person1.getPassword(), person1.getPid());
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		Person notAPerson = dao.getPersonInfo(person1.getUsername(), person1.getPassword());
+		assertEquals(null, notAPerson);
+		System.out.println(notAPerson);
 	}
-	
+	@Ignore
 	@Test
 	public void addDeleteEditBookmarkTest(){
 		@SuppressWarnings("resource")
@@ -120,7 +121,7 @@ public class Tests {
 		assertEquals(0, bList.size());
 		
 	}
-	
+	@Ignore
 	@Test
 	public void addCategory(){
 		@SuppressWarnings("resource")
@@ -157,7 +158,7 @@ public class Tests {
 		assertEquals(true,cExists);
 		
 	}
-	
+	@Ignore
 	@Test
 	public void uploadImagebyURL(){
 		@SuppressWarnings("resource")
@@ -208,7 +209,6 @@ public class Tests {
 				+ "\nare both the same picture of a chair");
 	}
 
-	
 	
 	
 		

@@ -69,10 +69,10 @@ public class Main {
 		System.out.println(bm);
 		bmk.EditBookmark(bm, 4, category, "Tesla", "www.Testa.com", "This is tesla's main page");*/
 		
-		Person person1 = bmk.getPersonInfo("erosales", "pass");
-		bmk.CreateBookmark("apple", "apple.com", "Best ever", person1, 3, 4, "somepic");
+		/*Person person1 = bmk.getPersonInfo("erosales", "pass");
+		bmk.CreateBookmark("apple", "apple.com", "Best ever", person1, 3, 4, "somepic");*/
 	
-		
+		System.out.println("new database info");
 		
 		
 	}
