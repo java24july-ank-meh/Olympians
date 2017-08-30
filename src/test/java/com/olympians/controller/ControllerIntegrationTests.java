@@ -40,9 +40,11 @@ public class ControllerIntegrationTests {
 
     @Test void test_name() {
     	this.mockMvc.perform(get("something"))
+    	.param("key", "value")
         .andExpect( "something" );
         .andReturn();
-
+        
+         
 		String content = result.getResponse().getContentAsString();
 		assertEquals("something",content);
     }
