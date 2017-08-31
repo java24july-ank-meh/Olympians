@@ -9,7 +9,7 @@
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-<link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" id="styleurl" href="styles.css">
 
 <title>Home</title>
 <!-- if IE, use latest rendering -->
@@ -242,6 +242,15 @@
 				</form>
 			</div>
 		</div>
+	<footer class="footer">
+      	<div class="container">
+        	<p class="text-muted">Select Theme:</p>
+        	<select id="themesel" onchange="setstyle()">
+				<option value="l">Light</option>
+				<option value="d">Dark</option>
+			</select>
+      	</div>
+    </footer>
 </body>
 <script>
 	function onLoad() {
@@ -249,6 +258,17 @@
 		//comment line below to show dummy data on page load
 		populatebookmarks();
 		populateCategories();
+		setstyle();
+	}
+	function setstyle(){
+	
+		var style = document.getElementById("themesel").value;
+		var stylesheet = document.getElementById("styleurl");
+		if(style==="l"){
+			stylesheet.href="styles-l.css"
+		} else{
+			stylesheet.href="styles-d.css"
+		}
 	}
 	function checksession() {
 		let xhttp = new XMLHttpRequest();

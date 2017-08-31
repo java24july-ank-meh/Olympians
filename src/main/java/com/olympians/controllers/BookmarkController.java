@@ -113,7 +113,7 @@ public class BookmarkController {
 	
 	@RequestMapping("/sort")
 	public ResponseEntity<Object> sortBookmarks(HttpServletRequest req){
-		
+		System.out.println("Hi");
 		String criterion = req.getParameter("criterion");
 		criterion = criterion.substring(1, criterion.length()-1);
 		String direction = req.getParameter("direction");
