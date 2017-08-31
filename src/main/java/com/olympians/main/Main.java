@@ -76,13 +76,15 @@ public class Main {
 		
 		bmk.DeletePerson("Ahern", "passw", 1);*/
 		
-		/*bmk.CreateUser("Alma", "Hernandez", "Ahern", "passw", "ahern@mail.com");
-		bmk.AddCategory("Tech");
-		bmk.AddCategory("LifeStyle");*/
+		bmk.CreateUser("Alma", "Hernandez", "Ahern", "passw", "ahern@mail.com");
+		//bmk.AddCategory("Tech");
+		//bmk.AddCategory("LifeStyle");
 		
 		/*Person person = bmk.getPersonInfo("Ahern", "passw");
 		Category category = bmk.getCategoryByName("LifeStyle");
-		bmk.CreateBookmark("Tesla", "tesla.com", "best car ever", person, 5, 2, "somePic");*/
+		bmk.CreateBookmark("Tesla", "tesla.com", "best car ever", person, 5, 2, "somePic");
+		bmk.CreateBookmark("esla", "esla.com", "est car ever", person, 4, 2, "somePic");
+		bmk.CreateBookmark("sla", "sla.com", "st car ever", person, 3, 2, "somePic");*/
 		
 		bmk.DeletePerson("Ahern", "passw", 1);
 		

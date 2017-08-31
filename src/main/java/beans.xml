@@ -14,12 +14,12 @@
 <!-- Basic datasource -->
 <bean id="datasource" class="org.apache.commons.dbcp.BasicDataSource">
 	<property name="driverClassName" value="oracle.jdbc.OracleDriver" />
-	<property name="url" value="jdbc:oracle:thin:@localhost:1521/orcl" />	 
+	<!--<property name="url" value="jdbc:oracle:thin:@localhost:1521/orcl" />	 
 	<property name="username" value="bmrks" />
-	<property name="password" value="bmrks" />
-	<!--  <property name="url" value="jdbc:oracle:thin:@admin.cy0yuz7rgmcs.us-east-2.rds.amazonaws.com:1521:orcl" />
+	<property name="password" value="bmrks" />-->
+	<property name="url" value="jdbc:oracle:thin:@admin.cy0yuz7rgmcs.us-east-2.rds.amazonaws.com:1521:orcl" />
 	<property name="username" value="madronegoldman" />
-	<property name="password" value="t9oejqhM1" />-->
+	<property name="password" value="t9oejqhM1" />
 </bean>
 
 <!-- local session factory bean -->
@@ -31,7 +31,7 @@
 				org.hibernate.dialect.Oracle10gDialect
 			</prop>
 			<prop key="current_session_context_class">thread</prop >
-			<prop key="hibernate.hbm2ddl.auto">update</prop>
+			<prop key="hibernate.hbm2ddl.auto">create</prop>
 		</props>
 	</property>
 	<property name="dataSource" ref="datasource"></property>
