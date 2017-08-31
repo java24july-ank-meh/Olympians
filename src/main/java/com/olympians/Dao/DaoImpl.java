@@ -113,7 +113,7 @@ public class DaoImpl implements DaoInterface {
 		
 		Bookmark bookmark = session.get(Bookmark.class, bmid);
 		Category category = this.getCategoryByName(categoryString);
-		
+		System.out.println("bmid: " + bmid);
 		if(rating != -1) {bookmark.setRating(rating);}  // -1 because int can't be null
 		if(category != null) {bookmark.setCategory(category);}
 		if(name != null) {bookmark.setName(name);}
@@ -518,6 +518,21 @@ public class DaoImpl implements DaoInterface {
 			person = results.get(0);
 		}
 		return person;
+	}
+	
+	@Transactional
+    public int  getBookmarkInfo(String address, int pid) {
+        Session session = sf.getCurrentSession();
+        int bmid = 0;
+        Bookmark bm = new Bookmark();
+        String hql = "From Bookmark b WHERE b.address = '"+address+"' AND b.person = "+pid;
+        Query query = session.createQuery(hql);
+        List<Bookmark> results = query.list();
+        
+        if(results.isEmpty() == false) {
+            bmid = results.get(0).getBmid();
+        }
+        return bmid;
 	}
 
 }
