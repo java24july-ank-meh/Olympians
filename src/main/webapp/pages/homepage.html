@@ -9,10 +9,12 @@
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	
+<link rel="stylesheet" id="styleurl" href="http://localhost:8181/Olympians/pages/styles.css">	
 <title>Home</title>
 <!-- if IE, use latest rendering -->
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-
+<!-- 
 <style>
 .modal {
 	display: none; /* Hidden by default */
@@ -57,7 +59,7 @@
 .btn a{
 	color: white;
 }
-</style>
+</style> -->
 
 </head>
 <body onload="onLoad()">
@@ -182,7 +184,6 @@
 					</tr>
 				</tbody>
 			</table>
-          <h1 style='text-align: center;'><img src='http://i.imgur.com/CLxxxXv.jpg' style='max-height: 100px;'/></h1>
 		</div>
 
 		<!-- eidt modal content -->
@@ -346,7 +347,7 @@
 						 .append("<th>Category</th>").text("Category")
 						 .append("<td class='category'>" + bookmark.category.cname + "</td>")
 						 .append("<th scope='row'><img src='" + bookmark.image + "' alt='Your Image' height=42 width=42></img></th>")
-						 .append("<td> <button class= 'editBtn btn btn-info btn-sm'>Edit</button><button class= 'deleteBtn btn btn-info btn-sm'>Delete</button></td>")
+						 .append("<td> <button class= 'editBtn btn btn-info btn-sm'>Edit</button></td>")
 						 .append("<td style='display: none;' class='bmid'>" + bookmark.bmid + "</td>");
 			});
 		});
@@ -379,6 +380,7 @@
 	});
 	
 	$(document).on("click", ".editBtn", function(e){
+		
 		editModal.style.display = "block";
 		let $specificEditBtn = $(e.target);
 		let $bmid = $specificEditBtn.next();
@@ -441,7 +443,7 @@
 						 .append("<th>Category</th>").text("Category")
 						 .append("<td class='category'>" + bookmark.category.cname + "</td>")
 						 .append("<th scope='row'><img src='" + bookmark.image + "' alt='Your Image' height=42 width=42></img></th>")
-						 .append("<td> <button class= 'editBtn btn btn-info btn-sm'>Edit</button><button class= 'editBtn btn btn-info btn-sm'>Delete</button></td>")
+						 .append("<td> <button class= 'editBtn btn btn-info btn-sm'>Edit</button></td>")
 						 .append("<td style='display: none;' class='bmid'>" + bookmark.bmid + "</td>");
 				});
 			},
