@@ -151,6 +151,11 @@ public class MamaController {
 		return "forward:bookmarkcontroller/retrieve";
 	}
 	
+	@RequestMapping(value="/deletebookmark", method=RequestMethod.POST)
+	public String deleteBookmark(HttpServletRequest req) {
+		return "forward:bookmarkcontroller/delete";
+	}
+	
 	@RequestMapping(value="/settings", method=RequestMethod.GET)
 	public String allUserFields(HttpServletRequest req){
 		return "forward:usercontroller/all";

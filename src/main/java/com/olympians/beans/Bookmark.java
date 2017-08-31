@@ -36,7 +36,7 @@ public class Bookmark {
 	private String address;
 	@Column
 	private String description;
-	@ManyToOne(cascade = CascadeType.ALL)
+	@ManyToOne
 	@JoinColumn(name = "pid")
 	private PersonImpl person;
 	@Column

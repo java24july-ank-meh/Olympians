@@ -346,7 +346,7 @@
 						 .append("<th>Category</th>").text("Category")
 						 .append("<td class='category'>" + bookmark.category.cname + "</td>")
 						 .append("<th scope='row'><img src='" + bookmark.image + "' alt='Your Image' height=42 width=42></img></th>")
-						 .append("<td <button class= 'editBtn btn btn-info btn-sm'>Edit</button></td>")
+						 .append("<td> <button class= 'editBtn btn btn-info btn-sm'>Edit</button><button class= 'deleteBtn btn btn-info btn-sm'>Delete</button></td>")
 						 .append("<td style='display: none;' class='bmid'>" + bookmark.bmid + "</td>");
 			});
 		});
@@ -441,7 +441,7 @@
 						 .append("<th>Category</th>").text("Category")
 						 .append("<td class='category'>" + bookmark.category.cname + "</td>")
 						 .append("<th scope='row'><img src='" + bookmark.image + "' alt='Your Image' height=42 width=42></img></th>")
-						 .append("<td <button class= 'editBtn btn btn-info btn-sm'>Edit</button></td>")
+						 .append("<td> <button class= 'editBtn btn btn-info btn-sm'>Edit</button><button class= 'editBtn btn btn-info btn-sm'>Delete</button></td>")
 						 .append("<td style='display: none;' class='bmid'>" + bookmark.bmid + "</td>");
 				});
 			},
@@ -460,10 +460,25 @@
 		});
 	}
 	
-	function addCategory(){
-	
+	$(document).on("click", ".deleteBtn", function(e){
+		$specificDeleteBtn = $(e.target);
 		
-	}
+		let id = $specificDeleteBtn.parent().siblings(".bmid").html();
+		console.log(id);
+		
+		$.ajax({
+			url: "deletebookmark",
+			type: "post",
+			dataType: "JSON",
+			data: {
+				bmid: JSON.stringify(id)
+			},
+			success: function(){console.log("successfully deleted bookmark");},
+			error: function(){
+				console.log("could not delete bookmark");
+			}
+		}); 
+	}); 
 
 </script>
 </html>

@@ -148,4 +148,22 @@ public class BookmarkController {
 		return ResponseEntity.ok(bookmarks);
 	}
 	
+	@RequestMapping("/delete")
+	public String deleteBookmark(HttpServletRequest req){
+		String bmidString = req.getParameter("bmid");
+		//annoying workaround to remove quotation marks from request parameter
+		bmidString = bmidString.substring(1, bmidString.length()-1);
+		int bmid = Integer.parseInt(bmidString);
+		
+		int pid = -1;
+		try {pid = dao.GetPersonbyUserName(loggedIn.getUsername()).getPid();}
+		catch(Exception e) {e.printStackTrace();}
+		
+		try {dao.DeleteBookmark(pid, bmid);}
+		catch(Exception e) {e.printStackTrace();}
+		
+		System.out.println("finished delete");
+		return "redirect:homepage";
+	}
+	
 }
