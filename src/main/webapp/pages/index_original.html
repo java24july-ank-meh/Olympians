@@ -7,93 +7,83 @@
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
 	integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
 	crossorigin="anonymous">
-<link rel="stylesheet" href="pages/styles-l.css">
+<link rel="stylesheet" href="http://localhost:8181/Olympians/pages/style-l.css">
+
 <title>Login</title>
 <!-- if IE, use latest rendering -->
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 </head>
 <body>
-	<div id="index-div" class="container">
+	<div id ="index-div" class="container">
 		<!-- Add space around text and underline-->
-		</br>
-		<div class="jumbotron">
-			<h2>Easymarks</h2>
-			<p>welcome to your bookmarks manager web application.</p>
+		<div class="page-header">
+			<h1></h1>
+		</div>
+		<div class="btn-group btn-group-lg" role="group" aroa=labels="...">
+			<button type="button" class="btn btn-default" onclick="showlogin()">Login</button>
+			<button type="button" class="btn btn-default" onclick="showreg()">Register</button>
 		</div>
 		<div id="LoginPage">
-			<div id="aroa" class="btn-group btn-group-lg" role="group"
-				aroa=labels="...">
-				<button type="button" class="btn btn-default" onclick="showlogin()">Login</button>
-				<button type="button" class="btn btn-default" onclick="showreg()">Register</button>
-			</div>
-
+			<h1>Login:</h1>
 			<form name="LoginInfo" action="login" method="post">
 				<div class="form-group">
-					</br> <label for="textinput" class="col-form-label" />
+					<label for="textinput" class="col-form-label">Username*</label>
 					<div class="col-10">
 						<input class="form-control" type="text" id="user" name="user"
 							placeholder="Username" required>
 					</div>
 				</div>
 				<div class="form-group">
-					<label for="InputPassword1" /> <input type="password"
-						class="form-control" id="pass" name="pass" placeholder="Password"
-						required>
+					<label for="InputPassword1">Password*</label> <input
+						type="password" class="form-control" id="pass" name="pass"
+						placeholder="Password" required>
 				</div>
-				<input type="submit" class="btn btn-primary" value="Login" />
+
+				<input type="submit" class="btn btn-primary" value="Log in" />
 			</form>
 			</span>
 		</div>
 
 		<div id="RegisterPage" style="display: none;">
-			<div id="aroa" class="btn-group btn-group-lg" role="group"
-				aroa=labels="...">
-				<button type="button" class="btn btn-default" onclick="showlogin()">Login</button>
-				<button type="button" class="btn btn-default" onclick="showreg()">Register</button>
-			</div>
+			<h1>Register:</h1>
 			<form name="regInfo" action="register" method="post">
-				
-			
 				<div class="form-group">
-					<br> <label for="textinput" class="col-form-label" />
+					<label for="textinput" class="col-form-label">Username*</label>
 					<div class="col-10">
 						<input class="form-control" type="text" id="user1" name="user1"
 							placeholder="Username">
 					</div>
 				</div>
-				
 				<div class="form-group">
-					<label for="textinput" class="col-form-label" />
+					<label for="textinput" class="col-form-label">First Name*</label>
 					<div class="col-10">
 						<input class="form-control" type="text" id="fname" name="fname"
 							placeholder="First Name">
 					</div>
 				</div>
-				
 				<div class="form-group">
-					<label for="textinput" class="col-form-label" />
+					<label for="textinput" class="col-form-label">Last Name*</label>
 					<div class="col-10">
 						<input class="form-control" type="text" id="lname" name="lname"
 							placeholder="Last Name">
 					</div>
 				</div>
-
 				<div class="form-group">
-					<label for="textinput" class="col-form-label">
-						<div class="col-10">
-							<input class="form-control" type="email" id="email" name="email"
-								placeholder="Email " required>
-						</div>
+					<label for="textinput" class="col-form-label">E-Mail*</label>
+					<div class="col-10">
+						<input class="form-control" type="email" id="email" name="email"
+							placeholder="Example@abc.com" required>
+					</div>
 				</div>
 				<div class="form-group">
-					<label for="InputPassword1" /> <input type="password"
-						class="form-control" id="pass1" name="pass1"
+					<label for="InputPassword1">Password*</label> <input
+						type="password" class="form-control" id="pass1" name="pass1"
 						placeholder="Password" required>
 				</div>
 				<div class="form-group">
-					<label for="InputPassword1" /> <input type="password"
-						class="form-control" id="pass2" name="pass2"
-						placeholder="Confirm Password" required>
+					<label for="InputPassword1"> Confirm Password*</label> <input
+						type="password" class="form-control" id="pass2" name="pass2"
+						placeholder="Password" required>
 				</div>
 				</br> <input type="submit" value="Register" class="btn btn-primary" />
 			</form>
@@ -126,4 +116,3 @@
 	confirm_password.onkeyup = validatePassword;
 </script>
 </html>
-
