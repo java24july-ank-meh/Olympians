@@ -30,6 +30,11 @@ table {
     padding: 20px;
 }
 
+#homepage-div {
+    align-content: center;
+    border:1px solid #760C0C;
+    padding: 20px;
+}
 /*styles login div*/
 #RegisterPage, #LoginPage {
     border:1px solid #760C0C;

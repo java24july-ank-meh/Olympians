@@ -1,0 +1,26 @@
+String returnedTables = "";
+
+for bookmark in list bookmarks:
+
+String varTitle = [Bookmark Title]
+int varScore = [Bookmark Rating]
+String varCategory = [Bookmark Category]
+String varUrl = [Bookmark Url]
+varDescription = [Bookmark Description]
+varPID = [Bookmark's Primary Key]
+varImgurl = [Bookmark's image url]
+
+returnedTables = returnedTables + "<table class='table'><thead><tr><th>" + varTitle 
++ "</th><td></td><td></td><td><button id='editBtn' class='btn btn-info btn-sm'onclick=\"editfunction('"
++ varTitle +"', " 
++ varScore + ", '" 
++ varCategory + "', '" 
++ varUrl + "', '"
++ varDescription + "', "
++ varPID + ", '" 
++ varImgurl + "')\">Edit</button></td></tr></thead><tbody><tr><th scope='row'>Title</th><td>" 
++ varTitle + "</td><th>Score</th><td>" 
++ varScore + "</td></tr><tr><th>Category:</th><td>"
++ Gaming + "</td><th scope='row'>Hotlink:</th><td id='Hotlink'><a target='_blank' href='"
++ varUrl + "' class='btn btn-info btn-sm'>Click Here</a></td></tr></tbody></table><h1 style='text-align: center;'><img src='"
++ varImgurl + "' style='max-height: 100px;'/></h1><br><br>";

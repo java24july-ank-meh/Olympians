@@ -18,8 +18,8 @@
 
 </head>
 <body onload="onLoad()">
-	
-	<div class="container">
+
+	<div class="container" id="homepage-div">
 	<div class="jumbotron">
 		<h1 style="text-align: center;">Easymarks</h2>
 		<p style="text-align: center;">Hello, <a id="usernamedisplay">User</a></p>
@@ -32,9 +32,9 @@
 					onclick="addNewBookmark()">Add new bookmark</a></li>
 				<li role="presentation"><a id="user-info-btn"
 					onclick="getUserInfo()">Profile</a></li>
-				<li role="presentation"><a id="logout-btn" href="logout">Logout</a></li>
+				<li role="presentation"><a id="logout-btn" onclick="logoutFunction()">Logout</a></li>
 			</ul>
-			
+
 		</div>
 
 		<select id="sort-criterion" onchange="sortfunction()">
@@ -65,13 +65,13 @@
 								placeholder="URL" required>
 						</div>
 					</div>
-					<!-- 
+					<!--
 					<div class="form-group">
 						<div class="col-10">
 							<input class="form-control" type="text" id="category"
 								name="category" placeholder="Category">
 						</div>
-					</div> -->  
+					</div> -->
 					<div class="form-group">
 						<label for="InputManager">Category:</label> <select id="category"
 							name="category">
@@ -260,13 +260,15 @@
 		populateCategories();
 		setstyle();
 	}
+
+
 	function setstyle(){
-	
+
 		var style = document.getElementById("themesel").value;
 		var stylesheet = document.getElementById("styleurl");
 		if(style==="l"){
 			stylesheet.href="styles-l.css"
-		} else{
+		} else {
 			stylesheet.href="styles-d.css"
 		}
 	}
@@ -377,12 +379,12 @@
 			});
 		});
 	}
-	
+
 	function sortfunction() {
 		let criterion = $("#sort-criterion").val();
 		let direction = $("#direction").val();
 		$.ajax({
-			//change this property to appropriate requestmapping url		
+			//change this property to appropriate requestmapping url
 			url : "sort",
 			type: "get",
 			dataType: "JSON",
@@ -398,7 +400,7 @@
 						 .append("<th scope='row'>Title</th>")
 						 .append("<td><a target='_blank' href='" +bookmark.address + "' class='address btn btn-info btn-sm'>" + bookmark.name + "</a></td>")
 						 .append("<th>Rating</th>")
-						 .append("<td class='rating'>" + bookmark.rating + "</td>"); 
+						 .append("<td class='rating'>" + bookmark.rating + "</td>");
 				$("<tr>").appendTo($tablebody)
 						 .append("<th>Category</th>").text("Category")
 						 .append("<td class='category'>" + bookmark.category.cname + "</td>")
@@ -413,7 +415,7 @@
 		});
 
 	}
-	
+
 	function populateCategories(){
 		$.get("allcategories", function(responseJson){
 			$.each(responseJson, function(index, category){
@@ -421,10 +423,10 @@
 			});
 		});
 	}
-	
+
 	function addCategory(){
-	
-		
+
+
 	}
 	function sortfunction() {
 		$.ajax({
@@ -442,5 +444,13 @@
 			}
 		});
 	}
+	/*logout fuctionlaoity when the user clicks of the logout nav
+	it prevents user from going back to the previous page*/
+	function logoutFunction(){
+		window.location="index.html"
+	}
+	function preventBack(){ window.history.forward(); }
+  setTimeout("preventBack()", 0);
+  window.onunload=function(){ null };
 </script>
 </html>
