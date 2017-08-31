@@ -207,7 +207,7 @@
 					<div class="form-group">
 						<label for="textinput" class="col-form-label">URL*</label>
 						<div class="col-10">
-							<input class="form-control" type="text" id="eurl" name="url"
+							<input class="form-control" type="text" id="eurl" name="eurl"
 								placeholder="URL" required>
 						</div>
 					</div>
@@ -345,7 +345,7 @@
 				$("<tr>").appendTo($tablebody)
 						 .append("<th>Category</th>").text("Category")
 						 .append("<td class='category'>" + bookmark.category.cname + "</td>")
-						 .append("<th scope='row'>Edit</th>")
+						 .append("<th scope='row'><img src='" + bookmark.image + "' alt='Your Image' height=42 width=42></img></th>")
 						 .append("<td <button class= 'editBtn btn btn-info btn-sm'>Edit</button></td>")
 						 .append("<td style='display: none;' class='bmid'>" + bookmark.bmid + "</td>");
 			});
@@ -440,7 +440,7 @@
 				$("<tr>").appendTo($tablebody)
 						 .append("<th>Category</th>").text("Category")
 						 .append("<td class='category'>" + bookmark.category.cname + "</td>")
-						 .append("<th scope='row'>Edit</th>")
+						 .append("<th scope='row'><img src='" + bookmark.image + "' alt='Your Image' height=42 width=42></img></th>")
 						 .append("<td <button class= 'editBtn btn btn-info btn-sm'>Edit</button></td>")
 						 .append("<td style='display: none;' class='bmid'>" + bookmark.bmid + "</td>");
 				});

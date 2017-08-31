@@ -108,7 +108,7 @@ public class DaoImpl implements DaoInterface {
 	}
 	//working
 	@Transactional
-	public boolean EditBookmark(int bmid, int rating, String categoryString, String name, String address, String description) {
+	public boolean EditBookmark(int bmid, int rating, String categoryString, String name, String address, String description, String image) {
 		Session session = sf.getCurrentSession();
 		
 		Bookmark bookmark = session.get(Bookmark.class, bmid);
@@ -119,6 +119,7 @@ public class DaoImpl implements DaoInterface {
 		if(name != null) {bookmark.setName(name);}
 		if(address != null) {bookmark.setAddress(address);}
 		if(description != null) {bookmark.setDescription(description);}
+		if(image != null) {bookmark.setImage(image);}
 
 		session.update(bookmark);
 		session.flush();

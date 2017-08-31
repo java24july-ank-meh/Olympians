@@ -85,11 +85,13 @@ public class BookmarkController {
 		System.out.println("bmid: "+bmid);
 		String name = req.getParameter("etitle");
 		String address = req.getParameter("eurl");
+		System.out.println("url: " + address);
 		int rating = Integer.parseInt(req.getParameter("escoreSelect"));
 		String category = req.getParameter("category");
 		String description = req.getParameter("edesc");
+		String image = req.getParameter("eiurl");
 		
-		dao.EditBookmark(bmid, rating, category, name, address, description);
+		dao.EditBookmark(bmid, rating, category, name, address, description, image);
 		return "redirect:homepage";
 	}
 	
