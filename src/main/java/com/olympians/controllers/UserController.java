@@ -85,6 +85,7 @@ public class UserController {
 		else {
 			dao.EditAccount(person, fname, lname, username, npword, email);
 		}
+		
 		return "redirect:homepage";
 		
 	}

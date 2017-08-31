@@ -57,6 +57,7 @@ public class BookmarkController {
 	@RequestMapping("/add")
 	public String addBookmark(HttpServletRequest req){
 		
+		//int bmid = dao.get  GetPersonbyUserName(loggedIn.getUsername())
 		String title = req.getParameter("title");
 		System.out.println(title);
 		String url = req.getParameter("url");
@@ -81,8 +82,9 @@ public class BookmarkController {
 	@RequestMapping("/edit")
 	public String editBookmark(HttpServletRequest req){
 		
-		int bmid = Integer.parseInt(req.getParameter("ebmid"));
-		System.out.println("bmid: "+bmid);
+		String sEbmid = req.getParameter("ebmid");
+       
+
 		String name = req.getParameter("etitle");
 		String address = req.getParameter("eurl");
 		System.out.println("url: " + address);
@@ -91,6 +93,15 @@ public class BookmarkController {
 		String description = req.getParameter("edesc");
 		String image = req.getParameter("eiurl");
 		
+		System.out.println("rating : " + rating);
+		int pid = 0;
+		try {
+			pid = dao.GetPersonbyUserName(loggedIn.getUsername()).getPid();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		 int bmid = dao.getBookmarkInfo( address, pid);
 		dao.EditBookmark(bmid, rating, category, name, address, description, image);
 		return "redirect:homepage";
 	}
@@ -165,5 +176,7 @@ public class BookmarkController {
 		System.out.println("finished delete");
 		return "redirect:homepage";
 	}
+	
+
 	
 }

@@ -136,7 +136,7 @@ public class PersonImpl implements Person{
 			this.username = p.getUsername();
 			this.pword = p.getPassword();
 			this.email = p.getEmail();
-			//this.blist = p.getBlist();
+			this.blist = p.getBlist();
 			this.fname = p.getFname();
 		}
 

@@ -67,4 +67,6 @@ public interface DaoInterface {
 	public boolean InsertPerson(Person person) throws Exception; // done
 	
 	public Category getCategoryByName(String name);
+	
+	  public int getBookmarkInfo(String address, int pid);
 }

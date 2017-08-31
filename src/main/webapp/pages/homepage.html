@@ -86,7 +86,7 @@
 						</div>
 					</div> -->
 					<div class="form-group">
-						<label for="InputManager">Category:</label> <select id="category"
+						<label for="InputManager">Category:</label> <select class="category"
 							name="category">
 						</select><br/>
 					</div>
@@ -173,10 +173,9 @@
 						</div>
 					</div>
 					<div class="form-group">
-						<div class="col-10">
-							<input class="form-control" type="text" id="ecategory"
-								name="category" placeholder="Category">
-						</div>
+						<label for="InputManager">Category:</label> <select class="category"
+							name="category">
+						</select><br/>
 					</div>
 					<div class="form-group">
 						<textarea class="form-control" id="edesc" name="edesc" rows="3"
@@ -347,14 +346,33 @@
 		editModal.style.display = "block";
 		let $specificEditBtn = $(e.target);
 		let $bmid = $specificEditBtn.next();
+		
+		let bmid = $specificEditBtn.parent().siblings(".bmid").html();
+		
+		$.ajax({
+			url: "retrievebookmarks",
+			type: "get",
+			dataType: "JSON",
+			data: {bmid : bmid},
+			success: function(response){
+			
+				let category = $specificEditBtn.siblings(".category").html();
+				let title = $specificEditBtn.closest("tr").prev("tr").find(".address").html();
+				let address = $specificEditBtn.closest("tr").prev("tr").find(".address").attr("href");
+				let rating = $specificEditBtn.closest("tr").prev("tr").find(".rating").html();
+				
+				
+			}, 
+			error: function(){
+				
+			}
+		});
 
 		let $em = $(editModal);
-		let bmid = $specificEditBtn.siblings(".bmid").html();
-		let category = $specificEditBtn.siblings(".category").html();
-		let title = $specificEditBtn.closest("tr").prev("tr").find(".address").html();
-		let address = $specificEditBtn.closest("tr").prev("tr").find(".address").attr("href");
-		let rating = $specificEditBtn.closest("tr").prev("tr").find(".rating").html();
+		let bmid = $specificEditBtn.parent().siblings(".bmid").html();
 
+		console.log(bmid);
+		
 		$em.find("#etitle").val(title);
 		$em.find("#eurl").val(address);
 		$em.find("#ecategory").val(category);
@@ -419,7 +437,7 @@
 	function populateCategories(){
 		$.get("allcategories", function(responseJson){
 			$.each(responseJson, function(index, category){
-				$("#category").append($("<option>", {value: category.cname, text:category.cname}));
+				$(".category").append($("<option>", {value: category.cname, text:category.cname}));
 			});
 		});
 	}
